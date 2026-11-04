@@ -832,12 +832,18 @@ export function GuitarModel() {
  * contact shadow on the locker door instead of intersecting the vent slats.
  */
 export function PosterCardModel({
-  url = '/assets/obj/posterwall.webp',
+  url,
 }: {
-  url?: string
+  url: string
 }) {
   const texture = useTexture(url)
   useEffect(() => configurePaperTexture(texture), [texture])
+  const image = texture.image as { width?: number; height?: number }
+  const sourceAspect = image.width && image.height ? image.width / image.height : 0.575 / 0.805
+  const maxPrintWidth = 0.575
+  const maxPrintHeight = 0.805
+  const printWidth = Math.min(maxPrintWidth, maxPrintHeight * sourceAspect)
+  const printHeight = printWidth / sourceAspect
 
   return (
     <group name="PosterCardModel">
@@ -850,7 +856,7 @@ export function PosterCardModel({
         roughness={0.94}
       />
       <mesh {...SHADOWS} name="PosterCard_Print" position={[0, 0, 0.011]}>
-        <planeGeometry args={[0.575, 0.805]} />
+        <planeGeometry args={[printWidth, printHeight]} />
         <meshStandardMaterial
           map={texture}
           roughness={0.95}

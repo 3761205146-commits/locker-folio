@@ -175,7 +175,7 @@ function lazyAsset(
  * 的旧图片。
  */
 const HERO_PROPS: AssetEntry[] = [
-  prop('hero.posterwall', '/assets/obj/posterwall.webp', 83900, '2e4607b3', true),
+  prop('hero.posterwall', '/assets/obj/liz/liz-left-poster.jpg', 75983, '3abdd585', true),
   prop('hero.findaword', '/assets/obj/findaword2.webp', 30894, '193897a8', true),
   prop('hero.door4.photo1', '/assets/obj2/polaroid-liz/photo-1.jpg', 87397, '742f1007'),
   prop('hero.door4.photo2', '/assets/obj2/polaroid-liz/photo-2.jpg', 67348, 'b40fc97d'),

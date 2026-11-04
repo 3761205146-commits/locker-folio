@@ -86,7 +86,7 @@ const GUITAR = findSpec('Prop_Guitar')
 
 const POSTER: PropSpec = {
   name: 'Prop_Door01_Poster',
-  url: '/assets/obj/posterwall.webp',
+  url: '/assets/obj/liz/liz-left-poster.jpg',
   at: [0, 0, 0],
   width: 0.53,
   from: { dz: -0.045, scale: 0.94 },
@@ -414,7 +414,7 @@ export function DoorOneMountedProps() {
         rotation={[0, 0, -0.035]}
         scale={0.88}
       >
-        <PosterCardModel />
+        <PosterCardModel url={POSTER.url} />
       </PhysicalItem>
       <PhysicalItem
         spec={TRAY_A}
