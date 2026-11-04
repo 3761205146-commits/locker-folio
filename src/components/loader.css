@@ -1,11 +1,17 @@
 .loader {
   position: fixed;
   inset: 0;
-  background: var(--paper);
+  background: #9dcfe2;
   display: grid;
   place-items: center;
   z-index: 60;
   overflow: hidden;
+  opacity: 1;
+  transition: opacity 620ms ease;
+}
+
+.loader[data-leaving='true'] {
+  opacity: 0;
 }
 
 /* 背景里若隐若现的方块残影，为后面的马赛克揭幕做铺垫 */
@@ -106,6 +112,81 @@
   height: 5px;
   background: var(--cyan);
   display: inline-block;
+}
+
+/* ── Liz 22 岁生日开场 ───────────────────────────────────── */
+.loader__content {
+  display: grid;
+  justify-items: center;
+  gap: clamp(24px, 4.5vh, 42px);
+  width: min(100%, 920px);
+  padding: 24px;
+}
+
+.loader__title {
+  margin: 0;
+  color: #fffdf8;
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: clamp(52px, 8.4vw, 126px);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  text-align: center;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.loader__title[data-fontready='true'] {
+  opacity: 1;
+}
+
+.loader__hearts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1px, 0.75vw, 9px);
+  max-width: calc(100vw - 28px);
+}
+
+.loader__heart {
+  color: rgba(255, 255, 255, 0.42);
+  font-family: Arial, sans-serif;
+  font-size: clamp(10px, 2.2vw, 24px);
+  line-height: 1;
+  transform: scale(1);
+  transition: color 220ms ease, transform 260ms cubic-bezier(0.22, 1.28, 0.36, 1);
+}
+
+.loader__heart[data-lit='true'] {
+  color: #fffdf6;
+  animation: heartLight 360ms cubic-bezier(0.22, 1.28, 0.36, 1) both;
+}
+
+@keyframes heartLight {
+  0% {
+    transform: scale(1);
+  }
+  58% {
+    transform: scale(1.16);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.loader__sig {
+  bottom: clamp(24px, 5vh, 56px);
+  left: 50%;
+  display: block;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: lowercase;
+  transform: translateX(-50%);
 }
 
 /* ── 资源失败：重试 / 降级继续（§7.1） ───────────────── */

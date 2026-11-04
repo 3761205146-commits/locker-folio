@@ -93,7 +93,15 @@ export default function App() {
           不能再走 store 的 setPhase 兼容层 —— 那条路里 'scene' 会连发
           ASSETS_READY + REVEAL_DONE + SKIP_INTRO，最后一发直接把开场跳过。
           开发期直达 ?v= 仍然走兼容层，那种场合本来就该跳过开场。 */}
-      {phase === 'loading' && <Loader onReady={() => send({ type: 'ASSETS_READY' })} />}
+      {phase === 'loading' && (
+        <Loader
+          onReady={() => {
+            // 生日加载页自身淡出后直接露出柜子，不再叠加原来的马赛克遮罩。
+            send({ type: 'ASSETS_READY' })
+            send({ type: 'REVEAL_DONE' })
+          }}
+        />
+      )}
       {phase === 'reveal' && <Reveal onDone={() => send({ type: 'REVEAL_DONE' })} />}
     </div>
   )
