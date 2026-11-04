@@ -671,6 +671,8 @@ function makePickguardShape() {
   return shape
 }
 
+const GUITAR_BODY_COLOR = '#7ebee1'
+
 /** Full-thickness stylised electric guitar. Bottom-centred and front-facing +Z. */
 export function GuitarModel() {
   const bodyGeometry = useMemo(() => {
@@ -711,7 +713,7 @@ export function GuitarModel() {
   return (
     <group name="GuitarModel">
       <mesh {...SHADOWS} name="Guitar_Body" geometry={bodyGeometry}>
-        <meshStandardMaterial color={PROP_COLORS.blue} roughness={0.56} />
+        <meshStandardMaterial color={GUITAR_BODY_COLOR} roughness={0.56} />
       </mesh>
       <mesh {...SHADOWS} name="Guitar_Pickguard" geometry={pickguardGeometry}>
         <meshStandardMaterial color={PROP_COLORS.cream} roughness={0.72} />
