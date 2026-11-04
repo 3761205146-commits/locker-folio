@@ -44,10 +44,10 @@ export default function LightsAndShadows({ dynamic = false }: { dynamic?: boolea
         position={[0.18, 0.004, 0.06]}
         scale={[LOCKER_W * 1.45, LOCKER_D * 4.2]}
         resolution={768}
-        blur={2.25}
+        blur={3}
         far={1.5}
-        opacity={0.58}
-        color="#5d6a7d"
+        opacity={0.36}
+        color="#91adbd"
         // 动画期间每帧重算，静止后停下来，不留无意义的常驻渲染
         frames={dynamic ? Infinity : 1}
       />
