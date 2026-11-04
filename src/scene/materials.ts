@@ -10,8 +10,8 @@
 export const PALETTE = {
   /** 门面：高亮、接近白蓝的浅粉蓝 */
   door: '#edf5fa',
-  /** 门内侧：受光更足的淡蓝白 */
-  doorInner: '#f6fbfd',
+  /** 门内侧：带有可辨识粉蓝的亮蓝白 */
+  doorInner: '#e5f3fb',
   /** 柜壳与立柱：比门面略深，保持框架层次 */
   frame: '#b8d7e8',
   /** 顶盖 */
@@ -19,9 +19,9 @@ export const PALETTE = {
   /** 底座 */
   plinth: '#afcde0',
   /** 柜腔内壁：比门面更深，但保持明亮、清透的蓝 */
-  cavity: '#70a9d0',
+  cavity: '#639fcb',
   /** 柜腔后壁：比内侧亮一档，避免吸光成深蓝 */
-  cavityBack: '#8fc5e0',
+  cavityBack: '#78b5d9',
   /** 隔板 */
   shelf: '#c9e4f0',
   /** 把手底板 */
