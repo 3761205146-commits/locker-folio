@@ -170,14 +170,16 @@ function lazyAsset(
  * 当前 Hero 会直接交给 Three.js 的实体表面纹理。
  *
  * 唱机、书、背包、文件袋、打字机、吉他与门托盘都已经换成程序化实体网格，
- * 不再把旧透明 WebP 当作材质；右门只保留 polaroids.webp 作为三张实体卡
- * 的组合印刷层。这里必须只登记真实的纹理请求，否则 Loader 虽然
- * 显示 100%，实际上却是在等待场景根本不会用到的旧图片。
+ * 右门的三张实体拍立得分别使用独立的原始 JPG。这里必须只登记真实的
+ * 纹理请求，否则 Loader 虽然显示 100%，实际上却是在等待场景根本不会用到
+ * 的旧图片。
  */
 const HERO_PROPS: AssetEntry[] = [
   prop('hero.posterwall', '/assets/obj/posterwall.webp', 83900, '2e4607b3', true),
   prop('hero.findaword', '/assets/obj/findaword2.webp', 30894, '193897a8', true),
-  prop('hero.door4.polaroids', '/assets/obj2/polaroids.webp', 65492, 'df8d6564', true),
+  prop('hero.door4.photo1', '/assets/obj2/polaroid-liz/photo-1.jpg', 87397, '742f1007'),
+  prop('hero.door4.photo2', '/assets/obj2/polaroid-liz/photo-2.jpg', 67348, 'b40fc97d'),
+  prop('hero.door4.photo3', '/assets/obj2/polaroid-liz/photo-3.jpg', 63212, '22a3cb9a'),
 ]
 
 /**

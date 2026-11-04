@@ -878,8 +878,6 @@ export function PosterCardModel({
   )
 }
 
-const POLAROID_SOURCE_SIZE = [760, 704] as const
-
 /** Pixel rectangle in an unmodified source image, measured from its top-left. */
 export type PixelCrop = Readonly<{
   x: number
@@ -918,38 +916,26 @@ function useCroppedTexture(
 }
 
 /**
- * Real photograph regions inside the supplied three-card composite.
- *
- * These rectangles deliberately stop inside each printed image window instead of
- * sampling the baked white frames/shadows.  The frame and its contact shadow are
- * recreated by geometry below, so every card can move independently without a
- * fragment of either neighbouring card travelling with it.
- */
-export const POLAROID_CROPS = {
-  friends: { x: 290, y: 70, width: 240, height: 190 },
-  beach: { x: 65, y: 325, width: 225, height: 185 },
-  camera: { x: 465, y: 350, width: 205, height: 190 },
-} as const satisfies Record<string, PixelCrop>
-
-/**
  * One independently movable, full-thickness Polaroid card.
  *
- * `size` is the real card body's width/height.  The source crop is fitted inside
- * its photo window with the crop's native aspect ratio; any spare room remains
- * white border instead of distorting the supplied photograph.
+ * `size` is the real card body's width/height. Each card receives its own source
+ * image, fitted into the photo window at its native aspect ratio; any spare room
+ * remains white border instead of distorting the photograph.
  */
 export function PolaroidCardModel({
   name,
-  crop,
+  photoUrl,
   size,
 }: {
   name: string
-  crop: PixelCrop
+  photoUrl: string
   size: readonly [width: number, height: number]
 }) {
-  const texture = useCroppedTexture('/assets/obj2/polaroids.webp', POLAROID_SOURCE_SIZE, crop)
+  const texture = useTexture(photoUrl)
+  useEffect(() => configurePaperTexture(texture), [texture])
   const [cardWidth, cardHeight] = size
-  const sourceAspect = crop.width / crop.height
+  const image = texture.image as { width?: number; height?: number }
+  const sourceAspect = image.width && image.height ? image.width / image.height : 1
   const maxPhotoWidth = cardWidth - 0.046
   const maxPhotoHeight = cardHeight - 0.084
   const photoWidth = Math.min(maxPhotoWidth, maxPhotoHeight * sourceAspect)

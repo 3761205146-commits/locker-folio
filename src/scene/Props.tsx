@@ -28,7 +28,6 @@ import {
   FindAWordBoardModel,
   GuitarModel,
   IdCardModel,
-  POLAROID_CROPS,
   PolaroidCardModel,
   PosterCardModel,
   SelectedWorkModel,
@@ -135,7 +134,7 @@ const ID_CARD: PropSpec = {
 
 const DOOR4_PHOTO_FRIENDS: PropSpec = {
   name: 'Prop_Door04_PhotoFriends',
-  url: '/assets/obj2/polaroids.webp',
+  url: '/assets/obj2/polaroid-liz/photo-1.jpg',
   at: [0, 0, 0],
   width: 0.36,
   from: { dz: -0.05, scale: 0.9 },
@@ -147,6 +146,7 @@ const DOOR4_PHOTO_FRIENDS: PropSpec = {
 const DOOR4_PHOTO_BEACH: PropSpec = {
   ...DOOR4_PHOTO_FRIENDS,
   name: 'Prop_Door04_PhotoBeach',
+  url: '/assets/obj2/polaroid-liz/photo-2.jpg',
   width: 0.33,
   at_ms: 1380,
 }
@@ -154,6 +154,7 @@ const DOOR4_PHOTO_BEACH: PropSpec = {
 const DOOR4_PHOTO_CAMERA: PropSpec = {
   ...DOOR4_PHOTO_FRIENDS,
   name: 'Prop_Door04_PhotoCamera',
+  url: '/assets/obj2/polaroid-liz/photo-3.jpg',
   width: 0.34,
   at_ms: 1440,
 }
@@ -463,7 +464,7 @@ export function DoorFourMountedProps() {
       >
         <PolaroidCardModel
           name="Polaroid_Friends"
-          crop={POLAROID_CROPS.friends}
+          photoUrl={DOOR4_PHOTO_FRIENDS.url}
           size={[0.36, 0.31]}
         />
       </PhysicalItem>
@@ -479,7 +480,7 @@ export function DoorFourMountedProps() {
       >
         <PolaroidCardModel
           name="Polaroid_Beach"
-          crop={POLAROID_CROPS.beach}
+          photoUrl={DOOR4_PHOTO_BEACH.url}
           size={[0.33, 0.36]}
         />
       </PhysicalItem>
@@ -495,7 +496,7 @@ export function DoorFourMountedProps() {
       >
         <PolaroidCardModel
           name="Polaroid_Camera"
-          crop={POLAROID_CROPS.camera}
+          photoUrl={DOOR4_PHOTO_CAMERA.url}
           size={[0.34, 0.37]}
         />
       </PhysicalItem>
