@@ -17,13 +17,13 @@ export default function LightsAndShadows({ dynamic = false }: { dynamic?: boolea
   return (
     <>
       {/* 冷白天空与浅蓝地面共同抬起暗部，接近参考图的高亮自然光。 */}
-      <hemisphereLight args={['#f5fbff', '#e2edf3', 1.5]} />
+      <hemisphereLight args={['#f3faff', '#e0ebf2', 1.35]} />
 
       {/* 主光：左上前方，投影落到右下 */}
       <directionalLight
         castShadow
         position={[-3.1, 8.0, 7.0]}
-        intensity={2.12}
+        intensity={1.95}
         shadow-mapSize={[2048, 2048]}
         shadow-bias={-0.0012}
         shadow-normalBias={0.008}
@@ -33,9 +33,9 @@ export default function LightsAndShadows({ dynamic = false }: { dynamic?: boolea
       </directionalLight>
 
       {/* 右侧补光：压住主光背面的死黑，不投影 */}
-      <directionalLight position={[6.5, 3.2, 4.5]} intensity={0.62} />
+      <directionalLight position={[6.5, 3.2, 4.5]} intensity={0.56} />
       {/* 正面填充让门板和贴纸保持清晰，不改变物件本身的颜色。 */}
-      <directionalLight position={[0, 1.6, 9]} intensity={0.42} />
+      <directionalLight position={[0, 1.6, 9]} intensity={0.35} />
 
       {/* 落地接触阴影：跟着柜体一起变化，不是一张固定的渐变图 */}
       <ContactShadows

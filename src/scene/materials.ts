@@ -9,7 +9,7 @@
 
 export const PALETTE = {
   /** 门面：高亮、接近白蓝的浅粉蓝 */
-  door: '#edf5fa',
+  door: '#e1eff7',
   /** 门内侧：带有可辨识粉蓝的亮蓝白 */
   doorInner: '#e5f3fb',
   /** 柜壳与立柱：比门面略深，保持框架层次 */
@@ -33,7 +33,7 @@ export const PALETTE = {
 } as const
 
 /** 柜体烤漆的通用参数 */
-export const PAINT = { roughness: 0.52, metalness: 0.08 } as const
+export const PAINT = { roughness: 0.62, metalness: 0.05 } as const
 /** 柜腔内壁：更哑，避免内部出现不该有的反光 */
 export const MATTE = { roughness: 0.82, metalness: 0.02 } as const
 /** 把手：金属感稍强 */
