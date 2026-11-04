@@ -8,28 +8,28 @@
  * ========================================================================== */
 
 export const PALETTE = {
-  /** 门面：接近白蓝的浅粉蓝 */
-  door: '#e2eff8',
+  /** 门面：高亮、接近白蓝的浅粉蓝 */
+  door: '#edf5fa',
   /** 门内侧：受光更足的淡蓝白 */
-  doorInner: '#edf6fb',
+  doorInner: '#f6fbfd',
   /** 柜壳与立柱：比门面略深，保持框架层次 */
-  frame: '#a9cde3',
+  frame: '#b8d7e8',
   /** 顶盖 */
-  cap: '#c6deed',
+  cap: '#d2e5f0',
   /** 底座 */
-  plinth: '#9fc4dc',
+  plinth: '#afcde0',
   /** 柜腔内壁：比门面更深，但保持明亮、清透的蓝 */
-  cavity: '#5f98c6',
+  cavity: '#70a9d0',
   /** 柜腔后壁：比内侧亮一档，避免吸光成深蓝 */
-  cavityBack: '#7fb7d9',
+  cavityBack: '#8fc5e0',
   /** 隔板 */
-  shelf: '#b9dbea',
+  shelf: '#c9e4f0',
   /** 把手底板 */
-  handlePlate: '#9fc3d7',
+  handlePlate: '#adccdc',
   /** 把手蓝色嵌条 */
-  handleGrip: '#6dadd0',
+  handleGrip: '#7bb9d8',
   /** 通风槽底衬 */
-  ventBack: '#8db8d1',
+  ventBack: '#9dc3d8',
 } as const
 
 /** 柜体烤漆的通用参数 */
