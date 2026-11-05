@@ -49,7 +49,6 @@ export default function MessagesForLizModal() {
             <p className={`ml-modal__feedback${sent ? ' ml-modal__feedback--show' : ''}`} role="status">已放进 Liz 的生日信箱 ♡</p>
           </form>
         </div>
-        <p className="ml-modal__prototype">示例留言 · 当前仅作前端演示，云端同步即将开启</p>
       </section>
     </div>
   )

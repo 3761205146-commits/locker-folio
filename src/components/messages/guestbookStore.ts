@@ -17,9 +17,9 @@ export type LizMessagesDataSource = {
 }
 
 const SAMPLE_MESSAGES: LizMessage[] = [
-  { id: 'sample-3', nickname: 'Mia', body: '愿你的 22 岁像天空一样明亮自由。', createdAt: '今天 10:21', avatar: 'cloud' },
-  { id: 'sample-2', nickname: '阿棠', body: '生日快乐，永远被温柔和爱包围 ♡', createdAt: '今天 09:48', avatar: 'heart' },
-  { id: 'sample-1', nickname: '小猫同学', body: '把所有闪闪发光的祝福都送给 Liz！', createdAt: '昨天 22:16', avatar: 'cat' },
+  { id: 'sample-zh', nickname: '金志垣', body: '生日快乐！', createdAt: '今天 10:21', avatar: 'cloud' },
+  { id: 'sample-ko', nickname: '김지원', body: '생일 축하해요!', createdAt: '今天 09:48', avatar: 'heart' },
+  { id: 'sample-en', nickname: 'Liz', body: 'Happy Birthday!', createdAt: '昨天 22:16', avatar: 'cat' },
 ]
 
 type GuestbookState = {
