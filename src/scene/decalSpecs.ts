@@ -47,8 +47,8 @@ export const DOOR4_DECALS: readonly DecalSpec[] = []
  */
 export const DOOR2_INNER_DECALS: readonly DecalSpec[] = [
   // 文字贴纸固定在基本信息卡片上方，留出卡片文字的完整阅读空间。
-  { id: 'birthday', url: '/assets/obj2/liz-door/happy-birthday.png', left: 0.22, top: 0.025, width: 0.28, rot: -3, draggable: true },
-  { id: 'liz-heart', url: '/assets/obj2/liz-door/liz-heart.png', left: 0.55, top: 0.035, width: 0.2, rot: 4, draggable: true },
+  { id: 'birthday', url: '/assets/obj2/liz-door/happy-birthday.png', left: 0.16, top: 0.02, width: 0.364, rot: -3, draggable: true },
+  { id: 'liz-heart', url: '/assets/obj2/liz-door/liz-heart.png', left: 0.58, top: 0.027, width: 0.26, rot: 4, draggable: true },
 
   // 原三宫格位置改用上传的原始四宫格照片，保留独立贴花与白色描边效果。
   { id: 'four-grid', url: '/assets/obj2/liz-door/four-grid.jpg', left: 0.62, top: 0.46, width: 0.25, rot: 2, draggable: true },
@@ -63,7 +63,7 @@ export const DOOR2_INNER_DECALS: readonly DecalSpec[] = [
 
   // 内侧内容组绕 Y 轴镜像：较小的 left 会落在观众视角的右侧。
   // 人物放在最后，使其保持在其他贴花之上，同时与基本信息卡片左右并列。
-  { id: 'liz-cutout', url: '/assets/obj2/liz-door/39ae5202-5f40-4047-9bc5-704e020d6a88.png', left: 0, top: 0.3, width: 0.3, rot: -2, draggable: true },
+  { id: 'liz-cutout', url: '/assets/obj2/liz-door/39ae5202-5f40-4047-9bc5-704e020d6a88.png', left: 0, top: 0.3, width: 0.381, rot: -2, draggable: true },
 ]
 
 /* ============================================================================

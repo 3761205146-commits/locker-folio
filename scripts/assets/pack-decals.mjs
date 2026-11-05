@@ -78,9 +78,9 @@ const JSON_OUT = 'scripts/assets/decal-atlas.json'
  * 源图比它小就保持原样。
  */
 const MEMBERS = [
-  { url: '/assets/obj2/liz-door/happy-birthday.png', maxW: 326, why: '门宽 0.28' },
-  { url: '/assets/obj2/liz-door/liz-heart.png', maxW: 233, why: '门宽 0.20' },
-  { url: '/assets/obj2/liz-door/39ae5202-5f40-4047-9bc5-704e020d6a88.png', maxW: 349, why: '门宽 0.30' },
+  { url: '/assets/obj2/liz-door/happy-birthday.png', maxW: 424, why: '门宽 0.364' },
+  { url: '/assets/obj2/liz-door/liz-heart.png', maxW: 303, why: '门宽 0.26' },
+  { url: '/assets/obj2/liz-door/39ae5202-5f40-4047-9bc5-704e020d6a88.png', maxW: 443, why: '门宽 0.381' },
   { url: '/assets/obj2/liz-door/four-grid.jpg', maxW: 291, why: '门宽 0.25' },
   { url: '/assets/obj2/liz-door/01_orange_cat_front.png', maxW: 242, why: '门宽 0.208' },
   { url: '/assets/obj2/liz-door/02_orange_cat_singing.png', maxW: 261, why: '门宽 0.224' },
