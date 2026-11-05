@@ -80,14 +80,14 @@ const JSON_OUT = 'scripts/assets/decal-atlas.json'
 const MEMBERS = [
   { url: '/assets/obj2/liz-door/happy-birthday.png', maxW: 326, why: '门宽 0.28' },
   { url: '/assets/obj2/liz-door/liz-heart.png', maxW: 233, why: '门宽 0.20' },
-  { url: '/assets/obj2/liz-door/39ae5202-5f40-4047-9bc5-704e020d6a88.png', maxW: 233, why: '门宽 0.20' },
+  { url: '/assets/obj2/liz-door/39ae5202-5f40-4047-9bc5-704e020d6a88.png', maxW: 349, why: '门宽 0.30' },
   { url: '/assets/obj2/liz-door/four-grid.jpg', maxW: 291, why: '门宽 0.25' },
-  { url: '/assets/obj2/liz-door/01_orange_cat_front.png', maxW: 151, why: '门宽 0.13' },
-  { url: '/assets/obj2/liz-door/02_orange_cat_singing.png', maxW: 163, why: '门宽 0.14' },
-  { url: '/assets/obj2/liz-door/03_orange_cat_surprised.png', maxW: 140, why: '门宽 0.12' },
-  { url: '/assets/obj2/liz-door/04_orange_cat_tears.png', maxW: 151, why: '门宽 0.13' },
-  { url: '/assets/obj2/liz-door/05_orange_cat_front2.png', maxW: 140, why: '门宽 0.12' },
-  { url: '/assets/obj2/liz-door/06_orange_cat_music.png', maxW: 140, why: '门宽 0.12' },
+  { url: '/assets/obj2/liz-door/01_orange_cat_front.png', maxW: 242, why: '门宽 0.208' },
+  { url: '/assets/obj2/liz-door/02_orange_cat_singing.png', maxW: 261, why: '门宽 0.224' },
+  { url: '/assets/obj2/liz-door/03_orange_cat_surprised.png', maxW: 224, why: '门宽 0.192' },
+  { url: '/assets/obj2/liz-door/04_orange_cat_tears.png', maxW: 242, why: '门宽 0.208' },
+  { url: '/assets/obj2/liz-door/05_orange_cat_front2.png', maxW: 224, why: '门宽 0.192' },
+  { url: '/assets/obj2/liz-door/06_orange_cat_music.png', maxW: 224, why: '门宽 0.192' },
 ]
 
 /** texture-report.mjs 判定必须走混合的块；其余全部 cutout */
