@@ -1,0 +1,23 @@
+import { createClient, type SupabaseClient } from '@supabase/supabase-js'
+
+let client: SupabaseClient | null | undefined
+
+/**
+ * Returns the browser client once local Vite settings are present.
+ * The publishable key is intentionally read only from untracked .env.local.
+ */
+export function getSupabaseClient(): SupabaseClient | null {
+  if (client !== undefined) return client
+
+  const url = import.meta.env.VITE_SUPABASE_URL
+  const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
+  if (!url || !publishableKey) {
+    client = null
+    return client
+  }
+
+  client = createClient(url, publishableKey, {
+    auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+  })
+  return client
+}

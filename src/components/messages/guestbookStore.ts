@@ -16,11 +16,11 @@ export type LizMessagesDataSource = {
   subscribe: (onMessage: (message: LizMessage) => void) => () => void
 }
 
-const SAMPLE_MESSAGES: LizMessage[] = [
-  { id: 'sample-zh', nickname: '金志垣', body: '生日快乐！', createdAt: '今天 10:21', avatar: 'cloud' },
-  { id: 'sample-ko', nickname: '김지원', body: '생일 축하해요!', createdAt: '今天 09:48', avatar: 'heart' },
-  { id: 'sample-en', nickname: 'Liz', body: 'Happy Birthday!', createdAt: '昨天 22:16', avatar: 'cat' },
-]
+type GuestbookStatus = 'idle' | 'loading' | 'ready' | 'error'
+
+function byNewest(messages: LizMessage[]) {
+  return [...messages].sort((left, right) => Date.parse(right.createdAt) - Date.parse(left.createdAt))
+}
 
 type GuestbookState = {
   open: boolean
@@ -28,33 +28,79 @@ type GuestbookState = {
   nickname: string
   body: string
   sent: boolean
+  status: GuestbookStatus
+  error: string | null
+  isSending: boolean
   setOpen: (open: boolean) => void
   setNickname: (nickname: string) => void
   setBody: (body: string) => void
-  sendLocal: () => boolean
+  startSync: () => () => void
+  sendMessage: () => Promise<boolean>
   clearSent: () => void
 }
 
 export const useGuestbookStore = create<GuestbookState>((set, get) => ({
   open: false,
-  messages: SAMPLE_MESSAGES,
+  messages: [],
   nickname: '',
   body: '',
   sent: false,
+  status: 'idle',
+  error: null,
+  isSending: false,
   setOpen: (open) => set({ open }),
   setNickname: (nickname) => set({ nickname }),
   setBody: (body) => set({ body }),
   clearSent: () => set({ sent: false }),
-  sendLocal: () => {
+  startSync: () => {
+    let active = true
+    let stopRealtime: () => void = () => {}
+    void import('./guestbookDataSource').then(async ({ supabaseGuestbookDataSource }) => {
+      try {
+        if (!active) return
+        set({ status: 'loading', error: null })
+        const messages = await supabaseGuestbookDataSource.listLatest()
+        if (!active) return
+        set({ messages: byNewest(messages), status: 'ready' })
+        stopRealtime = supabaseGuestbookDataSource.subscribe((message) => {
+          if (!active) return
+          set((state) => ({
+            messages: byNewest([message, ...state.messages.filter((item) => item.id !== message.id)]),
+          }))
+        })
+      } catch (error) {
+        if (!active) return
+        set({ status: 'error', error: error instanceof Error ? error.message : '暂时无法读取留言，请稍后重试。' })
+      }
+    })
+    return () => { active = false; stopRealtime() }
+  },
+  sendMessage: async () => {
     const { body, nickname } = get()
     const cleanBody = body.trim()
-    if (!cleanBody) return false
-    const time = new Intl.DateTimeFormat('zh-CN', { hour: '2-digit', minute: '2-digit' }).format(new Date())
-    set((state) => ({
-      body: '',
-      sent: true,
-      messages: [{ id: `local-${Date.now()}`, nickname: nickname.trim() || '匿名朋友', body: cleanBody, createdAt: `刚刚 ${time}`, avatar: 'heart', pending: true }, ...state.messages],
-    }))
-    return true
+    const cleanNickname = nickname.trim()
+    if (!cleanNickname || !cleanBody) {
+      set({ error: '请填写昵称和生日祝福。' })
+      return false
+    }
+    if (cleanNickname.length > 30 || cleanBody.length > 300) {
+      set({ error: '昵称最多 30 个字符，祝福最多 300 个字符。' })
+      return false
+    }
+    set({ isSending: true, error: null, sent: false })
+    try {
+      const { supabaseGuestbookDataSource } = await import('./guestbookDataSource')
+      const message = await supabaseGuestbookDataSource.create({ nickname: cleanNickname, body: cleanBody })
+      set((state) => ({
+        body: '',
+        sent: true,
+        isSending: false,
+        messages: byNewest([message, ...state.messages.filter((item) => item.id !== message.id)]),
+      }))
+      return true
+    } catch (error) {
+      set({ isSending: false, error: error instanceof Error ? error.message : '发送失败，请稍后重试。' })
+      return false
+    }
   },
 }))
