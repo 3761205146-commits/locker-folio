@@ -78,30 +78,20 @@ const JSON_OUT = 'scripts/assets/decal-atlas.json'
  * 源图比它小就保持原样。
  */
 const MEMBERS = [
-  // ── 门 2 内侧：自动推近的终点，分辨率要求最高 ──
-  { url: '/assets/obj/idcard2.webp', maxW: 481, why: '近景 275px × 1.75' },
-  { url: '/assets/obj/tapes.webp', maxW: 304, why: '门宽 0.26' },
-  { url: '/assets/obj2/stk1.webp', maxW: 198, why: '门宽 0.17' },
-  { url: '/assets/obj2/stk2.webp', maxW: 291, why: '门宽 0.25' },
-  { url: '/assets/obj2/stk3.webp', maxW: 198, why: '门宽 0.17' },
-  { url: '/assets/obj2/stk4.webp', maxW: 163, why: '门宽 0.14' },
-  { url: '/assets/obj2/stk5.webp', maxW: 210, why: '门宽 0.18' },
-  { url: '/assets/obj2/stk6.webp', maxW: 244, why: '门宽 0.21' },
-  { url: '/assets/obj2/stk7.webp', maxW: 279, why: '门宽 0.24' },
-  { url: '/assets/obj2/stk8.webp', maxW: 268, why: '门宽 0.23' },
-  { url: '/assets/obj2/stk9.webp', maxW: 151, why: '门宽 0.13' },
-  // 提交 11f 新增的两张文字贴纸，等场景层在 decalSpecs 里排位后才会出现在门上
-  { url: '/assets/obj2/stk10.webp', maxW: 233, why: '门宽 0.20（待场景层排位）' },
-  { url: '/assets/obj2/stk11.webp', maxW: 198, why: '门宽 0.17（待场景层排位）' },
-  // ── 门 1 / 门 4 外表面：全程关着，只在落位帧的尺度上出现 ──
-  { url: '/assets/obj/posterwall.webp', maxW: 322, why: '门宽 0.56 × 1.6 余量' },
-  { url: '/assets/obj/trayA.webp', maxW: 230, why: '门宽 0.40 × 1.6 余量' },
-  { url: '/assets/obj/trayB.webp', maxW: 230, why: '门宽 0.40 × 1.6 余量' },
-  { url: '/assets/obj2/polaroids.webp', maxW: 379, why: '门宽 0.66 × 1.6 余量' },
+  { url: '/assets/obj2/liz-door/happy-birthday.png', maxW: 326, why: '门宽 0.28' },
+  { url: '/assets/obj2/liz-door/liz-heart.png', maxW: 233, why: '门宽 0.20' },
+  { url: '/assets/obj2/liz-door/39ae5202-5f40-4047-9bc5-704e020d6a88.png', maxW: 233, why: '门宽 0.20' },
+  { url: '/assets/obj2/liz-door/four-grid.jpg', maxW: 291, why: '门宽 0.25' },
+  { url: '/assets/obj2/liz-door/01_orange_cat_front.png', maxW: 151, why: '门宽 0.13' },
+  { url: '/assets/obj2/liz-door/02_orange_cat_singing.png', maxW: 163, why: '门宽 0.14' },
+  { url: '/assets/obj2/liz-door/03_orange_cat_surprised.png', maxW: 140, why: '门宽 0.12' },
+  { url: '/assets/obj2/liz-door/04_orange_cat_tears.png', maxW: 151, why: '门宽 0.13' },
+  { url: '/assets/obj2/liz-door/05_orange_cat_front2.png', maxW: 140, why: '门宽 0.12' },
+  { url: '/assets/obj2/liz-door/06_orange_cat_music.png', maxW: 140, why: '门宽 0.12' },
 ]
 
 /** texture-report.mjs 判定必须走混合的块；其余全部 cutout */
-const BLEND_URLS = new Set(['/assets/obj/tapes.webp'])
+const BLEND_URLS = new Set()
 
 /**
  * 与场景层对账：**哪些贴花存在**由 src/scene/decalSpecs.ts 说了算，

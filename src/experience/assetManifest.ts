@@ -190,7 +190,7 @@ const HERO_PROPS: AssetEntry[] = [
  * 运行时不会逐张请求。因此 Loader 也只等待这一个真实请求。
  */
 const HERO_DECALS: AssetEntry[] = [
-  decal('hero.decalAtlas', '/assets/obj2/doorDecals.webp', 244716, '41baddc8', true),
+  decal('hero.decalAtlas', '/assets/obj2/doorDecals.webp', 139726, '291f091a', true),
 ]
 
 /**
