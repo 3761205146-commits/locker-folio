@@ -2,6 +2,7 @@ import { useFrame } from '@react-three/fiber'
 import { Suspense, useEffect, useRef, type ReactNode } from 'react'
 import { Vector3, type Group } from 'three'
 import { introTime } from '../experience/experienceClock'
+import MessagesForLiz from '../components/messages/MessagesForLiz'
 import { useSceneCapabilities } from '../store'
 import { ID_CARD_AT, ID_CARD_SIZE } from './decalSpecs'
 import {
@@ -32,7 +33,6 @@ import {
   PosterCardModel,
   SelectedWorkModel,
   TurntableModel,
-  TypewriterModel,
 } from './PhysicalProps'
 import {
   CAVITY_PROPS,
@@ -81,7 +81,7 @@ const BOOKS = findSpec('Prop_Books')
 const TURNTABLE = findSpec('Prop_Turntable')
 const BACKPACK = findSpec('Prop_Backpack')
 const SELECTED_WORK = findSpec('Prop_SelectedWork')
-const TYPEWRITER = findSpec('Prop_Typewriter')
+const MESSAGES_FOR_LIZ: PropSpec = { ...findSpec('Prop_Typewriter'), name: 'Prop_MessagesForLiz' }
 const GUITAR = findSpec('Prop_Guitar')
 
 const POSTER: PropSpec = {
@@ -350,24 +350,21 @@ export function CavityProps() {
 }
 
 /**
- * 打开的第二扇门内侧：打字机背部磁吸在门板上，工牌挂在门贴挂钩上，
- * 两件都继承铰链矩阵。
+ * 打开的第二扇门内侧：留言板与工牌都继承门的铰链矩阵。
  */
 export function DoorTwoMountedProps() {
   const caps = useSceneCapabilities()
   return (
     <>
       <PhysicalItem
-        spec={TYPEWRITER}
+        spec={MESSAGES_FOR_LIZ}
         plane="xy"
         position={[0.015, -0.95, 0.018]}
         bounds={DOOR_FACE_BOUNDS}
         footprint={[0.72, 0.62]}
-        enabled={caps.drag}
-        hotspot="contact"
-        hotspotOffset={[0, -0.04, -0.012]}
+        enabled={false}
       >
-        <TypewriterModel />
+        <MessagesForLiz />
       </PhysicalItem>
 
       {/* 工牌要等自己那张贴图解码完才能裁出印刷面与吊环，单独用 Suspense 兜住，
