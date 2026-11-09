@@ -104,3 +104,7 @@
 .ml-modal__body { bottom:12%; }
 .ml-modal__form { margin:0 4%; }
 @media (max-width:720px) { .ml-modal__body { bottom:11%; }.ml-modal__form { margin:0 2%; } }
+
+/* Final compact spacing: raise only the content flow, preserving the title and toast. */
+.ml-modal__body { top:24.5%; gap:3px; }
+@media (max-width:720px) { .ml-modal__body { top:28%; gap:2px; } }
