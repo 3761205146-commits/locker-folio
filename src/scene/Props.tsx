@@ -453,7 +453,7 @@ export function DoorFourMountedProps() {
       <PhysicalItem
         spec={DOOR4_PHOTO_FRIENDS}
         plane="xy"
-        position={[0.1, 0.56, 0.01]}
+        position={[0.1, 0.69, 0.01]}
         bounds={DOOR_FACE_BOUNDS}
         footprint={[0.37, 0.323]}
         enabled={caps.drag}
@@ -469,7 +469,7 @@ export function DoorFourMountedProps() {
       <PhysicalItem
         spec={DOOR4_PHOTO_BEACH}
         plane="xy"
-        position={[0.005, 0.19, 0.026]}
+        position={[0.005, 0.35, 0.026]}
         bounds={DOOR_FACE_BOUNDS}
         footprint={[0.368, 0.394]}
         enabled={caps.drag}
@@ -485,7 +485,7 @@ export function DoorFourMountedProps() {
       <PhysicalItem
         spec={DOOR4_PHOTO_CAMERA}
         plane="xy"
-        position={[0.245, 0.2, 0.046]}
+        position={[0.245, 0.36, 0.046]}
         bounds={DOOR_FACE_BOUNDS}
         footprint={[0.374, 0.4]}
         enabled={caps.drag}
