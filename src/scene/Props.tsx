@@ -4,6 +4,7 @@ import { Vector3, type Group } from 'three'
 import { introTime } from '../experience/experienceClock'
 import MessagesForLiz from '../components/messages/MessagesForLiz'
 import { useSceneCapabilities } from '../store'
+import { usePianoStore } from '../components/piano/pianoStore'
 import { ID_CARD_AT, ID_CARD_SIZE } from './decalSpecs'
 import {
   activateHotspot,
@@ -208,6 +209,7 @@ function PhysicalItem({
   hotspotOffset = [0, 0, 0],
   hoverLift,
   hoverScale,
+  onTap,
   children,
 }: {
   spec: PropSpec
@@ -223,6 +225,7 @@ function PhysicalItem({
   hotspotOffset?: V3
   hoverLift?: number
   hoverScale?: number
+  onTap?: () => void
   children: ReactNode
 }) {
   const dragRoot = useRef<Group>(null)
@@ -250,7 +253,7 @@ function PhysicalItem({
       enabled={enabled}
       hoverLift={hoverLift}
       hoverScale={hoverScale}
-      onTap={hotspot ? () => activateHotspot(hotspot) : undefined}
+      onTap={onTap ?? (hotspot ? () => activateHotspot(hotspot) : undefined)}
       onHoverChange={hotspot ? (on) => setHotspotActive(hotspot, on) : undefined}
     >
       <IntroPhysical spec={spec}>
@@ -504,6 +507,7 @@ export function DoorFourMountedProps() {
 /** 柜外保留一台真正落地并斜靠柜体的便携电子琴。 */
 export function FrontProps() {
   const caps = useSceneCapabilities()
+  const openPiano = usePianoStore((state) => state.setOpen)
   return (
     <PhysicalItem
       spec={KEYBOARD}
@@ -514,6 +518,9 @@ export function FrontProps() {
       enabled={caps.drag}
       rotation={[0, -0.16, 0.2]}
       scale={0.83}
+      hoverScale={1.045}
+      hoverLift={0.014}
+      onTap={() => openPiano(true)}
     >
       <group scale={1.2}>
         <KeyboardModel />
