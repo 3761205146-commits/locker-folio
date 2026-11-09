@@ -67,3 +67,19 @@
 @media (max-width:720px) {
   .ml-modal__messages .ml-note { flex:0 0 auto; min-height:22px; }
 }
+
+/* Stable message flow: the scroll area owns its height and notes never shrink into one another. */
+.ml-modal__header { top:15%; }
+.ml-modal__body { top:39%; bottom:5.5%; display:grid; grid-template-rows:minmax(0,1fr) auto; gap:8px; min-height:0; }
+.ml-modal__messages { display:flex; min-height:0; flex-direction:column; align-items:stretch; align-content:initial; gap:6px; overflow-y:auto; overscroll-behavior:contain; scrollbar-gutter:stable; }
+.ml-modal__messages .ml-note,.ml-modal__messages .ml-note:nth-child(2n),.ml-modal__messages .ml-note:nth-child(3n) { box-sizing:border-box; flex:0 0 auto; width:auto; min-height:48px; align-self:stretch; transform:none; }
+.ml-modal__messages .ml-note > div { min-width:0; }
+.ml-modal__messages .ml-note__meta { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:baseline; column-gap:8px; }
+.ml-modal__messages .ml-note__meta strong { min-width:0; overflow-wrap:anywhere; }.ml-modal__messages .ml-note__meta time { min-width:0; font-variant-numeric:tabular-nums; }
+.ml-modal__messages .ml-note p { min-width:0; overflow-wrap:anywhere; word-break:break-word; white-space:normal; }
+.ml-modal__form { min-width:0; }
+@media (max-width:720px) { .ml-modal__header { top:12%; }.ml-modal__body { top:37%; bottom:4%; grid-template-rows:minmax(0,1fr) auto; gap:4px; }.ml-modal__messages { flex:initial; min-height:0; gap:3px; overflow-y:auto; }.ml-modal__messages .ml-note,.ml-modal__messages .ml-note:nth-child(2n),.ml-modal__messages .ml-note:nth-child(3n) { flex:0 0 auto; width:auto; min-height:28px; } }
+
+.ml-modal__body { grid-template-columns:minmax(0,1fr); }
+
+.ml-modal__form { position:relative; z-index:1; border-radius:24px 24px 18px 18px; background:rgba(255,254,249,.96); }
