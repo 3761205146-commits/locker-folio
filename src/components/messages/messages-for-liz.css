@@ -94,3 +94,13 @@
 .ml-modal__form { gap:3px; padding:5px 11px 7px; border-radius:21px 21px 17px 17px; background:rgba(255,254,249,.98); }
 .ml-modal__form label { gap:1px; }.ml-modal input,.ml-modal textarea { padding:4px 9px; }.ml-modal textarea { min-height:28px; }.ml-modal__send { min-height:25px; margin-top:0; }
 @media (max-width:720px) { .ml-modal__header { top:13%; left:10%; right:10%; }.ml-modal__body { top:35%; bottom:5%; left:9%; right:9%; gap:3px; }.ml-modal__messages { padding-right:2px; gap:3px; }.ml-modal__messages .ml-note,.ml-modal__messages .ml-note:nth-child(2n),.ml-modal__messages .ml-note:nth-child(3n) { min-height:29px; border-radius:13px 16px 12px 17px; }.ml-modal__form { gap:2px; padding:3px 8px 5px; border-radius:16px 16px 13px 13px; }.ml-modal input,.ml-modal textarea { padding:3px 7px; }.ml-modal textarea { min-height:20px; }.ml-modal__send { min-height:21px; } }
+
+/* Final placement pass: use the head space above and keep the form inside the lower curve. */
+.ml-modal__body { top:27%; bottom:11%; }
+.ml-modal__form { gap:2px; padding:3px 10px 5px; }
+.ml-modal input,.ml-modal textarea { padding:3px 8px; }.ml-modal textarea { min-height:23px; }.ml-modal__send { min-height:23px; }
+@media (max-width:720px) { .ml-modal__body { top:31%; bottom:10%; }.ml-modal__form { gap:1px; padding:2px 7px 4px; }.ml-modal input,.ml-modal textarea { padding:2px 6px; }.ml-modal textarea { min-height:18px; }.ml-modal__send { min-height:19px; } }
+
+.ml-modal__body { bottom:12%; }
+.ml-modal__form { margin:0 4%; }
+@media (max-width:720px) { .ml-modal__body { bottom:11%; }.ml-modal__form { margin:0 2%; } }
