@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import PianoKeyboard, { KEY_TO_MIDI } from './PianoKeyboard'
 import { playPianoNote, setPianoVolume, stopAllPianoNotes, stopPianoNote } from './pianoAudio'
 import { usePianoStore } from './pianoStore'
+import { parseUnrealMidi, type MidiNote } from './unrealMidi'
 import './piano.css'
 
 const UNREAL_AUDIO = `${import.meta.env.BASE_URL}audio/unreal-piano.mp3`
+const UNREAL_MIDI = `${import.meta.env.BASE_URL}audio/unreal-piano.mid`
 
 function isTypingTarget(target: EventTarget | null) {
   return target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target instanceof HTMLSelectElement || (target instanceof HTMLElement && target.isContentEditable)
@@ -20,11 +22,14 @@ export default function PianoModal() {
   const setOpen = usePianoStore((state) => state.setOpen)
   const setMelodyState = usePianoStore((state) => state.setMelodyState)
   const [activeNotes, setActiveNotes] = useState<Set<number>>(new Set())
+  const [autoNotes, setAutoNotes] = useState<Set<number>>(new Set())
   const [volume, setVolume] = useState(48)
   const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
   const [isTrackPlaying, setIsTrackPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
+  const midiNotes = useRef<MidiNote[]>([])
+  const animation = useRef<number | null>(null)
 
   const pauseTrack = () => {
     audioRef.current?.pause()
@@ -36,7 +41,6 @@ export default function PianoModal() {
     setActiveNotes((notes) => { const next = new Set(notes); next.delete(midi); return next })
   }
   const startNote = (midi: number) => {
-    if (isTrackPlaying) pauseTrack()
     playPianoNote(midi)
     setActiveNotes((notes) => new Set(notes).add(midi))
   }
@@ -56,15 +60,23 @@ export default function PianoModal() {
     pauseTrack()
     stopAllPianoNotes()
     setActiveNotes(new Set())
+    setAutoNotes(new Set())
     setOpen(false)
   }
 
+  useEffect(() => {
+    let cancelled = false
+    void fetch(UNREAL_MIDI).then((response) => response.arrayBuffer()).then((data) => {
+      if (!cancelled) midiNotes.current = parseUnrealMidi(data)
+    }).catch(() => { midiNotes.current = [] })
+    return () => { cancelled = true }
+  }, [])
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
     const syncDuration = () => setDuration(audio.duration)
     const syncTime = () => setCurrentTime(audio.currentTime)
-    const finish = () => { setIsTrackPlaying(false); setMelodyState('idle'); setCurrentTime(audio.duration) }
+    const finish = () => { setIsTrackPlaying(false); setMelodyState('idle'); setCurrentTime(audio.duration); setAutoNotes(new Set()) }
     audio.addEventListener('loadedmetadata', syncDuration)
     audio.addEventListener('timeupdate', syncTime)
     audio.addEventListener('ended', finish)
@@ -79,7 +91,22 @@ export default function PianoModal() {
     audioRef.current?.pause()
     stopAllPianoNotes()
     setActiveNotes(new Set())
+    setAutoNotes(new Set())
   }, [open])
+  useEffect(() => {
+    if (!open || !isTrackPlaying) return
+    const sync = () => {
+      const time = audioRef.current?.currentTime ?? 0
+      const next = midiNotes.current.filter((note) => note.start <= time && note.end > time).map((note) => note.midi)
+      setAutoNotes((current) => {
+        if (current.size === next.length && next.every((midi) => current.has(midi))) return current
+        return new Set(next)
+      })
+      animation.current = requestAnimationFrame(sync)
+    }
+    sync()
+    return () => { if (animation.current !== null) cancelAnimationFrame(animation.current); animation.current = null }
+  }, [isTrackPlaying, open])
   useEffect(() => {
     if (!open) return
     const down = (event: KeyboardEvent) => {
@@ -106,8 +133,8 @@ export default function PianoModal() {
       <i className="piano-spark piano-spark--one">♪</i><i className="piano-spark piano-spark--two">✦</i><i className="piano-spark piano-spark--three">♥</i>
       <button className="piano-close" type="button" aria-label="关闭电子琴" onClick={close}>×</button>
       <header><p>liz’s little music room</p><h2 id="piano-title">Play for Liz <span>♡</span></h2><small>Unreal (LIZ Solo) · piano version</small></header>
-      <PianoKeyboard activeNotes={activeNotes} onStart={startNote} onStop={stopNote} />
-      <div className="piano-progress"><span>{formatTime(currentTime)}</span><input type="range" min="0" max={duration || 0} step="0.1" value={Math.min(currentTime, duration || 0)} onChange={(event) => { const next = Number(event.target.value); if (audioRef.current) audioRef.current.currentTime = next; setCurrentTime(next) }} aria-label="Unreal 播放进度" /><span>{formatTime(duration)}</span></div>
+      <PianoKeyboard activeNotes={new Set([...activeNotes, ...autoNotes])} onStart={startNote} onStop={stopNote} />
+      <div className="piano-progress"><span>{formatTime(currentTime)}</span><input type="range" min="0" max={duration || 0} step="0.1" value={Math.min(currentTime, duration || 0)} onChange={(event) => { const next = Number(event.target.value); if (audioRef.current) audioRef.current.currentTime = next; setCurrentTime(next); const notes = new Set(midiNotes.current.filter((note) => note.start <= next && note.end > next).map((note) => note.midi)); setAutoNotes(notes) }} aria-label="Unreal 播放进度" /><span>{formatTime(duration)}</span></div>
       <div className="piano-controls">
         <label className="piano-volume">♪ <input type="range" min="0" max="100" value={volume} onChange={(event) => { const next = Number(event.target.value); setVolume(next); setPianoVolume(next / 100); if (audioRef.current) audioRef.current.volume = next / 100 }} aria-label="音量" /></label>
         <button type="button" className="piano-song" onClick={() => void playTrack(true)}>♬ Unreal (LIZ Solo)</button>
