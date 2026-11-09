@@ -1,4 +1,7 @@
 import { Html } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
+import { useRef, useState } from 'react'
+import { introTime } from '../../experience/experienceClock'
 import { useGuestbookStore, type LizMessage } from './guestbookStore'
 import './messages-for-liz.css'
 
@@ -22,8 +25,20 @@ export function MessageList({ messages }: { messages: LizMessage[] }) {
 }
 
 /** Compact 3D-door preview. The fullscreen Modal is deliberately mounted outside Canvas. */
-export default function MessagesForLiz() {
+export default function MessagesForLiz({ visibleAt }: { visibleAt: number }) {
   const open = useGuestbookStore((state) => state.setOpen)
+  const revealed = useRef(introTime() > visibleAt)
+  const [isVisible, setIsVisible] = useState(revealed.current)
+
+  // Html renders as DOM, so it does not reliably inherit a Three group's
+  // `visible` flag. Mount it only when the original typewriter time slot begins.
+  useFrame(() => {
+    if (revealed.current || introTime() <= visibleAt) return
+    revealed.current = true
+    setIsVisible(true)
+  })
+
+  if (!isVisible) return null
   return (
     <Html transform distanceFactor={1.15} zIndexRange={[0, 0]}>
       <button className="ml-toast" type="button" aria-label="Messages for Liz 留言板，点击展开" onClick={() => open(true)}>

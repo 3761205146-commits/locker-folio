@@ -367,7 +367,7 @@ export function DoorTwoMountedProps() {
         footprint={[0.72, 0.62]}
         enabled={false}
       >
-        <MessagesForLiz />
+        <MessagesForLiz visibleAt={MESSAGES_FOR_LIZ.at_ms} />
       </PhysicalItem>
 
       {/* 工牌要等自己那张贴图解码完才能裁出印刷面与吊环，单独用 Suspense 兜住，
