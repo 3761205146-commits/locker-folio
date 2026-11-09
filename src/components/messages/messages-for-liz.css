@@ -83,3 +83,14 @@
 .ml-modal__body { grid-template-columns:minmax(0,1fr); }
 
 .ml-modal__form { position:relative; z-index:1; border-radius:24px 24px 18px 18px; background:rgba(255,254,249,.96); }
+
+/* Rebalanced toast modal: centered title, generous list, compact lower-face form. */
+.ml-modal__header { display:block; top:15%; left:12%; right:12%; text-align:center; }
+.ml-modal__header > div { width:100%; }.ml-modal__close { position:absolute; top:0; right:0; }
+.ml-modal__body { top:31%; bottom:7%; left:11%; right:11%; grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr) auto; gap:6px; }
+.ml-modal__messages { border-radius:0; background:transparent; padding:0 4px 0 0; gap:7px; }
+.ml-modal__messages .ml-note,.ml-modal__messages .ml-note:nth-child(2n),.ml-modal__messages .ml-note:nth-child(3n) { width:auto; min-height:52px; border-radius:20px 24px 19px 25px / 18px 22px 23px 20px; overflow:visible; }
+.ml-modal__messages .ml-note:nth-child(2n) { border-radius:25px 18px 24px 20px / 21px 19px 22px 24px; }
+.ml-modal__form { gap:3px; padding:5px 11px 7px; border-radius:21px 21px 17px 17px; background:rgba(255,254,249,.98); }
+.ml-modal__form label { gap:1px; }.ml-modal input,.ml-modal textarea { padding:4px 9px; }.ml-modal textarea { min-height:28px; }.ml-modal__send { min-height:25px; margin-top:0; }
+@media (max-width:720px) { .ml-modal__header { top:13%; left:10%; right:10%; }.ml-modal__body { top:35%; bottom:5%; left:9%; right:9%; gap:3px; }.ml-modal__messages { padding-right:2px; gap:3px; }.ml-modal__messages .ml-note,.ml-modal__messages .ml-note:nth-child(2n),.ml-modal__messages .ml-note:nth-child(3n) { min-height:29px; border-radius:13px 16px 12px 17px; }.ml-modal__form { gap:2px; padding:3px 8px 5px; border-radius:16px 16px 13px 13px; }.ml-modal input,.ml-modal textarea { padding:3px 7px; }.ml-modal textarea { min-height:20px; }.ml-modal__send { min-height:21px; } }
