@@ -508,14 +508,16 @@ export function FrontProps() {
     <PhysicalItem
       spec={KEYBOARD}
       plane="xz"
-      position={[1.77, 0, 0.36]}
+      position={[1.8, -0.012, 0.36]}
       bounds={{ u: [1.28, 2.22], v: [0.27, 0.64] }}
-      footprint={[0.78, 0.13]}
+      footprint={[0.38, 0.13]}
       enabled={caps.drag}
-      rotation={[0, -0.16, 0.16]}
+      rotation={[0, -0.16, 0.2]}
       scale={0.83}
     >
-      <KeyboardModel />
+      <group scale={1.2}>
+        <KeyboardModel />
+      </group>
     </PhysicalItem>
   )
 }
