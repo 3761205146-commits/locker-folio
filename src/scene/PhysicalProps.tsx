@@ -827,6 +827,103 @@ export function GuitarModel() {
 }
 
 /**
+ * A light, portable electronic keyboard. It stays deliberately shallow so the
+ * right corner reads like a hand-cut scrapbook prop rather than a heavy product
+ * model; the physical depth still gives it a soft contact shadow against the locker.
+ */
+export function KeyboardModel() {
+  const whiteKeys = Array.from({ length: 12 }, (_, index) => -0.44 + index * 0.08)
+  const blackKeyIndexes = [0, 1, 3, 4, 5, 7, 8, 10]
+
+  return (
+    <group name="KeyboardModel">
+      <RoundedPart
+        name="Keyboard_SkyBlueCase"
+        size={[1.12, 0.48, 0.11]}
+        at={[0, 0.36, 0]}
+        color="#91cdea"
+        radius={0.055}
+        roughness={0.7}
+      />
+      <RoundedPart
+        name="Keyboard_WhiteKeybed"
+        size={[0.99, 0.225, 0.022]}
+        at={[0, 0.285, 0.069]}
+        color="#fefcf6"
+        radius={0.018}
+        roughness={0.78}
+      />
+      {whiteKeys.map((x, index) => (
+        <RoundedPart
+          key={index}
+          name={`Keyboard_WhiteKey_${index + 1}`}
+          size={[0.073, 0.188, 0.026]}
+          at={[x, 0.275, 0.085]}
+          color="#fffef9"
+          radius={0.006}
+          roughness={0.64}
+        />
+      ))}
+      {blackKeyIndexes.map((index) => (
+        <RoundedPart
+          key={index}
+          name={`Keyboard_BlackKey_${index + 1}`}
+          size={[0.042, 0.108, 0.034]}
+          at={[-0.4 + index * 0.08, 0.326, 0.108]}
+          color="#34434e"
+          radius={0.008}
+          roughness={0.52}
+        />
+      ))}
+      <RoundedPart
+        name="Keyboard_ControlPanel"
+        size={[0.8, 0.105, 0.025]}
+        at={[0, 0.555, 0.07]}
+        color="#dff3fc"
+        radius={0.025}
+        roughness={0.72}
+      />
+      {[-0.27, -0.19, -0.11].map((x, index) => (
+        <mesh {...SHADOWS} key={x} name={`Keyboard_Button_${index + 1}`} position={[x, 0.555, 0.095]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.024, 0.024, 0.018, 16]} />
+          <meshStandardMaterial color={index === 0 ? '#f2b7cf' : '#70b7dc'} roughness={0.55} />
+        </mesh>
+      ))}
+      <mesh {...SHADOWS} name="Keyboard_Dial" position={[0.245, 0.555, 0.098]} rotation={[Math.PI / 2, 0, 0]}>
+        <cylinderGeometry args={[0.042, 0.042, 0.022, 20]} />
+        <meshStandardMaterial color="#629fc1" roughness={0.48} />
+      </mesh>
+      {[-0.43, 0.43].map((x, index) => (
+        <group key={x} position={[x, 0.56, 0.09]}>
+          {[-0.018, 0.018].map((y, line) => (
+            <RoundedPart
+              key={y}
+              name={`Keyboard_Speaker_${index + 1}_${line + 1}`}
+              size={[0.09, 0.01, 0.012]}
+              at={[0, y, 0]}
+              color="#68a6c7"
+              radius={0.004}
+              roughness={0.55}
+            />
+          ))}
+        </group>
+      ))}
+      {[-0.43, 0.43].map((x, index) => (
+        <RoundedPart
+          key={x}
+          name={`Keyboard_Foot_${index + 1}`}
+          size={[0.11, 0.045, 0.1]}
+          at={[x, 0.095, -0.005]}
+          color="#6eaed0"
+          radius={0.016}
+          roughness={0.66}
+        />
+      ))}
+    </group>
+  )
+}
+
+/**
  * A thin magnetic poster board. The supplied artwork is only the printed front;
  * the pale backing and edge thickness are real geometry, so it can cast a clean
  * contact shadow on the locker door instead of intersecting the vent slats.

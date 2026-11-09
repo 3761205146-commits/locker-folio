@@ -27,7 +27,7 @@ import {
   BooksModel,
   DoorTrayModel,
   FindAWordBoardModel,
-  GuitarModel,
+  KeyboardModel,
   IdCardModel,
   PolaroidCardModel,
   PosterCardModel,
@@ -82,7 +82,7 @@ const TURNTABLE = findSpec('Prop_Turntable')
 const BACKPACK = findSpec('Prop_Backpack')
 const SELECTED_WORK = findSpec('Prop_SelectedWork')
 const MESSAGES_FOR_LIZ: PropSpec = { ...findSpec('Prop_Typewriter'), name: 'Prop_MessagesForLiz' }
-const GUITAR = findSpec('Prop_Guitar')
+const KEYBOARD = findSpec('Prop_Keyboard')
 
 const POSTER: PropSpec = {
   name: 'Prop_Door01_Poster',
@@ -501,21 +501,21 @@ export function DoorFourMountedProps() {
   )
 }
 
-/** 柜外只保留真正落地并靠柜的吉他；打字机已经移到第二扇门的子节点。 */
+/** 柜外保留一台真正落地并斜靠柜体的便携电子琴。 */
 export function FrontProps() {
   const caps = useSceneCapabilities()
   return (
     <PhysicalItem
-      spec={GUITAR}
+      spec={KEYBOARD}
       plane="xz"
       position={[1.77, 0, 0.36]}
       bounds={{ u: [1.28, 2.22], v: [0.27, 0.64] }}
-      footprint={[0.55, 0.12]}
+      footprint={[0.78, 0.13]}
       enabled={caps.drag}
       rotation={[0, -0.16, 0.16]}
       scale={0.83}
     >
-      <GuitarModel />
+      <KeyboardModel />
     </PhysicalItem>
   )
 }
