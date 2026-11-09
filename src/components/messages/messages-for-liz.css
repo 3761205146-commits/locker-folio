@@ -48,3 +48,22 @@
   .ml-modal__messages .ml-note { min-height:22px; }
   .ml-modal__form { min-height:0; }
 }
+
+/* Face-shaped guestbook: notes and controls follow the toast's lower white silhouette. */
+.ml-modal__header { top:5.5%; left:14%; right:14%; }.ml-modal h2 { font-size:clamp(18px,2vw,23px); letter-spacing:.01em; }
+.ml-modal__close { position:relative; top:-2px; width:31px; height:31px; border-color:rgba(122,184,213,.72); font-size:22px; }
+.ml-modal__body { top:46.5%; bottom:5.5%; left:11%; right:11%; gap:6px; }
+.ml-modal__messages { flex:1 1 0; display:flex; min-height:0; flex-direction:column; align-items:stretch; gap:4px; padding:1px 9px 2px; border-radius:42% 44% 16% 18% / 14% 15% 11% 12%; background:transparent; }
+.ml-modal__messages .ml-note { grid-template-columns:25px 1fr; gap:6px; min-height:0; padding:5px 9px 6px; border:1px solid rgba(152,203,224,.55); border-radius:21px 27px 20px 30px / 19px 24px 22px 27px; background:rgba(235,248,253,.91); box-shadow:0 2px 0 rgba(122,181,209,.11); }
+.ml-modal__messages .ml-note:nth-child(2n) { align-self:flex-end; width:92%; border-color:rgba(239,211,157,.68); border-radius:30px 19px 28px 20px / 23px 19px 29px 22px; background:rgba(255,247,228,.93); box-shadow:0 2px 0 rgba(229,188,108,.12); }
+.ml-modal__messages .ml-note:nth-child(3n) { align-self:flex-start; width:94%; border-radius:18px 30px 24px 29px / 24px 20px 29px 18px; }
+.ml-modal__messages .ml-note__avatar { min-width:25px; height:25px; background:#a8d8ee; font-size:13px; }.ml-modal__messages .ml-note__avatar--cloud { background:#c8e6f2; }.ml-modal__messages .ml-note__avatar--cat { background:#f6dda3; }
+.ml-modal__messages .ml-note__meta { font-size:9px; }.ml-modal__messages .ml-note p { margin-top:2px; font-size:11px; line-height:1.28; }
+.ml-modal__form { display:grid; flex:0 0 auto; grid-template-columns:1fr; gap:4px; padding:2px 9px 0; border:0; border-radius:0; background:transparent; box-shadow:none; }
+.ml-modal__form label { gap:1px; color:#6d9fb8; font-size:9px; }.ml-modal input,.ml-modal textarea { border-color:rgba(151,202,224,.7); border-radius:16px 14px 18px 13px / 13px 17px 14px 18px; background:rgba(255,255,250,.86); padding:5px 9px; font-size:11px; box-shadow:0 2px 0 rgba(126,186,213,.1); }.ml-modal textarea { min-height:31px; }
+.ml-modal__send { width:126px; min-height:27px; margin-top:1px; border-radius:18px 16px 20px 15px; background:#79bfdf; font-size:11px; }.ml-modal__feedback { font-size:9px; }
+@media (max-width:720px) { .ml-modal__header { top:5%; left:12%; right:12%; }.ml-modal h2 { font-size:clamp(17px,5.1vw,21px); }.ml-modal__close { width:27px; height:27px; font-size:19px; }.ml-modal__body { top:45%; bottom:4%; left:9%; right:9%; gap:3px; }.ml-modal__messages { flex:0 0 34px; min-height:34px; padding:0 4px; gap:2px; }.ml-modal__messages .ml-note { grid-template-columns:20px 1fr; padding:3px 5px; border-radius:14px 17px 13px 19px; }.ml-modal__messages .ml-note:nth-child(2n),.ml-modal__messages .ml-note:nth-child(3n) { width:96%; }.ml-modal__messages .ml-note__avatar { min-width:20px; height:20px; font-size:10px; }.ml-modal__messages .ml-note__meta { font-size:7px; }.ml-modal__messages .ml-note p { font-size:8px; }.ml-modal__form { gap:2px; padding:0 5px; }.ml-modal__form label { font-size:8px; }.ml-modal input,.ml-modal textarea { padding:3px 7px; font-size:9px; }.ml-modal textarea { min-height:22px; }.ml-modal__send { width:112px; min-height:22px; font-size:9px; } }
+
+@media (max-width:720px) {
+  .ml-modal__messages .ml-note { flex:0 0 auto; min-height:22px; }
+}

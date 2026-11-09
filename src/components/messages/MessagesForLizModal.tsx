@@ -45,7 +45,7 @@ export default function MessagesForLizModal() {
     <div className="ml-modal" role="presentation" onMouseDown={() => setOpen(false)}>
       <section className="ml-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ml-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <img className="ml-modal__toast" src="/images/guestbook-toast-clean.png" alt="" aria-hidden="true" />
-        <header className="ml-modal__header"><div><p>a little birthday mailbox</p><h2 id="ml-modal-title">Messages for Liz <span aria-hidden="true">♡</span></h2></div><button type="button" className="ml-modal__close" aria-label="关闭留言板" onClick={() => setOpen(false)}>×</button></header>
+        <header className="ml-modal__header"><div><h2 id="ml-modal-title">Messages for Liz <span aria-hidden="true">♡</span></h2></div><button type="button" className="ml-modal__close" aria-label="关闭留言板" onClick={() => setOpen(false)}>×</button></header>
         <div className="ml-modal__body">
           <div className="ml-modal__messages" ref={listRef} aria-live="polite">
             {status === 'loading' && <p className="ml-modal__state">正在读取留言…</p>}
