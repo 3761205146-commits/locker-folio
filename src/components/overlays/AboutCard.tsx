@@ -1,134 +1,48 @@
-import { ABOUT } from '../../data/content'
-import Avatar from './Avatar'
 import CloseButton from './CloseButton'
 import './overlay.css'
 import './about.css'
 
-/** ABOUT —— 从挂绳上垂下的个人信息工牌 */
+/** ABOUT —— IVE 收藏身份卡。外层 OverlayHost 继续负责焦点、关闭与转场。 */
 export default function AboutCard() {
   return (
     <div className="ov">
-      <div className="idc">
-        <div className="idc__lanyard" aria-hidden>
-          <span className="idc__strap" />
-          <svg className="idc__clip" viewBox="0 0 60 116" fill="none" aria-hidden>
-            <path
-              d="M18 4h24a6 6 0 0 1 6 6v14a6 6 0 0 1-6 6H18a6 6 0 0 1-6-6V10a6 6 0 0 1 6-6Z"
-              stroke="#25262A"
-              strokeWidth="4"
-            />
-            <path
-              d="M30 30v34m0 0a19 19 0 1 0 0 38 19 19 0 0 0 0-38Z"
-              stroke="#25262A"
-              strokeWidth="4.5"
-              strokeLinecap="round"
-            />
-            <circle cx="30" cy="45" r="4.4" fill="#25262A" />
-          </svg>
+      <article className="ive-id" aria-labelledby="ive-id-title">
+        <CloseButton />
+        <aside className="ive-id__rail" aria-hidden="true">
+          <span>i&apos;ve</span>
+          <span>2021.12.01</span>
+        </aside>
+
+        <header className="ive-id__meta">
+          <p>ELEVEN &gt;&gt;&gt;&gt;&gt; The 1st &gt;&gt; Single Album &gt;&gt;&gt;</p>
+          <p>&gt;&gt;&gt;&gt;&gt; 2021 &gt;&gt; 12 &gt;&gt;&gt;&gt;&gt; 01 &gt;&gt;&gt;</p>
+        </header>
+
+        <div className="ive-id__logo" aria-label="IVE">
+          <span>i</span><span>v</span><span>e</span>
         </div>
 
-        <article className="idc__card">
-          <CloseButton />
-          <div className="idc__frame">
-            <div className="idc__head">
-              <span className="idc__no">
-                IDENTIFICATION CARD
-                <br />
-                {ABOUT.cardNo}
-              </span>
-            </div>
+        <figure className="ive-id__photo">
+          <img src="/assets/obj/liz/liz-ive-id-photo.jpg" alt="Liz blonde portrait" />
+        </figure>
 
-            <div className="idc__body">
-              <div className="idc__photo">
-                <Avatar className="idc__avatar" />
-              </div>
-
-              <div className="idc__main">
-                <header className="idc__titleRow">
-                  <h2 className="idc__title">
-                    {ABOUT.title.map((t) => (
-                      <span key={t}>{t}</span>
-                    ))}
-                  </h2>
-                </header>
-                <span className="idc__titleCn">{ABOUT.titleCn}</span>
-                <p className="idc__sub">{ABOUT.sub}</p>
-                <span className="idc__rule" />
-
-                <dl className="idc__fields">
-                  {ABOUT.fields.map((f) => (
-                    <div key={f.k} className="idc__field">
-                      <dt>{f.k}</dt>
-                      <dd>{f.v}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </div>
-
-            {/* 淡蓝色钢印 */}
-            <div className="idc__stamp" aria-hidden>
-              <svg viewBox="0 0 220 220">
-                <defs>
-                  <path id="stampArc" d="M110,110 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0" />
-                </defs>
-                <circle cx="110" cy="110" r="96" fill="none" stroke="currentColor" strokeWidth="1.4" />
-                <circle
-                  cx="110"
-                  cy="110"
-                  r="84"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeDasharray="3 5"
-                />
-                <text className="idc__stampRing">
-                  <textPath href="#stampArc" startOffset="50%" textAnchor="middle">
-                    {ABOUT.stampRing}
-                  </textPath>
-                </text>
-              </svg>
-              <span className="idc__stampWord">{ABOUT.stampTop}</span>
-              <span className="idc__stampMid">{ABOUT.stampMid}</span>
-            </div>
+        <section className="ive-id__profile">
+          <div className="ive-id__watermark" aria-hidden="true"><span>IVE</span><span>The 1st</span><span>Single Album</span></div>
+          <div className="ive-id__name">
+            <span>NAME</span>
+            <h2 id="ive-id-title">LIZ</h2>
           </div>
-
-          <div className="idc__lower">
-            <svg className="idc__barcode" viewBox="0 0 240 44" aria-hidden>
-              {BARS.map((w, i) => (
-                <rect key={i} x={BAR_X[i]} y="0" width={w} height="44" fill="#1a1c20" />
-              ))}
-            </svg>
-            <div className="idc__contact">
-              <span className="idc__ck">EMAIL</span>
-              <span className="idc__cv">{ABOUT.email}</span>
-            </div>
-            <div className="idc__contact idc__contact--mid">
-              <span className="idc__ck">PHONE</span>
-              <span className="idc__cv">{ABOUT.phone}</span>
-            </div>
-            <div className="idc__tag" aria-hidden>
-              <span className="idc__tagTop">xxx</span>
-              <span className="idc__tagBody">xxx</span>
-            </div>
+          <dl className="ive-id__details">
+            <div><dt>DATE OF ISSUE</dt><dd>01 DEC 2021</dd></div>
+            <div><dt>DATE OF BIRTH</dt><dd>21 NOV 2004</dd></div>
+            <div className="ive-id__access"><dt>ACCESS CODE</dt><dd>I&apos;ve Taste</dd></div>
+          </dl>
+          <div className="ive-id__signature">
+            <span>SIGNATURE</span>
+            <strong aria-label="Liz signature">Liz ♡</strong>
           </div>
-
-          <footer className="idc__foot">
-            <span>{ABOUT.footL}</span>
-            <span>{ABOUT.footR}</span>
-          </footer>
-        </article>
-      </div>
+        </section>
+      </article>
     </div>
   )
 }
-
-/* 条形码：固定序列，避免每次渲染跳动 */
-const BARS = [
-  3, 1, 2, 1, 4, 1, 2, 3, 1, 2, 1, 3, 2, 1, 4, 2, 1, 1, 3, 2, 1, 4, 1, 2, 3, 1, 2, 1, 3, 2, 1, 4, 2,
-  1, 3, 1, 2, 4, 1, 2,
-]
-const BAR_X = BARS.reduce<number[]>((acc, _w, i) => {
-  acc.push(i === 0 ? 0 : acc[i - 1] + BARS[i - 1] + 2)
-  return acc
-}, [])
