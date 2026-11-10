@@ -362,7 +362,7 @@ export function DoorTwoMountedProps() {
       <PhysicalItem
         spec={MESSAGES_FOR_LIZ}
         plane="xy"
-        position={[0.015, -0.95, 0.018]}
+        position={[0.015, -0.87, 0.018]}
         bounds={DOOR_FACE_BOUNDS}
         footprint={[0.72, 0.62]}
         enabled={false}

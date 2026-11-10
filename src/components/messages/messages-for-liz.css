@@ -7,7 +7,7 @@
 .ml-card__state,.ml-modal__state { margin:auto; color:#789bae; text-align:center; }.ml-modal__state { padding:22px 10px; font-size:14px; }.ml-modal__state--error,.ml-modal__error { color:#b36b6b; }.ml-modal__error { margin:0; font-size:12px; text-align:center; }.ml-modal__send:disabled { cursor:wait; opacity:.72; }
 
 /* Compact door trigger: the PNG supplies the full silhouette and transparent background. */
-.ml-toast { width:228px; display:block; padding:0; border:0; background:transparent; cursor:pointer; line-height:0; pointer-events:auto; transform-origin:center; transition:transform .28s ease,filter .28s ease; }
+.ml-toast { width:280px; display:block; padding:0; border:0; background:transparent; cursor:pointer; line-height:0; pointer-events:auto; transform-origin:center; transition:transform .28s ease,filter .28s ease; }
 .ml-toast:hover,.ml-toast:focus-visible { transform:scale(1.055) translateY(-4px); filter:drop-shadow(0 9px 10px rgba(91,158,190,.22)); outline:none; }
 .ml-toast:focus-visible { outline:2px solid #8ec9e2; outline-offset:5px; border-radius:20px; }
 .ml-toast__image { display:block; width:100%; height:auto; }
