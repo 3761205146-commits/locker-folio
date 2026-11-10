@@ -105,6 +105,7 @@ function Hotspot({ spec, enabled }: { spec: HotspotSpec; enabled: boolean }) {
   })
 
   const on = enabled && active
+  const showFeedback = spec.showFeedback !== false
   const label = spec.labelOffset ?? [0, 0, 0]
 
   return (
@@ -113,56 +114,58 @@ function Hotspot({ spec, enabled }: { spec: HotspotSpec; enabled: boolean }) {
       position={[spec.at[0], spec.at[1], spec.at[2]]}
       name={`Hotspot_${spec.id}`}
     >
-      {/* hover / focus 的静态圆环 */}
-      <mesh visible={on} scale={[radius, radius, 1]} renderOrder={20}>
-        <ringGeometry args={[0.9, 1, 56]} />
-        <meshBasicMaterial
-          color="#2ea7d4"
-          transparent
-          opacity={0.55}
-          depthTest={false}
-          depthWrite={false}
-          toneMapped={false}
-        />
-      </mesh>
+      {showFeedback && <>
+        {/* hover / focus 的静态圆环 */}
+        <mesh visible={on} scale={[radius, radius, 1]} renderOrder={20}>
+          <ringGeometry args={[0.9, 1, 56]} />
+          <meshBasicMaterial
+            color="#2ea7d4"
+            transparent
+            opacity={0.55}
+            depthTest={false}
+            depthWrite={false}
+            toneMapped={false}
+          />
+        </mesh>
 
-      {/* 点击的扩散圆环 */}
-      <mesh ref={ripple} visible={false} renderOrder={21}>
-        <ringGeometry args={[0.82, 1, 56]} />
-        <meshBasicMaterial
-          color="#2ea7d4"
-          transparent
-          opacity={0}
-          depthTest={false}
-          depthWrite={false}
-          toneMapped={false}
-          blending={AdditiveBlending}
-        />
-      </mesh>
+        {/* 点击的扩散圆环 */}
+        <mesh ref={ripple} visible={false} renderOrder={21}>
+          <ringGeometry args={[0.82, 1, 56]} />
+          <meshBasicMaterial
+            color="#2ea7d4"
+            transparent
+            opacity={0}
+            depthTest={false}
+            depthWrite={false}
+            toneMapped={false}
+            blending={AdditiveBlending}
+          />
+        </mesh>
 
-      {/* 无障碍层：真正的按钮，键盘和读屏走这条路 */}
-      <Html
-        position={[label[0], label[1], label[2]]}
-        center
-        pointerEvents="none"
-        zIndexRange={[6, 0]}
-        wrapperClass="hot3d"
-      >
-        <button
-          type="button"
-          className="hot3d__btn"
-          data-on={on || undefined}
-          tabIndex={enabled ? 0 : -1}
-          aria-label={spec.label}
-          data-hot-id={spec.id}
-          onFocus={() => setActive(true)}
-          onBlur={() => setActive(false)}
-          onClick={open}
+        {/* 无障碍层：真正的按钮，键盘和读屏走这条路 */}
+        <Html
+          position={[label[0], label[1], label[2]]}
+          center
+          pointerEvents="none"
+          zIndexRange={[6, 0]}
+          wrapperClass="hot3d"
         >
-          <b>{spec.caption}</b>
-          <i>{spec.id === 'work' ? 'SELECTED WORK' : spec.id.toUpperCase()}</i>
-        </button>
-      </Html>
+          <button
+            type="button"
+            className="hot3d__btn"
+            data-on={on || undefined}
+            tabIndex={enabled ? 0 : -1}
+            aria-label={spec.label}
+            data-hot-id={spec.id}
+            onFocus={() => setActive(true)}
+            onBlur={() => setActive(false)}
+            onClick={open}
+          >
+            <b>{spec.caption}</b>
+            <i>{spec.id === 'work' ? 'SELECTED WORK' : spec.id.toUpperCase()}</i>
+          </button>
+        </Html>
+      </>}
     </group>
   )
 }

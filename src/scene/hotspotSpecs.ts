@@ -34,6 +34,8 @@ export type HotspotSpec = {
   label: string
   /** hover / focus 时浮出的中文说明 */
   caption: string
+  /** 是否显示圆环与文字提示；不影响真实物件本身的 hover 或点击。 */
+  showFeedback?: boolean
   /**
    * 命中框中心。
    * `frame: 'world'` 用世界坐标；`'door2inner'` 用第 2 扇门内侧内容组的局部坐标，
@@ -100,6 +102,8 @@ export const HOTSPOTS: readonly HotspotSpec[] = [
     frame: 'door2inner',
     size: [0.46, 0.74],
     focusHeight: 0.66,
+    // ABOUT 工牌只保留实体卡片本身的轻微 scale，不显示额外的圆环或浮层标签。
+    showFeedback: false,
     // 工牌贴在门内侧：正对那面推近，而不是从当前角度斜着怼上去
     focusFacing: 'surface',
   },
