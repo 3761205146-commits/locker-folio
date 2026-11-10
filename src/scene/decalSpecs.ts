@@ -51,14 +51,14 @@ export const DOOR2_INNER_DECALS: readonly DecalSpec[] = [
   { id: 'liz-heart', url: '/assets/obj2/liz-door/liz-heart.png', left: 0.58, top: 0.027, width: 0.26, rot: 4, draggable: true },
 
   // 原三宫格位置改用上传的原始四宫格照片，保留独立贴花与白色描边效果。
-  { id: 'four-grid', url: '/assets/obj2/liz-door/four-grid.jpg', left: 0.335, top: 0.45, width: 0.33, rot: -1, draggable: true },
+  { id: 'four-grid', url: '/assets/obj2/liz-door/four-grid.jpg', left: 0.335, top: 0.5, width: 0.33, rot: -1, draggable: true },
 
   // 六张橙猫分散在余白与底部区域，避免遮挡主卡、人物和打字机。
   { id: 'cat-front', url: '/assets/obj2/liz-door/01_orange_cat_front.png', left: 0.06, top: 0.5, width: 0.208, rot: -5, draggable: true },
   { id: 'cat-singing', url: '/assets/obj2/liz-door/02_orange_cat_singing.png', left: 0.75, top: 0.14, width: 0.224, rot: 6, draggable: true },
-  { id: 'cat-surprised', url: '/assets/obj2/liz-door/03_orange_cat_surprised.png', left: 0.76, top: 0.47, width: 0.192, rot: 4, draggable: true },
-  { id: 'cat-tears', url: '/assets/obj2/liz-door/04_orange_cat_tears.png', left: 0.08, top: 0.56, width: 0.208, rot: -4, draggable: true },
-  { id: 'cat-front2', url: '/assets/obj2/liz-door/05_orange_cat_front2.png', left: 0.7, top: 0.56, width: 0.192, rot: 5, draggable: true },
+  { id: 'cat-surprised', url: '/assets/obj2/liz-door/03_orange_cat_surprised.png', left: 0.76, top: 0.38, width: 0.192, rot: 4, draggable: true },
+  { id: 'cat-tears', url: '/assets/obj2/liz-door/04_orange_cat_tears.png', left: 0.08, top: 0.59, width: 0.208, rot: -4, draggable: true },
+  { id: 'cat-front2', url: '/assets/obj2/liz-door/05_orange_cat_front2.png', left: 0.7, top: 0.59, width: 0.192, rot: 5, draggable: true },
   { id: 'cat-music', url: '/assets/obj2/liz-door/06_orange_cat_music.png', left: 0.05, top: 0.34, width: 0.192, rot: -6, draggable: true },
 
   // 内侧内容组绕 Y 轴镜像：较小的 left 会落在观众视角的右侧。
