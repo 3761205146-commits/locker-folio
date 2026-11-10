@@ -1185,6 +1185,8 @@ export function DoorTrayModel({ content = 'paper' }: { content?: DoorTrayContent
 
 /** 工牌源图尺寸。下面每一个几何数字都由这张图的像素反算，换素材只改这里。 */
 const ID_CARD_SOURCE_SIZE = [430, 760] as const
+const LIZ_ID_CARD_SOURCE_URL = '/assets/obj/liz/liz-about-card.png'
+const ID_CARD_RING_SOURCE_URL = '/assets/obj/idcard2.webp'
 
 /**
  * 源图 1px 折算多少世界单位。
@@ -1285,11 +1287,11 @@ function makeRoundedRectShape(width: number, height: number, radius: number): Sh
  */
 export function IdCardModel() {
   const printMap = useCroppedTexture(
-    '/assets/obj/idcard2.webp',
+    LIZ_ID_CARD_SOURCE_URL,
     ID_CARD_SOURCE_SIZE,
     ID_CARD_PRINT,
   )
-  const ringMap = useCroppedTexture('/assets/obj/idcard2.webp', ID_CARD_SOURCE_SIZE, ID_CARD_RING)
+  const ringMap = useCroppedTexture(ID_CARD_RING_SOURCE_URL, ID_CARD_SOURCE_SIZE, ID_CARD_RING)
 
   const bodyGeometry = useMemo(() => {
     // 挤的是收 3px 的芯，倒角再向外把腰撑回 ID_CARD_BODY_RECT / 33px 圆角
