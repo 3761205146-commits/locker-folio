@@ -1,13 +1,16 @@
 import { RoundedBox, useTexture } from '@react-three/drei'
-import { useEffect, useMemo } from 'react'
+import { useFrame } from '@react-three/fiber'
+import { useEffect, useMemo, useRef } from 'react'
 import {
   CanvasTexture,
   ClampToEdgeWrapping,
   ExtrudeGeometry,
+  Group,
   Quaternion,
   Shape,
   SRGBColorSpace,
   Vector3,
+  Vector2,
   type Texture,
 } from 'three'
 import { ID_CARD_SIZE } from './decalSpecs'
@@ -520,11 +523,56 @@ export function BackpackModel() {
   )
 }
 
-/** Bottom-shelf birthday keepsakes: a small cake and a separate compact CCD camera. */
-export function BirthdayKeepsakesModel() {
+function CandleFlame() {
+  const flame = useRef<Group>(null)
+  const outerProfile = useMemo(
+    () => [
+      new Vector2(0, 0),
+      new Vector2(0.018, 0.008),
+      new Vector2(0.027, 0.032),
+      new Vector2(0.019, 0.058),
+      new Vector2(0, 0.086),
+    ],
+    [],
+  )
+  const innerProfile = useMemo(
+    () => [
+      new Vector2(0, 0),
+      new Vector2(0.011, 0.006),
+      new Vector2(0.016, 0.023),
+      new Vector2(0.01, 0.042),
+      new Vector2(0, 0.06),
+    ],
+    [],
+  )
+
+  useFrame((state) => {
+    const group = flame.current
+    if (!group) return
+    const sway = Math.sin(state.clock.elapsedTime * 7.5) * 0.055
+    group.rotation.z = sway
+    group.scale.set(1 + Math.sin(state.clock.elapsedTime * 9) * 0.035, 1, 1)
+  })
+
   return (
-    <group name="BirthdayKeepsakesModel">
-      <group name="BirthdayCake" position={[-0.2, 0, -0.04]}>
+    <group ref={flame} name="BirthdayCake_Flame" position={[0.025, 0.496, 0.022]}>
+      <mesh {...SHADOWS} rotation={[0, 0, 0.12]}>
+        <latheGeometry args={[outerProfile, 16]} />
+        <meshStandardMaterial color="#ffb35f" emissive="#f28b39" emissiveIntensity={0.48} roughness={0.55} />
+      </mesh>
+      <mesh {...SHADOWS} position={[0, 0.008, 0.017]} rotation={[0, 0, 0.1]}>
+        <latheGeometry args={[innerProfile, 16]} />
+        <meshStandardMaterial color="#fff4ad" emissive="#ffd35f" emissiveIntensity={0.62} roughness={0.48} />
+      </mesh>
+      <pointLight color="#ffd07a" intensity={0.22} distance={0.48} decay={2} position={[0, 0.035, 0.02]} />
+    </group>
+  )
+}
+
+/** Low, broad cream birthday cake based on the supplied cake reference. */
+export function BirthdayCakeModel() {
+  return (
+    <group name="BirthdayCake">
         <mesh {...SHADOWS} position={[0, 0.016, 0]}>
           <cylinderGeometry args={[0.225, 0.225, 0.032, 32]} />
           <meshStandardMaterial color="#fff9ea" roughness={0.85} />
@@ -584,13 +632,19 @@ export function BirthdayKeepsakesModel() {
           <cylinderGeometry args={[0.011, 0.011, 0.18, 12]} />
           <meshStandardMaterial color="#f0c772" roughness={0.55} metalness={0.08} />
         </mesh>
-        <mesh {...SHADOWS} position={[0.025, 0.53, 0.022]}>
-          <coneGeometry args={[0.03, 0.075, 12]} />
-          <meshStandardMaterial color="#ffd978" emissive="#f7b84b" emissiveIntensity={0.42} roughness={0.72} />
+        <mesh {...SHADOWS} position={[0.025, 0.49, 0.022]}>
+          <cylinderGeometry args={[0.004, 0.004, 0.035, 8]} />
+          <meshStandardMaterial color="#5b4337" roughness={0.8} />
         </mesh>
-      </group>
+        <CandleFlame />
+    </group>
+  )
+}
 
-      <group name="CcdCamera" position={[0.22, 0.03, 0.005]} rotation={[0, 0, -0.14]} scale={1.2}>
+/** Compact sky-blue CCD camera, anchored separately so it has its own hover feedback. */
+export function CcdCameraModel() {
+  return (
+      <group name="CcdCamera">
         <RoundedPart name="CcdCamera_Body" size={[0.34, 0.205, 0.11]} at={[0, 0.115, 0]} color="#91cee9" radius={0.045} roughness={0.63} />
         <RoundedPart size={[0.285, 0.13, 0.012]} at={[0, 0.13, 0.061]} color="#b9e5f4" radius={0.025} roughness={0.72} />
         <mesh {...SHADOWS} name="CcdCamera_LensRing" position={[-0.045, 0.125, 0.077]} rotation={[Math.PI / 2, 0, 0]}>
@@ -612,7 +666,6 @@ export function BirthdayKeepsakesModel() {
         </mesh>
         <RoundedPart size={[0.16, 0.09, 0.009]} at={[-0.01, 0.135, -0.061]} color="#658da4" radius={0.012} roughness={0.55} />
       </group>
-    </group>
   )
 }
 

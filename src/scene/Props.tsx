@@ -25,7 +25,8 @@ import {
   bayLeft,
 } from './lockerSpec'
 import {
-  BirthdayKeepsakesModel,
+  BirthdayCakeModel,
+  CcdCameraModel,
   DoorTrayModel,
   FindAWordBoardModel,
   KeyboardModel,
@@ -81,6 +82,8 @@ const FIND_A_WORD = findSpec('Prop_FindAWord')
 const BOOKS = findSpec('Prop_Books')
 const TURNTABLE = findSpec('Prop_Turntable')
 const BACKPACK = findSpec('Prop_Backpack')
+const BIRTHDAY_CAKE: PropSpec = { ...BACKPACK, name: 'Prop_BirthdayCake' }
+const CCD_CAMERA: PropSpec = { ...BACKPACK, name: 'Prop_CcdCamera' }
 const SELECTED_WORK = findSpec('Prop_SelectedWork')
 const MESSAGES_FOR_LIZ: PropSpec = { ...findSpec('Prop_Typewriter'), name: 'Prop_MessagesForLiz' }
 const KEYBOARD = findSpec('Prop_Keyboard')
@@ -341,14 +344,34 @@ export function CavityProps() {
       </PhysicalItem>
 
       <PhysicalItem
-        spec={BACKPACK}
+        spec={BIRTHDAY_CAKE}
         plane="xz"
-        position={[-0.55, OPENING_BOTTOM, 0.075]}
+        // Cake's 0.45-wide plate stays inside the 0.944-wide bay, including its hover scale.
+        position={[-0.744, OPENING_BOTTOM, 0.035]}
         bounds={{ u: [BAY_MIN_X, BAY_MAX_X], v: [SHELF_MIN_Z, SHELF_MAX_Z] }}
-        footprint={[0.76, 0.4]}
+        footprint={[0.45, 0.45]}
         enabled={enabled}
+        hoverLift={0.012}
+        hoverScale={1.02}
       >
-        <BirthdayKeepsakesModel />
+        <BirthdayCakeModel />
+      </PhysicalItem>
+
+      <PhysicalItem
+        spec={CCD_CAMERA}
+        plane="xz"
+        // The rotated camera bounding box reaches x≈-0.052 at rest: it touches the
+        // right inner wall without crossing it; the bottom-most corner sits on the shelf.
+        position={[-0.313, OPENING_BOTTOM, 0.075]}
+        bounds={{ u: [BAY_MIN_X, BAY_MAX_X], v: [SHELF_MIN_Z, SHELF_MAX_Z] }}
+        footprint={[0.43, 0.28]}
+        enabled={enabled}
+        rotation={[0, 0, -0.2]}
+        scale={1.23}
+        hoverLift={0.012}
+        hoverScale={1.012}
+      >
+        <CcdCameraModel />
       </PhysicalItem>
     </>
   )
