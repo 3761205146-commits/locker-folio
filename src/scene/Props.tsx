@@ -3,6 +3,7 @@ import { Suspense, useEffect, useRef, type ReactNode } from 'react'
 import { Vector3, type Group } from 'three'
 import { introTime } from '../experience/experienceClock'
 import MessagesForLiz from '../components/messages/MessagesForLiz'
+import AlbumBooks from '../components/books/AlbumBooks'
 import { useSceneCapabilities } from '../store'
 import { usePianoStore } from '../components/piano/pianoStore'
 import { ID_CARD_AT, ID_CARD_SIZE } from './decalSpecs'
@@ -25,7 +26,6 @@ import {
 } from './lockerSpec'
 import {
   BackpackModel,
-  BooksModel,
   DoorTrayModel,
   FindAWordBoardModel,
   KeyboardModel,
@@ -298,9 +298,11 @@ export function CavityProps() {
         position={[-0.51, SHELF_Y[0], -0.085]}
         bounds={{ u: [BAY_MIN_X, BAY_MAX_X], v: [SHELF_MIN_Z, SHELF_MAX_Z] }}
         footprint={[0.74, 0.19]}
-        enabled={enabled}
+        enabled={false}
+        hoverLift={0}
+        hoverScale={1}
       >
-        <BooksModel />
+        <AlbumBooks />
       </PhysicalItem>
 
       <PhysicalItem
