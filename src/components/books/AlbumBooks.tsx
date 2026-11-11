@@ -30,7 +30,7 @@ function SpineLetter({ index, height }: { index: number; height: number }) {
     canvas.height = 256
     const context = canvas.getContext('2d')!
     context.clearRect(0, 0, canvas.width, canvas.height)
-    context.fillStyle = index < 8 ? '#5d8ca4' : '#fffdf7'
+    context.fillStyle = '#000000'
     context.textAlign = 'center'
     context.textBaseline = 'middle'
     context.font = '700 166px "Trebuchet MS", "Arial Rounded MT Bold", sans-serif'
