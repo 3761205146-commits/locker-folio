@@ -2,9 +2,10 @@
 .album-book-modal__book{position:relative;width:min(860px,94vw);animation:album-book-rise .38s cubic-bezier(.2,.85,.25,1) both}
 .album-book-modal__book--cover{width:min(500px,88vw)}
 .album-book-modal__cover-stage{display:grid;justify-items:center;gap:18px}
-.album-book-modal__cover-preview{display:grid;place-items:center;width:100%;height:min(72vh,660px);padding:14px;border:0;border-radius:18px;background:#fffdf7;box-shadow:0 14px 26px rgba(72,114,143,.2);cursor:pointer;transition:transform .22s ease,box-shadow .22s ease}
+.album-book-modal__cover-preview{display:grid;place-items:center;width:100%;height:min(72vh,660px);padding:14px;border:0;border-radius:18px;overflow:hidden;background:#fffdf7;box-shadow:0 14px 26px rgba(72,114,143,.2);cursor:pointer;transition:transform .22s ease,box-shadow .22s ease}
 .album-book-modal__cover-preview:hover{transform:translateY(-3px) scale(1.012);box-shadow:0 18px 30px rgba(72,114,143,.25)}
 .album-book-modal__cover-preview img{display:block;max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}
+.album-book-modal__cover-preview .album-book-modal__cover-art--seven{width:100%;max-width:none;height:auto;max-height:none;transform:none}
 .album-book-modal__open{min-height:44px;padding:11px 25px;border:0;border-radius:999px;background:#8ec9e7;color:#fff;font:700 14px/1 var(--font-cn,system-ui,sans-serif);box-shadow:0 5px 12px rgba(74,137,170,.22);cursor:pointer}
 .album-book-modal__open:hover{background:#78bce0;transform:translateY(-1px)}
 .album-book-modal__spread{position:relative;display:grid;grid-template-columns:1fr 1fr;width:100%;aspect-ratio:1.45/1;border-radius:12px;overflow:hidden;filter:drop-shadow(0 14px 19px rgba(72,114,143,.2))}

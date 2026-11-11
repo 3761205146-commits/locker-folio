@@ -28,6 +28,7 @@ export default function BookModal() {
   }, [book, closeBook, nextPage, previousPage, view])
 
   if (!book) return null
+  const isSeventhBook = book.id === 7
   const canPrevious = page > 0
   const canNext = page + 2 < book.pageCount
   const modal = (
@@ -37,14 +38,14 @@ export default function BookModal() {
         {view === 'cover' ? (
           <div className="album-book-modal__cover-stage">
             <button className="album-book-modal__cover-preview" type="button" onClick={startReading} aria-label="Open book">
-              <img src={book.cover} alt={`Liz album cover ${book.id}`} />
+              <img className={isSeventhBook ? 'album-book-modal__cover-art--seven' : undefined} src={book.cover} alt={`Liz album cover ${book.id}`} />
             </button>
             <button className="album-book-modal__open" type="button" onClick={startReading}>OPEN</button>
           </div>
         ) : (
           <>
             <div className="album-book-modal__spread">
-              <div className="album-book-modal__cover" aria-hidden="true"><img src={book.cover} alt="" /></div>
+              <div className="album-book-modal__cover" aria-hidden="true"><img className={isSeventhBook ? 'album-book-modal__cover-art--seven' : undefined} src={book.cover} alt="" /></div>
               <div className="album-book-modal__page album-book-modal__page--left" key={`left-${book.id}-${page}`}><span>{page + 1}</span></div>
               <div className="album-book-modal__page album-book-modal__page--right" key={`right-${book.id}-${page}`}><span>{page + 2}</span></div>
             </div>

@@ -1,7 +1,7 @@
 import { RoundedBox } from '@react-three/drei'
 import { useFrame, type ThreeEvent } from '@react-three/fiber'
-import { useRef, useState } from 'react'
-import { MathUtils, type Group } from 'three'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { CanvasTexture, MathUtils, SRGBColorSpace, type Group } from 'three'
 import { ALBUM_BOOKS } from './booksData'
 import { useBooksStore } from './booksStore'
 
@@ -12,15 +12,43 @@ const DEPTH = 0.16
 const ROW_WIDTH = ALBUM_BOOKS.length * WIDTH + (ALBUM_BOOKS.length - 1) * GAP
 const START_X = -ROW_WIDTH / 2 + WIDTH / 2
 const SPINE_COLORS = [
-  '#94c9e8', '#f4d6ad', '#b9dce9', '#f4c6cf', '#d8e7b3', '#a9d5cf', '#f1d4a9',
-  '#b8ccef', '#efd0dc', '#c5e4df', '#f5dfab', '#b4d7ec', '#d4c5ea',
+  '#fffdf5', '#f2fafc', '#e2f4fa', '#d0edf7', '#b9e3f2', '#9fd6ea', '#85c8e1',
+  '#70b8d5', '#5ea8ca', '#5097bb', '#4486ab', '#376f95', '#285779',
 ] as const
+const SPINE_LETTERS = [...'HAPPYBIRTHDAY'] as const
 /**
  * 书架有效高度：上层隔板表面 2.175，顶部开口下沿 2.777，净高 0.602。
  * 最矮书 0.43、最高书 0.46，顶部保留至少 0.142 的安全净空；底部从 y=0
  * 起算，准确落在隔板上表面，绝不穿入板材的 0.05 厚度。
  */
 const BOOK_HEIGHTS = [0.442, 0.452, 0.46, 0.447, 0.456, 0.438, 0.458, 0.45, 0.43, 0.455, 0.44, 0.46, 0.448] as const
+
+function SpineLetter({ index, height }: { index: number; height: number }) {
+  const texture = useMemo(() => {
+    const canvas = document.createElement('canvas')
+    canvas.width = 256
+    canvas.height = 256
+    const context = canvas.getContext('2d')!
+    context.clearRect(0, 0, canvas.width, canvas.height)
+    context.fillStyle = index < 7 ? '#3f718a' : '#fffdf7'
+    context.textAlign = 'center'
+    context.textBaseline = 'middle'
+    context.font = '600 174px Georgia, Times, serif'
+    context.fillText(SPINE_LETTERS[index], 128, 133)
+    const output = new CanvasTexture(canvas)
+    output.colorSpace = SRGBColorSpace
+    return output
+  }, [index])
+
+  useEffect(() => () => texture.dispose(), [texture])
+
+  return (
+    <mesh position={[0, height / 2, DEPTH / 2 + 0.001]} renderOrder={2}>
+      <planeGeometry args={[WIDTH * 0.72, height * 0.23]} />
+      <meshBasicMaterial map={texture} transparent depthWrite={false} toneMapped={false} />
+    </mesh>
+  )
+}
 
 function AlbumBook({ index }: { index: number }) {
   const root = useRef<Group>(null)
@@ -68,6 +96,7 @@ function AlbumBook({ index }: { index: number }) {
       >
         <meshStandardMaterial color={SPINE_COLORS[index]} roughness={0.76} metalness={0} />
       </RoundedBox>
+      <SpineLetter index={index} height={height} />
       <RoundedBox args={[WIDTH * 0.7, 0.009, DEPTH + 0.003]} position={[0, height * 0.17, 0]} radius={0.002} smoothness={2}>
         <meshStandardMaterial color="#fff8e9" roughness={0.88} />
       </RoundedBox>
