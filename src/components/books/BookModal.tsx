@@ -39,7 +39,7 @@ export default function BookModal() {
             <button className="album-book-modal__cover-preview" type="button" onClick={startReading} aria-label="Open book">
               <img src={book.cover} alt={`Liz album cover ${book.id}`} />
             </button>
-            <button className="album-book-modal__open" type="button" onClick={startReading}>打开书本</button>
+            <button className="album-book-modal__open" type="button" onClick={startReading}>OPEN</button>
           </div>
         ) : (
           <>

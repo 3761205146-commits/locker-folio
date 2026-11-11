@@ -6,8 +6,8 @@ import { ALBUM_BOOKS } from './booksData'
 import { useBooksStore } from './booksStore'
 
 /** 13 本书占满原书架 0.74 的净宽，仍为每本预留 3mm 的独立间隙。 */
-const WIDTH = 0.052
-const GAP = 0.003
+const WIDTH = 0.054
+const GAP = 0.002
 const DEPTH = 0.16
 const ROW_WIDTH = ALBUM_BOOKS.length * WIDTH + (ALBUM_BOOKS.length - 1) * GAP
 const START_X = -ROW_WIDTH / 2 + WIDTH / 2
@@ -17,10 +17,10 @@ const SPINE_COLORS = [
 ] as const
 /**
  * 书架有效高度：上层隔板表面 2.175，顶部开口下沿 2.777，净高 0.602。
- * 最矮书 0.50、最高书 0.54，顶部仍保留至少 0.062 的安全净空；底部从 y=0
+ * 最矮书 0.43、最高书 0.46，顶部保留至少 0.142 的安全净空；底部从 y=0
  * 起算，准确落在隔板上表面，绝不穿入板材的 0.05 厚度。
  */
-const BOOK_HEIGHTS = [0.515, 0.53, 0.54, 0.522, 0.535, 0.508, 0.538, 0.526, 0.5, 0.534, 0.512, 0.54, 0.524] as const
+const BOOK_HEIGHTS = [0.442, 0.452, 0.46, 0.447, 0.456, 0.438, 0.458, 0.45, 0.43, 0.455, 0.44, 0.46, 0.448] as const
 
 function AlbumBook({ index }: { index: number }) {
   const root = useRef<Group>(null)
