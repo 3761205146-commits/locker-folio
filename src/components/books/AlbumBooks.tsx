@@ -15,7 +15,12 @@ const SPINE_COLORS = [
   '#94c9e8', '#f4d6ad', '#b9dce9', '#f4c6cf', '#d8e7b3', '#a9d5cf', '#f1d4a9',
   '#b8ccef', '#efd0dc', '#c5e4df', '#f5dfab', '#b4d7ec', '#d4c5ea',
 ] as const
-const BOOK_HEIGHTS = [0.43, 0.455, 0.475, 0.442, 0.465, 0.435, 0.47, 0.45, 0.425, 0.462, 0.44, 0.475, 0.448] as const
+/**
+ * 书架有效高度：上层隔板表面 2.175，顶部开口下沿 2.777，净高 0.602。
+ * 最矮书 0.50、最高书 0.54，顶部仍保留至少 0.062 的安全净空；底部从 y=0
+ * 起算，准确落在隔板上表面，绝不穿入板材的 0.05 厚度。
+ */
+const BOOK_HEIGHTS = [0.515, 0.53, 0.54, 0.522, 0.535, 0.508, 0.538, 0.526, 0.5, 0.534, 0.512, 0.54, 0.524] as const
 
 function AlbumBook({ index }: { index: number }) {
   const root = useRef<Group>(null)
@@ -74,8 +79,9 @@ function AlbumBook({ index }: { index: number }) {
 }
 
 export default function AlbumBooks() {
+  // Bottoms start at the shelf's upper surface: no negative Y offset.
   return (
-    <group name="LizAlbumBooks" position={[0, -0.09, 0]}>
+    <group name="LizAlbumBooks" position={[0, 0, 0]}>
       {ALBUM_BOOKS.map((book, index) => <AlbumBook key={book.id} index={index} />)}
     </group>
   )
