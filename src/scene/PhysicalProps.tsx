@@ -524,53 +524,73 @@ export function BackpackModel() {
 export function BirthdayKeepsakesModel() {
   return (
     <group name="BirthdayKeepsakesModel">
-      <group name="BirthdayCake" position={[-0.19, 0, -0.04]}>
-        <mesh {...SHADOWS} position={[0, 0.018, 0]}>
-          <cylinderGeometry args={[0.2, 0.2, 0.036, 32]} />
-          <meshStandardMaterial color="#fff8e9" roughness={0.82} />
+      <group name="BirthdayCake" position={[-0.2, 0, -0.04]}>
+        <mesh {...SHADOWS} position={[0, 0.016, 0]}>
+          <cylinderGeometry args={[0.225, 0.225, 0.032, 32]} />
+          <meshStandardMaterial color="#fff9ea" roughness={0.85} />
         </mesh>
-        <mesh {...SHADOWS} position={[0, 0.078, 0]}>
-          <cylinderGeometry args={[0.17, 0.185, 0.105, 32]} />
-          <meshStandardMaterial color="#f5cb62" roughness={0.76} />
-        </mesh>
-        <mesh {...SHADOWS} position={[0, 0.14, 0]}>
-          <torusGeometry args={[0.175, 0.016, 10, 32]} />
-          <meshStandardMaterial color="#fffaf0" roughness={0.9} />
-        </mesh>
-        <mesh {...SHADOWS} position={[0, 0.18, 0]}>
-          <cylinderGeometry args={[0.14, 0.154, 0.105, 32]} />
-          <meshStandardMaterial color="#f8d77c" roughness={0.78} />
+        <mesh {...SHADOWS} position={[0, 0.13, 0]}>
+          <cylinderGeometry args={[0.2, 0.215, 0.2, 36]} />
+          <meshStandardMaterial color="#fffaf0" roughness={0.86} />
         </mesh>
         <mesh {...SHADOWS} position={[0, 0.238, 0]}>
-          <torusGeometry args={[0.145, 0.018, 10, 32]} />
-          <meshStandardMaterial color="#fff9e9" roughness={0.88} />
+          <cylinderGeometry args={[0.194, 0.202, 0.032, 36]} />
+          <meshStandardMaterial color="#f8d986" roughness={0.8} />
         </mesh>
-        {[0, 1, 2, 3, 4, 5, 6, 7].map((step) => {
-          const angle = (step / 8) * Math.PI * 2
+        {Array.from({ length: 12 }, (_, step) => {
+          const angle = (step / 12) * Math.PI * 2
           return (
-            <mesh key={step} {...SHADOWS} position={[Math.cos(angle) * 0.125, 0.25, Math.sin(angle) * 0.125]}>
-              <sphereGeometry args={[0.024, 12, 8]} />
-              <meshStandardMaterial color="#fffdf4" roughness={0.9} />
+            <mesh key={`side-${step}`} {...SHADOWS} position={[Math.cos(angle) * 0.207, 0.12, Math.sin(angle) * 0.207]} scale={[0.85, 1.7, 0.85]}>
+              <sphereGeometry args={[0.022, 12, 8]} />
+              <meshStandardMaterial color="#fffdf7" roughness={0.92} />
             </mesh>
           )
         })}
-        {[-0.075, 0.075].map((x) => (
-          <mesh key={x} {...SHADOWS} position={[x, 0.273, 0.025]}>
-            <sphereGeometry args={[0.026, 12, 8]} />
-            <meshStandardMaterial color="#ee8692" roughness={0.7} />
+        {Array.from({ length: 9 }, (_, step) => {
+          const angle = (step / 9) * Math.PI * 2
+          return (
+            <group key={`top-${step}`} position={[Math.cos(angle) * 0.158, 0.267, Math.sin(angle) * 0.158]} rotation={[0, -angle, 0]}>
+              <mesh {...SHADOWS} rotation={[Math.PI / 2, 0, 0]} scale={[1.15, 0.7, 1]}>
+                <coneGeometry args={[0.038, 0.038, 12]} />
+                <meshStandardMaterial color="#fffdf7" roughness={0.9} />
+              </mesh>
+              <mesh {...SHADOWS} position={[0.018, 0.002, 0.006]} scale={[0.8, 0.55, 0.8]}>
+                <sphereGeometry args={[0.03, 12, 8]} />
+                <meshStandardMaterial color="#fffdf7" roughness={0.9} />
+              </mesh>
+            </group>
+          )
+        })}
+        {Array.from({ length: 11 }, (_, step) => {
+          const angle = (step / 11) * Math.PI * 2
+          return (
+            <mesh key={`base-${step}`} {...SHADOWS} position={[Math.cos(angle) * 0.205, 0.044, Math.sin(angle) * 0.205]} scale={[1.1, 0.65, 1.1]}>
+              <sphereGeometry args={[0.025, 12, 8]} />
+              <meshStandardMaterial color="#fffdf7" roughness={0.92} />
+            </mesh>
+          )
+        })}
+        <mesh {...SHADOWS} position={[0, 0.31, 0]} scale={[0.82, 1.15, 0.82]}>
+          <sphereGeometry args={[0.065, 16, 12]} />
+          <meshStandardMaterial color="#d95460" roughness={0.6} />
+        </mesh>
+        {[-0.02, 0, 0.02].map((x) => (
+          <mesh key={`seed-${x}`} {...SHADOWS} position={[x, 0.32, 0.052]}>
+            <sphereGeometry args={[0.006, 8, 6]} />
+            <meshStandardMaterial color="#ffe59a" roughness={0.8} />
           </mesh>
         ))}
-        <mesh {...SHADOWS} position={[0, 0.315, 0]}>
-          <cylinderGeometry args={[0.013, 0.013, 0.105, 12]} />
-          <meshStandardMaterial color="#f4b8bf" roughness={0.7} />
+        <mesh {...SHADOWS} position={[0.025, 0.405, 0.022]}>
+          <cylinderGeometry args={[0.011, 0.011, 0.18, 12]} />
+          <meshStandardMaterial color="#f0c772" roughness={0.55} metalness={0.08} />
         </mesh>
-        <mesh {...SHADOWS} position={[0, 0.4, 0]}>
+        <mesh {...SHADOWS} position={[0.025, 0.53, 0.022]}>
           <coneGeometry args={[0.03, 0.075, 12]} />
-          <meshStandardMaterial color="#ffd978" emissive="#f7b84b" emissiveIntensity={0.35} roughness={0.72} />
+          <meshStandardMaterial color="#ffd978" emissive="#f7b84b" emissiveIntensity={0.42} roughness={0.72} />
         </mesh>
       </group>
 
-      <group name="CcdCamera" position={[0.2, 0.018, 0.015]} rotation={[0, 0, -0.1]} scale={1.15}>
+      <group name="CcdCamera" position={[0.22, 0.03, 0.005]} rotation={[0, 0, -0.14]} scale={1.2}>
         <RoundedPart name="CcdCamera_Body" size={[0.34, 0.205, 0.11]} at={[0, 0.115, 0]} color="#91cee9" radius={0.045} roughness={0.63} />
         <RoundedPart size={[0.285, 0.13, 0.012]} at={[0, 0.13, 0.061]} color="#b9e5f4" radius={0.025} roughness={0.72} />
         <mesh {...SHADOWS} name="CcdCamera_LensRing" position={[-0.045, 0.125, 0.077]} rotation={[Math.PI / 2, 0, 0]}>
