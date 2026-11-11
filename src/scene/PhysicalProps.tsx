@@ -555,7 +555,7 @@ function CandleFlame() {
   })
 
   return (
-    <group ref={flame} name="BirthdayCake_Flame" position={[0.025, 0.496, 0.022]}>
+    <group ref={flame} name="BirthdayCake_Flame" position={[0.025, 0.456, 0.022]}>
       <mesh {...SHADOWS} rotation={[0, 0, 0.12]}>
         <latheGeometry args={[outerProfile, 16]} />
         <meshStandardMaterial color="#ffb35f" emissive="#f28b39" emissiveIntensity={0.48} roughness={0.55} />
@@ -628,11 +628,11 @@ export function BirthdayCakeModel() {
             <meshStandardMaterial color="#ffe59a" roughness={0.8} />
           </mesh>
         ))}
-        <mesh {...SHADOWS} position={[0.025, 0.405, 0.022]}>
+        <mesh {...SHADOWS} position={[0.025, 0.365, 0.022]}>
           <cylinderGeometry args={[0.011, 0.011, 0.18, 12]} />
           <meshStandardMaterial color="#f0c772" roughness={0.55} metalness={0.08} />
         </mesh>
-        <mesh {...SHADOWS} position={[0.025, 0.49, 0.022]}>
+        <mesh {...SHADOWS} position={[0.025, 0.45, 0.022]}>
           <cylinderGeometry args={[0.004, 0.004, 0.035, 8]} />
           <meshStandardMaterial color="#5b4337" roughness={0.8} />
         </mesh>
