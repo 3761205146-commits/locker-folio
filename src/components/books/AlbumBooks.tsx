@@ -12,8 +12,8 @@ const DEPTH = 0.16
 const ROW_WIDTH = ALBUM_BOOKS.length * WIDTH + (ALBUM_BOOKS.length - 1) * GAP
 const START_X = -ROW_WIDTH / 2 + WIDTH / 2
 const SPINE_COLORS = [
-  '#fffdf5', '#f2fafc', '#e2f4fa', '#d0edf7', '#b9e3f2', '#9fd6ea', '#85c8e1',
-  '#70b8d5', '#5ea8ca', '#5097bb', '#4486ab', '#376f95', '#285779',
+  '#fffaf0', '#fafbf6', '#f4f9fa', '#edf6fa', '#e4f2f8', '#daedf6', '#cfe8f4',
+  '#c2e2f0', '#b4daec', '#a6d2e6', '#97c8df', '#87bdd7', '#78b1ce',
 ] as const
 const SPINE_LETTERS = [...'HAPPYBIRTHDAY'] as const
 /**
@@ -30,10 +30,14 @@ function SpineLetter({ index, height }: { index: number; height: number }) {
     canvas.height = 256
     const context = canvas.getContext('2d')!
     context.clearRect(0, 0, canvas.width, canvas.height)
-    context.fillStyle = index < 7 ? '#3f718a' : '#fffdf7'
+    context.fillStyle = index < 8 ? '#5d8ca4' : '#fffdf7'
     context.textAlign = 'center'
     context.textBaseline = 'middle'
-    context.font = '600 174px Georgia, Times, serif'
+    context.font = '700 166px "Trebuchet MS", "Arial Rounded MT Bold", sans-serif'
+    context.lineJoin = 'round'
+    context.lineWidth = 2
+    context.strokeStyle = context.fillStyle
+    context.strokeText(SPINE_LETTERS[index], 128, 133)
     context.fillText(SPINE_LETTERS[index], 128, 133)
     const output = new CanvasTexture(canvas)
     output.colorSpace = SRGBColorSpace
