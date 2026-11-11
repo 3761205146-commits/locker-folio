@@ -1,40 +1,39 @@
-import { RoundedBox, useTexture } from '@react-three/drei'
+import { RoundedBox } from '@react-three/drei'
 import { useFrame, type ThreeEvent } from '@react-three/fiber'
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { MathUtils, SRGBColorSpace, type Group, type Texture } from 'three'
+import { useRef, useState } from 'react'
+import { MathUtils, type Group } from 'three'
 import { ALBUM_BOOKS } from './booksData'
 import { useBooksStore } from './booksStore'
 
-const WIDTH = 0.049
+/** 13 本书占满原书架 0.74 的净宽，仍为每本预留 3mm 的独立间隙。 */
+const WIDTH = 0.052
 const GAP = 0.003
-const START_X = -0.34
+const DEPTH = 0.16
+const ROW_WIDTH = ALBUM_BOOKS.length * WIDTH + (ALBUM_BOOKS.length - 1) * GAP
+const START_X = -ROW_WIDTH / 2 + WIDTH / 2
+const SPINE_COLORS = [
+  '#94c9e8', '#f4d6ad', '#b9dce9', '#f4c6cf', '#d8e7b3', '#a9d5cf', '#f1d4a9',
+  '#b8ccef', '#efd0dc', '#c5e4df', '#f5dfab', '#b4d7ec', '#d4c5ea',
+] as const
+const BOOK_HEIGHTS = [0.43, 0.455, 0.475, 0.442, 0.465, 0.435, 0.47, 0.45, 0.425, 0.462, 0.44, 0.475, 0.448] as const
 
-function AlbumBook({ index, texture }: { index: number; texture: Texture }) {
+function AlbumBook({ index }: { index: number }) {
   const root = useRef<Group>(null)
   const [hovered, setHovered] = useState(false)
   const openBook = useBooksStore((state) => state.openBook)
-  const height = 0.3 + ((index * 7) % 5) * 0.025
+  const height = BOOK_HEIGHTS[index]
   const x = START_X + index * (WIDTH + GAP)
-  const image = texture.image as { width?: number; height?: number } | undefined
-  const aspect = image?.width && image?.height ? image.width / image.height : 1
-  const coverHeight = Math.min(height * 0.74, WIDTH * 0.8 / aspect)
-  const coverWidth = coverHeight * aspect
 
   useFrame((_, delta) => {
     const group = root.current
     if (!group) return
-    const target = hovered ? 1.1 : 1
+    const target = hovered ? 1.055 : 1
     const next = MathUtils.damp(group.scale.x, target, 13, delta)
     group.scale.setScalar(next)
-    group.position.z = MathUtils.damp(group.position.z, hovered ? 0.038 : 0, 13, delta)
-    group.position.y = MathUtils.damp(group.position.y, hovered ? 0.012 : 0, 13, delta)
-    group.rotation.y = MathUtils.damp(group.rotation.y, hovered ? -0.075 : 0, 13, delta)
+    group.position.z = MathUtils.damp(group.position.z, hovered ? 0.026 : 0, 13, delta)
+    group.position.y = MathUtils.damp(group.position.y, hovered ? 0.008 : 0, 13, delta)
+    group.rotation.y = MathUtils.damp(group.rotation.y, hovered ? -0.035 : 0, 13, delta)
   })
-
-  useEffect(() => {
-    texture.colorSpace = SRGBColorSpace
-    texture.needsUpdate = true
-  }, [texture])
 
   const enter = (event: ThreeEvent<PointerEvent>) => {
     event.stopPropagation()
@@ -54,7 +53,7 @@ function AlbumBook({ index, texture }: { index: number; texture: Texture }) {
   return (
     <group ref={root} position={[x, 0, 0]} name={`AlbumBook_${index + 1}`}>
       <RoundedBox
-        args={[WIDTH, height, 0.075]}
+        args={[WIDTH, height, DEPTH]}
         position={[0, height / 2, 0]}
         radius={0.006}
         smoothness={3}
@@ -62,32 +61,22 @@ function AlbumBook({ index, texture }: { index: number; texture: Texture }) {
         onPointerOut={leave}
         onClick={select}
       >
-        <meshStandardMaterial color="#eaf5fb" roughness={0.66} metalness={0} />
+        <meshStandardMaterial color={SPINE_COLORS[index]} roughness={0.76} metalness={0} />
       </RoundedBox>
-      <mesh
-        position={[0, height / 2, 0.039]}
-        onPointerOver={enter}
-        onPointerOut={leave}
-        onClick={select}
-      >
-        <planeGeometry args={[coverWidth, coverHeight]} />
-        <meshStandardMaterial map={texture} roughness={0.72} />
-      </mesh>
-      <mesh position={[-WIDTH / 2 - 0.0007, height / 2, 0]} rotation={[0, Math.PI / 2, 0]}>
-        <planeGeometry args={[0.075, height * 0.9]} />
-        <meshStandardMaterial color="#8ec5e5" roughness={0.64} />
-      </mesh>
+      <RoundedBox args={[WIDTH * 0.7, 0.009, DEPTH + 0.003]} position={[0, height * 0.17, 0]} radius={0.002} smoothness={2}>
+        <meshStandardMaterial color="#fff8e9" roughness={0.88} />
+      </RoundedBox>
+      <RoundedBox args={[WIDTH * 0.7, 0.009, DEPTH + 0.003]} position={[0, -height * 0.17, 0]} radius={0.002} smoothness={2}>
+        <meshStandardMaterial color="#fff8e9" roughness={0.88} />
+      </RoundedBox>
     </group>
   )
 }
 
 export default function AlbumBooks() {
-  const textures = useTexture(ALBUM_BOOKS.map((book) => book.cover)) as Texture[]
-  const items = useMemo(() => ALBUM_BOOKS.map((book, index) => ({ ...book, texture: textures[index] })), [textures])
-
   return (
-    <group name="LizAlbumBooks" position={[0, -0.09, 0.135]}>
-      {items.map((book, index) => <AlbumBook key={book.id} index={index} texture={book.texture} />)}
+    <group name="LizAlbumBooks" position={[0, -0.09, 0]}>
+      {ALBUM_BOOKS.map((book, index) => <AlbumBook key={book.id} index={index} />)}
     </group>
   )
 }
