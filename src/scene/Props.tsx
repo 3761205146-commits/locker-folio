@@ -25,7 +25,7 @@ import {
   bayLeft,
 } from './lockerSpec'
 import {
-  BackpackModel,
+  BirthdayKeepsakesModel,
   DoorTrayModel,
   FindAWordBoardModel,
   KeyboardModel,
@@ -345,10 +345,10 @@ export function CavityProps() {
         plane="xz"
         position={[-0.55, OPENING_BOTTOM, 0.075]}
         bounds={{ u: [BAY_MIN_X, BAY_MAX_X], v: [SHELF_MIN_Z, SHELF_MAX_Z] }}
-        footprint={[0.56, 0.22]}
+        footprint={[0.68, 0.25]}
         enabled={enabled}
       >
-        <BackpackModel />
+        <BirthdayKeepsakesModel />
       </PhysicalItem>
     </>
   )

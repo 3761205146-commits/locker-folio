@@ -520,6 +520,68 @@ export function BackpackModel() {
   )
 }
 
+/** Bottom-shelf birthday keepsakes: a small cake and a separate compact CCD camera. */
+export function BirthdayKeepsakesModel() {
+  return (
+    <group name="BirthdayKeepsakesModel">
+      <group name="BirthdayCake" position={[-0.17, 0, 0.03]}>
+        <mesh {...SHADOWS} position={[0, 0.018, 0]}>
+          <cylinderGeometry args={[0.145, 0.145, 0.036, 28]} />
+          <meshStandardMaterial color="#fff8e9" roughness={0.82} />
+        </mesh>
+        <mesh {...SHADOWS} position={[0, 0.095, 0]}>
+          <cylinderGeometry args={[0.125, 0.135, 0.125, 28]} />
+          <meshStandardMaterial color="#f5cb62" roughness={0.76} />
+        </mesh>
+        <mesh {...SHADOWS} position={[0, 0.163, 0]}>
+          <cylinderGeometry args={[0.118, 0.122, 0.026, 28]} />
+          <meshStandardMaterial color="#fff9e9" roughness={0.88} />
+        </mesh>
+        {[0, 1, 2, 3, 4, 5].map((step) => {
+          const angle = (step / 6) * Math.PI * 2
+          return (
+            <mesh key={step} {...SHADOWS} position={[Math.cos(angle) * 0.095, 0.181, Math.sin(angle) * 0.095]}>
+              <sphereGeometry args={[0.021, 12, 8]} />
+              <meshStandardMaterial color="#fffdf4" roughness={0.9} />
+            </mesh>
+          )
+        })}
+        <mesh {...SHADOWS} position={[0, 0.225, 0]}>
+          <cylinderGeometry args={[0.012, 0.012, 0.09, 12]} />
+          <meshStandardMaterial color="#f4b8bf" roughness={0.7} />
+        </mesh>
+        <mesh {...SHADOWS} position={[0, 0.288, 0]}>
+          <coneGeometry args={[0.027, 0.065, 12]} />
+          <meshStandardMaterial color="#ffd978" emissive="#f7b84b" emissiveIntensity={0.35} roughness={0.72} />
+        </mesh>
+      </group>
+
+      <group name="CcdCamera" position={[0.18, 0, 0.045]}>
+        <RoundedPart name="CcdCamera_Body" size={[0.34, 0.205, 0.11]} at={[0, 0.125, 0]} color="#91cee9" radius={0.045} roughness={0.63} />
+        <RoundedPart size={[0.285, 0.13, 0.012]} at={[0, 0.13, 0.061]} color="#b9e5f4" radius={0.025} roughness={0.72} />
+        <mesh {...SHADOWS} name="CcdCamera_LensRing" position={[-0.045, 0.125, 0.077]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.072, 0.072, 0.025, 24]} />
+          <meshStandardMaterial color="#eaf8fc" roughness={0.55} metalness={0.08} />
+        </mesh>
+        <mesh {...SHADOWS} name="CcdCamera_Lens" position={[-0.045, 0.125, 0.092]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.052, 0.052, 0.028, 24]} />
+          <meshStandardMaterial color="#4a7288" roughness={0.3} metalness={0.15} />
+        </mesh>
+        <mesh {...SHADOWS} position={[-0.045, 0.125, 0.109]} rotation={[Math.PI / 2, 0, 0]}>
+          <circleGeometry args={[0.037, 24]} />
+          <meshStandardMaterial color="#294b60" roughness={0.18} metalness={0.25} />
+        </mesh>
+        <RoundedPart size={[0.052, 0.035, 0.014]} at={[0.105, 0.158, 0.07]} color="#fff9e9" radius={0.007} roughness={0.8} />
+        <mesh {...SHADOWS} position={[0.1, 0.24, 0.018]}>
+          <cylinderGeometry args={[0.027, 0.027, 0.014, 16]} />
+          <meshStandardMaterial color="#e9f7fb" roughness={0.68} />
+        </mesh>
+        <RoundedPart size={[0.16, 0.09, 0.009]} at={[-0.01, 0.135, -0.061]} color="#658da4" radius={0.012} roughness={0.55} />
+      </group>
+    </group>
+  )
+}
+
 const TYPEWRITER_KEY_ROWS = [10, 10, 9] as const
 const TYPEWRITER_KEY_Z = [-0.065, 0, 0.065] as const
 const TYPEWRITER_KEYS = TYPEWRITER_KEY_ROWS.flatMap((count, row) =>
