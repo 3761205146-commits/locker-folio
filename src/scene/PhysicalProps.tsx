@@ -14,6 +14,7 @@ import {
   type Texture,
 } from 'three'
 import { ID_CARD_SIZE } from './decalSpecs'
+import { useBirthdayCakeStore } from '../components/birthday/birthdayCakeStore'
 import {
   FIND_A_WORD_DEPTH,
   FIND_A_WORD_FACE_Z,
@@ -571,6 +572,7 @@ function CandleFlame() {
 
 /** Low, broad cream birthday cake based on the supplied cake reference. */
 export function BirthdayCakeModel() {
+  const cakePhase = useBirthdayCakeStore((state) => state.phase)
   return (
     <group name="BirthdayCake">
         <mesh {...SHADOWS} position={[0, 0.016, 0]}>
@@ -636,7 +638,7 @@ export function BirthdayCakeModel() {
           <cylinderGeometry args={[0.004, 0.004, 0.035, 8]} />
           <meshStandardMaterial color="#5b4337" roughness={0.8} />
         </mesh>
-        <CandleFlame />
+        {cakePhase === 'lit' && <CandleFlame />}
     </group>
   )
 }

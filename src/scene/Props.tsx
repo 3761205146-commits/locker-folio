@@ -6,6 +6,7 @@ import MessagesForLiz from '../components/messages/MessagesForLiz'
 import AlbumBooks from '../components/books/AlbumBooks'
 import { useSceneCapabilities } from '../store'
 import { usePianoStore } from '../components/piano/pianoStore'
+import { useBirthdayCakeStore } from '../components/birthday/birthdayCakeStore'
 import { ID_CARD_AT, ID_CARD_SIZE } from './decalSpecs'
 import {
   activateHotspot,
@@ -277,6 +278,7 @@ function PhysicalItem({
 export function CavityProps() {
   const caps = useSceneCapabilities()
   const enabled = caps.drag
+  const openBirthdayCake = useBirthdayCakeStore((state) => state.openCake)
 
   return (
     <>
@@ -353,6 +355,7 @@ export function CavityProps() {
         enabled={enabled}
         hoverLift={0.012}
         hoverScale={1.02}
+        onTap={openBirthdayCake}
       >
         <BirthdayCakeModel />
       </PhysicalItem>

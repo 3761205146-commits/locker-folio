@@ -3,6 +3,7 @@ import Loader from './components/Loader'
 import MessagesForLizModal from './components/messages/MessagesForLizModal'
 import PianoModal from './components/piano/PianoModal'
 import BookModal from './components/books/BookModal'
+import BirthdayCakeModal from './components/birthday/BirthdayCakeModal'
 import Reveal from './components/Reveal'
 import OverlayHost from './components/overlays/OverlayHost'
 import { StaticFallback, useCapabilities } from './components/fallback'
@@ -84,6 +85,7 @@ export default function App() {
       <MessagesForLizModal />
       <PianoModal />
       <BookModal />
+      <BirthdayCakeModal />
       {/* 四个浮层的统一宿主：dialog 语义、背景 inert、focus trap、
           退出动画播完才卸载、焦点归还，全部在 OverlayHost 内部完成 */}
       <OverlayHost />
