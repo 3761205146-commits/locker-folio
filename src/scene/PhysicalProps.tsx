@@ -524,40 +524,54 @@ export function BackpackModel() {
 export function BirthdayKeepsakesModel() {
   return (
     <group name="BirthdayKeepsakesModel">
-      <group name="BirthdayCake" position={[-0.17, 0, 0.03]}>
+      <group name="BirthdayCake" position={[-0.19, 0, -0.04]}>
         <mesh {...SHADOWS} position={[0, 0.018, 0]}>
-          <cylinderGeometry args={[0.145, 0.145, 0.036, 28]} />
+          <cylinderGeometry args={[0.2, 0.2, 0.036, 32]} />
           <meshStandardMaterial color="#fff8e9" roughness={0.82} />
         </mesh>
-        <mesh {...SHADOWS} position={[0, 0.095, 0]}>
-          <cylinderGeometry args={[0.125, 0.135, 0.125, 28]} />
+        <mesh {...SHADOWS} position={[0, 0.078, 0]}>
+          <cylinderGeometry args={[0.17, 0.185, 0.105, 32]} />
           <meshStandardMaterial color="#f5cb62" roughness={0.76} />
         </mesh>
-        <mesh {...SHADOWS} position={[0, 0.163, 0]}>
-          <cylinderGeometry args={[0.118, 0.122, 0.026, 28]} />
+        <mesh {...SHADOWS} position={[0, 0.14, 0]}>
+          <torusGeometry args={[0.175, 0.016, 10, 32]} />
+          <meshStandardMaterial color="#fffaf0" roughness={0.9} />
+        </mesh>
+        <mesh {...SHADOWS} position={[0, 0.18, 0]}>
+          <cylinderGeometry args={[0.14, 0.154, 0.105, 32]} />
+          <meshStandardMaterial color="#f8d77c" roughness={0.78} />
+        </mesh>
+        <mesh {...SHADOWS} position={[0, 0.238, 0]}>
+          <torusGeometry args={[0.145, 0.018, 10, 32]} />
           <meshStandardMaterial color="#fff9e9" roughness={0.88} />
         </mesh>
-        {[0, 1, 2, 3, 4, 5].map((step) => {
-          const angle = (step / 6) * Math.PI * 2
+        {[0, 1, 2, 3, 4, 5, 6, 7].map((step) => {
+          const angle = (step / 8) * Math.PI * 2
           return (
-            <mesh key={step} {...SHADOWS} position={[Math.cos(angle) * 0.095, 0.181, Math.sin(angle) * 0.095]}>
-              <sphereGeometry args={[0.021, 12, 8]} />
+            <mesh key={step} {...SHADOWS} position={[Math.cos(angle) * 0.125, 0.25, Math.sin(angle) * 0.125]}>
+              <sphereGeometry args={[0.024, 12, 8]} />
               <meshStandardMaterial color="#fffdf4" roughness={0.9} />
             </mesh>
           )
         })}
-        <mesh {...SHADOWS} position={[0, 0.225, 0]}>
-          <cylinderGeometry args={[0.012, 0.012, 0.09, 12]} />
+        {[-0.075, 0.075].map((x) => (
+          <mesh key={x} {...SHADOWS} position={[x, 0.273, 0.025]}>
+            <sphereGeometry args={[0.026, 12, 8]} />
+            <meshStandardMaterial color="#ee8692" roughness={0.7} />
+          </mesh>
+        ))}
+        <mesh {...SHADOWS} position={[0, 0.315, 0]}>
+          <cylinderGeometry args={[0.013, 0.013, 0.105, 12]} />
           <meshStandardMaterial color="#f4b8bf" roughness={0.7} />
         </mesh>
-        <mesh {...SHADOWS} position={[0, 0.288, 0]}>
-          <coneGeometry args={[0.027, 0.065, 12]} />
+        <mesh {...SHADOWS} position={[0, 0.4, 0]}>
+          <coneGeometry args={[0.03, 0.075, 12]} />
           <meshStandardMaterial color="#ffd978" emissive="#f7b84b" emissiveIntensity={0.35} roughness={0.72} />
         </mesh>
       </group>
 
-      <group name="CcdCamera" position={[0.18, 0, 0.045]}>
-        <RoundedPart name="CcdCamera_Body" size={[0.34, 0.205, 0.11]} at={[0, 0.125, 0]} color="#91cee9" radius={0.045} roughness={0.63} />
+      <group name="CcdCamera" position={[0.2, 0.018, 0.015]} rotation={[0, 0, -0.1]} scale={1.15}>
+        <RoundedPart name="CcdCamera_Body" size={[0.34, 0.205, 0.11]} at={[0, 0.115, 0]} color="#91cee9" radius={0.045} roughness={0.63} />
         <RoundedPart size={[0.285, 0.13, 0.012]} at={[0, 0.13, 0.061]} color="#b9e5f4" radius={0.025} roughness={0.72} />
         <mesh {...SHADOWS} name="CcdCamera_LensRing" position={[-0.045, 0.125, 0.077]} rotation={[Math.PI / 2, 0, 0]}>
           <cylinderGeometry args={[0.072, 0.072, 0.025, 24]} />
@@ -572,7 +586,7 @@ export function BirthdayKeepsakesModel() {
           <meshStandardMaterial color="#294b60" roughness={0.18} metalness={0.25} />
         </mesh>
         <RoundedPart size={[0.052, 0.035, 0.014]} at={[0.105, 0.158, 0.07]} color="#fff9e9" radius={0.007} roughness={0.8} />
-        <mesh {...SHADOWS} position={[0.1, 0.24, 0.018]}>
+        <mesh {...SHADOWS} position={[0.1, 0.23, 0.018]}>
           <cylinderGeometry args={[0.027, 0.027, 0.014, 16]} />
           <meshStandardMaterial color="#e9f7fb" roughness={0.68} />
         </mesh>
