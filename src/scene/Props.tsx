@@ -323,6 +323,8 @@ export function CavityProps() {
         footprint={[0.7, 0.4]}
         enabled={enabled}
         hotspot="skills"
+        hoverLift={0}
+        hoverScale={1.025}
         // 反馈圆环和聚焦锚点留在模型后部；真正的点击与拖拽都由实体接管。
         hotspotOffset={[0, 0.31, -0.22]}
       >

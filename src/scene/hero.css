@@ -80,6 +80,14 @@
   transform: none;
 }
 
+/* The turntable uses the real 3D model for hover feedback. Keep its keyboard
+   button in the DOM without creating the former white circular hover bubble. */
+.hot3d__btn[data-silent] {
+  opacity: 0 !important;
+  background: transparent;
+  box-shadow: none;
+}
+
 /* 键盘焦点必须自己看得见：这一层是 pointer-events: none，
    没有指针 hover 兜底，focus-visible 是唯一的可见反馈 */
 .hot3d__btn:focus-visible {
