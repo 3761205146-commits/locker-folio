@@ -21,7 +21,7 @@ const BODIES = {
 /** 屏幕阅读器读到的浮层标题，供 aria-labelledby 引用 */
 const TITLES = {
   about: 'ABOUT 个人信息工牌',
-  skills: 'SKILLS 技能卡',
+  skills: 'VINYL COLLECTION 唱片收藏',
   work: 'SELECTED WORK 作品文件夹',
   contact: 'CONTACT 软木板留言',
 } as const

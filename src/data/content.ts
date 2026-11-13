@@ -21,7 +21,7 @@ export const CREDIT = {
 /* ── 顶部导航 ─────────────────────────────────────────── */
 export const NAV = [
   { id: 'about', label: 'ABOUT' },
-  { id: 'skills', label: 'SKILLS' },
+  { id: 'skills', label: 'MUSIC' },
   { id: 'work', label: 'SELECTED WORK' },
   { id: 'contact', label: 'CONTACT' },
 ] as const

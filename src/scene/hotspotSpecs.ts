@@ -60,8 +60,8 @@ export type HotspotSpec = {
 export const HOTSPOTS: readonly HotspotSpec[] = [
   {
     id: 'skills',
-    label: 'SKILLS 个人技能',
-    caption: '个人技能',
+    label: 'VINYL COLLECTION 唱片收藏',
+    caption: '唱片收藏',
     at: [-0.522, 1.705, 0.03],
     frame: 'world',
     size: [0.72, 0.9],
