@@ -454,6 +454,77 @@ export function SelectedWorkModel() {
   )
 }
 
+/** A soft, fully volumetric cat plush head: layered forms rather than a flat image. */
+export function CatPlushHeadModel() {
+  const plush = { roughness: 0.9 }
+  return (
+    <group name="CatPlushHeadModel">
+      {/* thick rounded white face */}
+      <mesh {...SHADOWS} name="CatPlush_Face" position={[0, 0.245, 0]} scale={[0.31, 0.255, 0.115]}>
+        <sphereGeometry args={[1, 32, 24]} />
+        <meshStandardMaterial color="#fffdf7" {...plush} />
+      </mesh>
+      {/* ears sit behind the hair cap, with real depth */}
+      {[-0.205, 0.205].map((x) => (
+        <group key={x} position={[x, 0.405, -0.012]} rotation={[0, 0, x < 0 ? -0.34 : 0.34]}>
+          <mesh {...SHADOWS} scale={[0.115, 0.145, 0.08]}>
+            <sphereGeometry args={[1, 20, 16]} />
+            <meshStandardMaterial color="#ffd67c" {...plush} />
+          </mesh>
+          <mesh {...SHADOWS} position={[0, -0.002, 0.07]} scale={[0.058, 0.075, 0.018]}>
+            <sphereGeometry args={[1, 18, 12]} />
+            <meshStandardMaterial color="#f6a958" {...plush} />
+          </mesh>
+        </group>
+      ))}
+      {/* yellow fluffy top and three rounded fringe tufts */}
+      <mesh {...SHADOWS} name="CatPlush_HairCap" position={[0, 0.365, 0.035]} scale={[0.305, 0.18, 0.095]}>
+        <sphereGeometry args={[1, 32, 20]} />
+        <meshStandardMaterial color="#ffdc86" {...plush} />
+      </mesh>
+      {[-0.13, 0, 0.13].map((x, index) => (
+        <mesh {...SHADOWS} key={x} position={[x, 0.31 - Math.abs(x) * 0.08, 0.102]} scale={[0.115, index === 1 ? 0.115 : 0.1, 0.04]}>
+          <sphereGeometry args={[1, 22, 14]} />
+          <meshStandardMaterial color="#ffdc86" {...plush} />
+        </mesh>
+      ))}
+      {/* big shiny embroidered eyes */}
+      {[-0.112, 0.112].map((x) => (
+        <group key={x} position={[x, 0.245, 0.126]}>
+          <mesh {...SHADOWS} scale={[0.071, 0.084, 0.023]}>
+            <sphereGeometry args={[1, 24, 18]} />
+            <meshStandardMaterial color="#1d1b1c" roughness={0.36} />
+          </mesh>
+          <mesh position={[x < 0 ? -0.018 : 0.018, 0.026, 0.026]} scale={[0.021, 0.025, 0.01]}>
+            <sphereGeometry args={[1, 16, 12]} />
+            <meshStandardMaterial color="#fff" roughness={0.2} />
+          </mesh>
+          <mesh position={[x < 0 ? 0.014 : -0.014, -0.025, 0.027]} scale={[0.011, 0.013, 0.008]}>
+            <sphereGeometry args={[1, 14, 10]} />
+            <meshStandardMaterial color="#e7d9d2" roughness={0.4} />
+          </mesh>
+        </group>
+      ))}
+      {/* small nose, two curved mouth corners, and the right-cheek heart */}
+      <mesh {...SHADOWS} position={[0, 0.176, 0.135]} scale={[0.033, 0.021, 0.015]}>
+        <sphereGeometry args={[1, 18, 12]} />
+        <meshStandardMaterial color="#242022" roughness={0.45} />
+      </mesh>
+      {[-1, 1].map((side) => (
+        <mesh {...SHADOWS} key={side} position={[side * 0.032, 0.151, 0.134]} rotation={[0, 0, side * 0.48]}>
+          <torusGeometry args={[0.03, 0.006, 8, 18, Math.PI * 0.72]} />
+          <meshStandardMaterial color="#242022" roughness={0.46} />
+        </mesh>
+      ))}
+      <group position={[0.187, 0.155, 0.132]} rotation={[0, 0, -0.1]}>
+        <mesh scale={[0.025, 0.031, 0.011]}><sphereGeometry args={[1, 16, 12]} /><meshStandardMaterial color="#f3a8a7" {...plush} /></mesh>
+        <mesh position={[-0.017, 0.011, 0]} scale={[0.02, 0.026, 0.011]}><sphereGeometry args={[1, 16, 12]} /><meshStandardMaterial color="#f3a8a7" {...plush} /></mesh>
+        <mesh position={[-0.009, -0.018, 0]} rotation={[0, 0, Math.PI / 4]} scale={[0.022, 0.022, 0.011]}><sphereGeometry args={[1, 16, 12]} /><meshStandardMaterial color="#f3a8a7" {...plush} /></mesh>
+      </group>
+    </group>
+  )
+}
+
 /** Soft low-poly backpack. Bottom-centred, with real straps and stationery. */
 export function BackpackModel() {
   return (

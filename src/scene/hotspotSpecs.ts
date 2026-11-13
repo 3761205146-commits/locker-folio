@@ -68,15 +68,6 @@ export const HOTSPOTS: readonly HotspotSpec[] = [
     focusHeight: 0.95,
   },
   {
-    id: 'work',
-    label: 'SELECTED WORK 作品展示',
-    caption: '作品展示',
-    at: [-0.37, 0.972, -0.04],
-    frame: 'world',
-    size: [0.8, 0.74],
-    focusHeight: 0.8,
-  },
-  {
     id: 'contact',
     label: 'CONTACT 联系',
     caption: '联系我',

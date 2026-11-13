@@ -27,6 +27,7 @@ import {
 } from './lockerSpec'
 import {
   BirthdayCakeModel,
+  CatPlushHeadModel,
   CcdCameraModel,
   DoorTrayModel,
   FindAWordBoardModel,
@@ -34,7 +35,6 @@ import {
   IdCardModel,
   PolaroidCardModel,
   PosterCardModel,
-  SelectedWorkModel,
   TurntableModel,
 } from './PhysicalProps'
 import {
@@ -85,7 +85,7 @@ const TURNTABLE = findSpec('Prop_Turntable')
 const BACKPACK = findSpec('Prop_Backpack')
 const BIRTHDAY_CAKE: PropSpec = { ...BACKPACK, name: 'Prop_BirthdayCake' }
 const CCD_CAMERA: PropSpec = { ...BACKPACK, name: 'Prop_CcdCamera' }
-const SELECTED_WORK = findSpec('Prop_SelectedWork')
+const CAT_PLUSH: PropSpec = { ...BACKPACK, name: 'Prop_CatPlush' }
 const MESSAGES_FOR_LIZ: PropSpec = { ...findSpec('Prop_Typewriter'), name: 'Prop_MessagesForLiz' }
 const KEYBOARD = findSpec('Prop_Keyboard')
 
@@ -332,19 +332,18 @@ export function CavityProps() {
       </PhysicalItem>
 
       <PhysicalItem
-        spec={SELECTED_WORK}
+        spec={CAT_PLUSH}
         plane="xy"
-        // 作品袋在参考里悬在背包前面，而不是贴在后壁被背包盖住。
-        // 放在隔板前沿附近，仍保留 XY 平面拖拽。
+        // Replace the former selected-work case in the same lower-bay footprint.
         position={[-0.47, 0.62, FRONT_Z - 0.055]}
         bounds={{ u: [BAY_MIN_X, BAY_MAX_X], v: [OPENING_BOTTOM + 0.08, SHELF_Y[1] - 0.02] }}
         footprint={[0.62, 0.5]}
         footprintCenter={[0, 0.25]}
         enabled={enabled}
-        hotspot="work"
-        hotspotOffset={[0, 0.26, -0.08]}
+        hoverLift={0}
+        hoverScale={1.035}
       >
-        <SelectedWorkModel />
+        <CatPlushHeadModel />
       </PhysicalItem>
 
       <PhysicalItem
