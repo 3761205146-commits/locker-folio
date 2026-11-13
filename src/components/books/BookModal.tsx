@@ -18,7 +18,7 @@ export default function BookModal() {
     if (!book) return
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') closeBook()
-      if (view === 'reading' && event.key === 'ArrowRight') nextPage()
+      if (view === 'reading' && event.key === 'ArrowRight') nextPage(book.pageCount)
       if (view === 'reading' && event.key === 'ArrowLeft') previousPage()
     }
     window.addEventListener('keydown', onKeyDown)
@@ -31,6 +31,8 @@ export default function BookModal() {
   const isSeventhBook = book.id === 7
   const canPrevious = page > 0
   const canNext = page + 2 < book.pageCount
+  const leftPage = book.pages[page]
+  const rightPage = book.pages[page + 1]
   const modal = (
     <div className="album-book-modal" role="presentation" onPointerDown={(event) => { if (event.target === event.currentTarget) closeBook() }}>
       <section className={`album-book-modal__book album-book-modal__book--${view}`} role="dialog" aria-modal="true" aria-label={`Album book ${book.id}`}>
@@ -46,13 +48,19 @@ export default function BookModal() {
           <>
             <div className="album-book-modal__spread">
               <div className="album-book-modal__cover" aria-hidden="true"><img className={isSeventhBook ? 'album-book-modal__cover-art--seven' : undefined} src={book.cover} alt="" /></div>
-              <div className="album-book-modal__page album-book-modal__page--left" key={`left-${book.id}-${page}`}><span>{page + 1}</span></div>
-              <div className="album-book-modal__page album-book-modal__page--right" key={`right-${book.id}-${page}`}><span>{page + 2}</span></div>
+              <div className="album-book-modal__page album-book-modal__page--left" key={`left-${book.id}-${page}`}>
+                {leftPage && <img src={leftPage} alt={`Book ${book.id}, page ${page + 1}`} loading="lazy" decoding="async" />}
+                <span>{page + 1}</span>
+              </div>
+              <div className={`album-book-modal__page album-book-modal__page--right${rightPage ? '' : ' album-book-modal__page--empty'}`} key={`right-${book.id}-${page + 1}`}>
+                {rightPage && <img src={rightPage} alt={`Book ${book.id}, page ${page + 2}`} loading="lazy" decoding="async" />}
+                {rightPage && <span>{page + 2}</span>}
+              </div>
             </div>
             <div className="album-book-modal__controls">
               <button type="button" onClick={previousPage} disabled={!canPrevious}>‹ Previous</button>
-              <span>{page / 2 + 1} / {Math.ceil(book.pageCount / 2)}</span>
-              <button type="button" onClick={nextPage} disabled={!canNext}>Next ›</button>
+              <span>{Math.floor(page / 2) + 1} / {Math.ceil(book.pageCount / 2)}</span>
+              <button type="button" onClick={() => nextPage(book.pageCount)} disabled={!canNext}>Next ›</button>
             </div>
           </>
         )}
