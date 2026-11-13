@@ -161,8 +161,7 @@ function Hotspot({ spec, enabled }: { spec: HotspotSpec; enabled: boolean }) {
             onBlur={() => setActive(false)}
             onClick={open}
           >
-            <b>{spec.caption}</b>
-            <i>{spec.id === 'work' ? 'SELECTED WORK' : spec.id === 'skills' ? 'VINYL' : spec.id.toUpperCase()}</i>
+            {spec.id !== 'skills' && <><b>{spec.caption}</b><i>{spec.id === 'work' ? 'SELECTED WORK' : spec.id.toUpperCase()}</i></>}
           </button>
         </Html>
       </>}

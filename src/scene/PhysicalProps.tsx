@@ -161,20 +161,18 @@ function usePrintedLabel(kind: 'selected-work' | 'contact' | 'skills') {
       context.fillStyle = '#d97c3a'
       context.fillText('作品展示', canvas.width / 2, 405)
     } else if (kind === 'skills') {
-      context.textAlign = 'center'
-      context.textBaseline = 'middle'
-      context.font = '800 72px sans-serif'
-      context.fillStyle = '#36afc4'
-      context.fillText('唱片收藏', canvas.width / 2, 158)
-      context.font = '900 96px Georgia, serif'
-      context.fillStyle = '#6c9db9'
-      context.fillText('VINYL', canvas.width / 2, 286)
-      context.strokeStyle = '#d8c7aa'
-      context.lineWidth = 5
+      context.fillStyle = '#a9d8ee'
       context.beginPath()
-      context.moveTo(150, 365)
-      context.lineTo(618, 365)
-      context.stroke()
+      context.arc(250, 240, 96, 0, Math.PI * 2)
+      context.fill()
+      context.fillStyle = '#f4d9b6'
+      context.beginPath()
+      context.arc(384, 240, 96, 0, Math.PI * 2)
+      context.fill()
+      context.fillStyle = '#e8cfe2'
+      context.beginPath()
+      context.arc(518, 240, 96, 0, Math.PI * 2)
+      context.fill()
     } else {
       context.textAlign = 'left'
       context.textBaseline = 'alphabetic'
