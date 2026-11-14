@@ -454,32 +454,7 @@ export function SelectedWorkModel() {
   )
 }
 
-/**
- * Original Cheez art is the complete front face. The mesh behind it only gives
- * the plush a soft side/back volume; it never redraws the source expression.
- */
-export function CatPlushHeadModel() {
-  const faceTexture = useTexture(`${import.meta.env.BASE_URL}images/cheez-plush-face.png`)
-
-  useEffect(() => {
-    configurePaperTexture(faceTexture)
-  }, [faceTexture])
-
-  return (
-    <group name="CatPlushHeadModel">
-      {/* Soft volume only: face, hair and ears sit behind the untouched original artwork. */}
-      <mesh {...SHADOWS} name="CatPlush_SoftBack" position={[0, 0.3, -0.05]} scale={[0.2, 0.11, 0.12]}>
-        <sphereGeometry args={[1, 32, 24]} />
-        <meshStandardMaterial color="#fffdf7" roughness={0.92} />
-      </mesh>
-      {/* Exact original front: transparent surroundings, original silhouette and facial pixels. */}
-      <mesh name="CatPlush_OriginalFront" position={[0, 0.3, 0.135]}>
-        <planeGeometry args={[0.8, 0.8]} />
-        <meshBasicMaterial map={faceTexture} transparent alphaTest={0.02} depthWrite toneMapped={false} />
-      </mesh>
-    </group>
-  )
-}
+export { CatPlushHeadModel } from './CatPlushCharm'
 
 /** Soft low-poly backpack. Bottom-centred, with real straps and stationery. */
 export function BackpackModel() {

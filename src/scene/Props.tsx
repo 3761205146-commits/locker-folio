@@ -334,11 +334,12 @@ export function CavityProps() {
       <PhysicalItem
         spec={CAT_PLUSH}
         plane="xy"
-        // Replace the former selected-work case in the same lower-bay footprint.
-        position={[-0.47, 0.62, FRONT_Z - 0.055]}
-        bounds={{ u: [BAY_MIN_X, BAY_MAX_X], v: [OPENING_BOTTOM + 0.08, SHELF_Y[1] - 0.02] }}
-        footprint={[0.62, 0.5]}
-        footprintCenter={[0, 0.25]}
+        // Fix the chain to the underside of the lower shelf. The origin is the
+        // fixing, so hover grows downwards and cannot detach it from the cabinet.
+        position={[-0.45, SHELF_Y[1] - 0.025, FRONT_Z - 0.07]}
+        bounds={{ u: [-0.45, -0.45], v: [SHELF_Y[1] - 0.025, SHELF_Y[1] - 0.025] }}
+        footprint={[0, 0]}
+        scale={1.4}
         enabled={enabled}
         hoverLift={0}
         hoverScale={1.035}
