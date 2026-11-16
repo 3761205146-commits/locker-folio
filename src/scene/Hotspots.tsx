@@ -105,8 +105,8 @@ function Hotspot({ spec, enabled }: { spec: HotspotSpec; enabled: boolean }) {
   })
 
   const on = enabled && active
-  // The turntable is its own visible hover target. Its feedback is limited to
-  // the physical model scale, so no ring, ripple, or empty HTML bubble appears.
+  // Disabled feedback applies to both geometry and the HTML bubble. The profile
+  // card and turntable keep their physical hover scale and accessible click target.
   const showFeedback = spec.showFeedback !== false && spec.id !== 'skills'
   const label = spec.labelOffset ?? [0, 0, 0]
 
@@ -145,7 +145,7 @@ function Hotspot({ spec, enabled }: { spec: HotspotSpec; enabled: boolean }) {
         </mesh>
 
       </>}
-      {/* 无障碍按钮仍保留。唱片机使用完全透明的静默版本，视觉交互由实体承担。 */}
+      {/* 无障碍按钮仍保留；关闭额外反馈时，视觉交互只由实体承担。 */}
       <Html
         position={[label[0], label[1], label[2]]}
         center
@@ -157,7 +157,7 @@ function Hotspot({ spec, enabled }: { spec: HotspotSpec; enabled: boolean }) {
           type="button"
           className="hot3d__btn"
           data-on={on || undefined}
-          data-silent={spec.id === 'skills' || undefined}
+          data-silent={!showFeedback || undefined}
           tabIndex={enabled ? 0 : -1}
           aria-label={spec.label}
           data-hot-id={spec.id}
@@ -165,7 +165,7 @@ function Hotspot({ spec, enabled }: { spec: HotspotSpec; enabled: boolean }) {
           onBlur={() => setActive(false)}
           onClick={open}
         >
-          {spec.id !== 'skills' && <><b>{spec.caption}</b><i>{spec.id === 'work' ? 'SELECTED WORK' : spec.id.toUpperCase()}</i></>}
+          {showFeedback && <><b>{spec.caption}</b><i>{spec.id === 'work' ? 'SELECTED WORK' : spec.id.toUpperCase()}</i></>}
         </button>
       </Html>
     </group>
