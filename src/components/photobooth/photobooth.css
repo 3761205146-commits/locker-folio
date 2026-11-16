@@ -6,3 +6,18 @@
 @media(prefers-reduced-motion:reduce){.pb-backdrop,.pb-camera-area.is-flashing::after{animation:none}.pb-camera-area.is-flashing::after{display:none}.pb-frame-option,.pb-button{transition:none}}
 
 .pb-upload:focus-within{outline:3px solid #e7b9c1;outline-offset:4px}
+
+/* Minimal copy: keep the original palette, cards and photo proportions. */
+.pb-close{margin-left:auto}
+.pb-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.pb-header h1{font-size:20px;font-weight:550;letter-spacing:1px}
+.pb-content{padding:30px 34px 34px}
+.pb-frame-options{padding:8px 0}
+.pb-frame-option strong{font-size:14px;font-weight:500;margin:0}
+.pb-step-heading{justify-content:center;margin-bottom:20px}
+.pb-camera-area{margin-bottom:22px}
+.pb-crop{margin:0 0 20px}
+.pb-captured{padding:8px 12px}
+.pb-result-copy{gap:20px}
+.pb-result-copy .pb-button{min-width:170px}
+@media(max-width:700px){.pb-header h1{font-size:19px}.pb-content{padding:24px 18px}.pb-preview-column{grid-template-rows:auto}.pb-preview-column .pb-strip{grid-row:1}.pb-preview-column .pb-text-button{grid-row:1;margin:0;align-self:center}.pb-result-copy .pb-button{min-width:200px}}

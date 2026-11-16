@@ -218,43 +218,39 @@ function BoothSession({ close }: { close: () => void }) {
     <div className="pb-backdrop">
       <section ref={dialog} tabIndex={-1} className="pb-dialog" role="dialog" aria-modal="true" aria-labelledby="pb-title">
         <header className="pb-header">
-          <div><p className="pb-eyebrow">LIZ’S LITTLE PHOTO BOOTH</p><h1 id="pb-title">人生四宫格 <span aria-hidden="true">♡</span></h1></div>
+          <h1 id="pb-title" className={stage !== 'choose' ? 'pb-sr-only' : undefined}>{stage === 'choose' ? '选择相框' : stage === 'shoot' ? '拍照' : '拍照完成'}</h1>
           <button type="button" className="pb-close" aria-label="关闭拍照亭" onClick={close}>×</button>
         </header>
         <div ref={content} className="pb-content">
           {stage === 'choose' && <div className="pb-choose">
-            <div className="pb-intro"><span className="pb-pill">01 / PICK YOUR FRAME</span><h2>选一款相框，留住今天的你</h2><p>一张一张慢慢拍，把四个小瞬间装进同一段回忆。</p></div>
             <div className="pb-frame-options">{FRAMES.map((option) => <button type="button" key={option.id} className="pb-frame-option" onClick={() => choose(option)} aria-label={`选择相框${option.id}：${option.title}`}>
               <div className="pb-frame-paper"><img src={option.url} alt={`人生四宫格${option.id}原始相框`} /></div>
-              <strong>{option.title}</strong><small>{option.subtitle}</small><span className="pb-select-label">选择这款相框 →</span>
+              <strong>{option.title}</strong>
             </button>)}</div>
-            {shots.some(Boolean) && <p className="pb-hint">已拍照片保留，换一款相框也可以继续调整。</p>}
           </div>}
           {stage === 'shoot' && frame && <div className="pb-shoot">
-            <aside className="pb-preview-column"><span className="pb-pill">{frame.title} · YOUR PHOTO STRIP</span><StripPreview frame={frame} shots={shots} /><button type="button" className="pb-text-button" onClick={backToFrames} disabled={busy}>← 返回相框选择</button></aside>
+            <aside className="pb-preview-column"><StripPreview frame={frame} shots={shots} /><button type="button" className="pb-text-button" onClick={backToFrames} disabled={busy}>相框</button></aside>
             <main className="pb-capture-column">
-              <div className="pb-step-heading"><div><p className="pb-eyebrow">ONE LITTLE MOMENT AT A TIME</p><h2>正在拍摄第 {index + 1} 张照片</h2></div><b className="pb-counter" aria-label={`拍摄进度${index + 1}/4`}>{index + 1}<small>/4</small></b></div>
-              <ol className="pb-progress" aria-label="四张照片进度">{shots.map((shot, i) => <li key={i} className={`${i === index ? 'is-current' : ''} ${confirmed[i] ? 'is-confirmed' : ''}`}><span>{confirmed[i] ? '✓' : i + 1}</span>{i === index ? (shot ? '待确认' : '拍摄中') : confirmed[i] ? '已确认' : shot ? '已拍摄' : '待拍摄'}</li>)}</ol>
+              <div className="pb-step-heading"><b className="pb-counter" aria-label={`拍摄进度${index + 1}/4`}>{index + 1}<small>/4</small></b></div>
               <div className={`pb-camera-area${flash ? ' is-flashing' : ''}`}>
                 <video ref={video} className="pb-source-video" autoPlay playsInline muted aria-hidden="true" />
                 <Viewfinder frame={frame} index={index} shot={activeShot} video={video} streaming={cameraStatus === 'ready'} />
-                {flash && <span className="pb-captured" role="status">这一刻，收好啦 ♡</span>}
+                {flash && <span className="pb-captured" role="status" aria-label="已拍摄">✓</span>}
               </div>
-              <div className="pb-status" aria-live="polite">{activeShot ? '看看这一张，调整好再确认。下一张由你决定什么时候拍。' : cameraStatus === 'ready' ? '把自己放进透明窗口里，准备好就按下快门。镜像预览与成片一致。' : cameraStatus === 'requesting' ? '正在请求摄像头权限…也可以直接上传照片。' : cameraError || '开启摄像头，或选择本地照片开始。'}</div>
-              {cameraError && activeShot && <p className="pb-hint">{cameraError}</p>}
-              {activeShot && <fieldset className="pb-crop" disabled={busy}><legend>调整这张照片</legend>
+              {!activeShot && cameraStatus === 'requesting' && <p className="pb-status" role="status">正在请求摄像头权限…</p>}
+              {cameraError && <p className="pb-status" role="status">{cameraError}</p>}
+              {activeShot && <fieldset className="pb-crop" disabled={busy}><legend>裁切</legend>
                 <label>放大 <input aria-label="照片放大比例" type="range" min="1" max="2.5" step="0.01" value={activeShot.zoom} onChange={(e) => updateCrop('zoom', +e.target.value)} /><output>{activeShot.zoom.toFixed(2)}×</output></label>
                 <label>上下 <input aria-label="照片上下位置" type="range" min="-1" max="1" step="0.01" value={activeShot.offsetY} onChange={(e) => updateCrop('offsetY', +e.target.value)} /><span>↕</span></label>
                 <label>左右 <input aria-label="照片左右位置" type="range" min="-1" max="1" step="0.01" value={activeShot.offsetX} onChange={(e) => updateCrop('offsetX', +e.target.value)} /><span>↔</span></label>
               </fieldset>}
               {error && <p className="pb-error" role="alert">{error}</p>}
-              <div className="pb-actions">{activeShot ? <><button type="button" className="pb-button pb-secondary" onClick={() => saveShot(null)} disabled={busy}>重拍这一张</button><button type="button" className="pb-button pb-primary" onClick={confirm} disabled={busy}>{busy ? '正在合成…' : index === 3 ? '确认使用，合成四宫格 ♡' : '确认使用，下一张 →'}</button></> : <button type="button" className="pb-button pb-primary pb-shutter" onClick={capture} disabled={cameraStatus !== 'ready' || busy}><span aria-hidden="true">◉</span> 拍摄第 {index + 1} 张</button>}</div>
-              <div className="pb-secondary-actions"><button type="button" className="pb-text-button" disabled={index === 0 || busy} onClick={() => { setIndex(index - 1); setError('') }}>← 返回上一张</button><label className={`pb-upload${busy ? ' is-disabled' : ''}`}>上传本地照片<input aria-label="上传本地照片" type="file" accept="image/*" onChange={(event) => void upload(event)} disabled={busy} /></label>{cameraStatus !== 'ready' && <button type="button" className="pb-text-button" onClick={() => void startCamera()} disabled={cameraStatus === 'requesting'}>开启摄像头</button>}</div>
+              <div className="pb-actions">{activeShot ? <><button type="button" className="pb-button pb-secondary" onClick={() => saveShot(null)} disabled={busy}>重拍</button><button type="button" className="pb-button pb-primary" aria-label={index === 3 ? '确认并合成' : '确认并进入下一步'} onClick={confirm} disabled={busy}>{busy ? '合成中…' : '确认'}</button></> : <button type="button" className="pb-button pb-primary pb-shutter" onClick={capture} disabled={cameraStatus !== 'ready' || busy}><span aria-hidden="true">◉</span> 拍照</button>}</div>
+              <div className="pb-secondary-actions"><button type="button" className="pb-text-button" disabled={index === 0 || busy} onClick={() => { setIndex(index - 1); setError('') }}>上一步</button><label className={`pb-upload${busy ? ' is-disabled' : ''}`}>上传照片<input aria-label="上传本地照片" type="file" accept="image/*" onChange={(event) => void upload(event)} disabled={busy} /></label>{cameraStatus !== 'ready' && <button type="button" className="pb-text-button" onClick={() => void startCamera()} disabled={cameraStatus === 'requesting'}>开启摄像头</button>}</div>
             </main>
           </div>}
-          {stage === 'done' && result && <div className="pb-done"><div className="pb-result-paper"><img src={result} alt="合成后的人生四宫格" /></div><div className="pb-result-copy"><span className="pb-pill">FOUR MOMENTS, ONE MEMORY</span><h2>今天的可爱，<br />已存档 <span>♡</span></h2><p>四张照片，四个小瞬间。<br />把这段回忆带走吧。</p><a className="pb-button pb-primary" href={result} download={`人生四宫格-${frame?.id}.png`}>下载人生四宫格 ↓</a><button type="button" className="pb-button pb-secondary" onClick={() => { setShots(EMPTY()); setConfirmed([false, false, false, false]); setIndex(0); setResult(null); setStage('shoot'); void startCamera() }}>重新拍摄</button><button type="button" className="pb-text-button" onClick={backToFrames}>返回相框选择</button><p className="pb-hint">PNG · 1515 × 4500 · 原始相框比例</p></div></div>}
+          {stage === 'done' && result && <div className="pb-done"><div className="pb-result-paper"><img src={result} alt="合成后的人生四宫格" /></div><div className="pb-result-copy"><a className="pb-button pb-primary" href={result} download={`人生四宫格-${frame?.id}.png`}>下载</a><button type="button" className="pb-button pb-secondary" onClick={() => { setShots(EMPTY()); setConfirmed([false, false, false, false]); setIndex(0); setResult(null); setStage('shoot'); void startCamera() }}>重新拍摄</button><button type="button" className="pb-text-button" onClick={backToFrames}>返回</button></div></div>}
         </div>
-        <footer className="pb-footer"><span aria-hidden="true">♡</span> 照片仅在你的浏览器内处理，不上传、不登录；关闭后释放摄像头。</footer>
       </section>
     </div>, document.body,
   )
