@@ -6,6 +6,7 @@ import MessagesForLiz from '../components/messages/MessagesForLiz'
 import AlbumBooks from '../components/books/AlbumBooks'
 import { useSceneCapabilities } from '../store'
 import { usePianoStore } from '../components/piano/pianoStore'
+import { useWorkshopStore } from '../components/squishy/workshopStore'
 import { usePhotoboothStore } from '../components/photobooth/photoboothStore'
 import { useBirthdayCakeStore } from '../components/birthday/birthdayCakeStore'
 import { ID_CARD_AT, ID_CARD_SIZE } from './decalSpecs'
@@ -279,6 +280,7 @@ function PhysicalItem({
 export function CavityProps() {
   const caps = useSceneCapabilities()
   const enabled = caps.drag
+  const openWorkshop = useWorkshopStore((state) => state.openWorkshop)
   const openPhotobooth = usePhotoboothStore((state) => state.openBooth)
   const openBirthdayCake = useBirthdayCakeStore((state) => state.openCake)
 
@@ -345,6 +347,7 @@ export function CavityProps() {
         enabled={enabled}
         hoverLift={0}
         hoverScale={1.035}
+        onTap={openWorkshop}
       >
         <CatPlushHeadModel />
       </PhysicalItem>
