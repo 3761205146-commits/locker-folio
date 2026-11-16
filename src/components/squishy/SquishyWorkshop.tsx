@@ -44,7 +44,7 @@ function WorkshopSession({ close }: { close: () => void }) {
   }, [motion])
   const reportProgress = useCallback((value: number) => { if (phase.current === stage) setProgress(value) }, [stage])
   const start = () => {
-    audio.unlock(); motion.current.coating = 0; motion.current.cooling = 0; motion.current.liftTime = 0; motion.current.dragY = 0.3
+    audio.unlock(); motion.current.waxGeneration++; motion.current.broken = 0; motion.current.fractured = false; motion.current.coating = 0; motion.current.cooling = 0; motion.current.liftTime = 0; motion.current.dragY = 0.3
     motion.current.autoDip = false; advance('wax')
   }
   const previous = () => {
@@ -53,7 +53,7 @@ function WorkshopSession({ close }: { close: () => void }) {
     if (stage === 'cool') { motion.current.coating = 0; motion.current.cooling = 0; advance('wax') }
     if (stage === 'squeeze') { motion.current.coating = 1; motion.current.cooling = 0; advance('cool') }
   }
-  const restart = () => { Object.assign(motion.current, createWorkshopMotion()); advance('prepare') }
+  const restart = () => { const generation = motion.current.waxGeneration + 1; Object.assign(motion.current, createWorkshopMotion(), { waxGeneration: generation }); advance('wax') }
   useEffect(() => {
     const sessionMotion = motion.current
     audio.activate()
@@ -97,7 +97,7 @@ function WorkshopSession({ close }: { close: () => void }) {
   }
   return createPortal(<div className={`sw-overlay${closing ? ' is-closing' : ''}`}>
     <section ref={dialog} className="sw-workshop" role="dialog" aria-modal="true" aria-labelledby="sw-title" tabIndex={-1} data-stage={stage}>
-      <header className="sw-header"><h1 id="sw-title"><span>Liz</span> 脆皮捏捏工坊</h1><div className="sw-header-actions">
+      <header className="sw-header"><h1 id="sw-title"><span>Liz</span> Cheez 脆皮捏捏工坊</h1><div className="sw-header-actions">
         <button type="button" className="sw-sound" aria-label={muted ? '开启声音' : '静音'} aria-pressed={!muted} onClick={() => { audio.setMuted(!muted); setMuted(!muted) }}><span aria-hidden="true">{muted ? '♪̸' : '♫'}</span>{muted ? '声音关' : '声音开'}</button>
         <button type="button" className="sw-close" aria-label="关闭脆皮捏捏工坊" onClick={requestClose}>×</button>
       </div></header>
@@ -107,8 +107,8 @@ function WorkshopSession({ close }: { close: () => void }) {
           <Suspense fallback={null}><WorkshopScene stage={stage} motion={motion} audio={audio} onStage={advance} onProgress={reportProgress} /></Suspense>
         </Canvas></SceneBoundary>
       </div>
-      <div className="sw-instructions" aria-live="polite"><p id="sw-hint">{stage === 'prepare' ? '拖动，转一转' : stage === 'wax' ? progress >= 1 ? '提起，滴去多余的蜡' : '把猫咪拖进蜡液' : stage === 'cool' ? '静候脆皮定型' : '按住猫咪，松开回弹'}</p>
-        {(stage === 'wax' || stage === 'cool') && <div className="sw-progress-row"><div className="sw-progress" role="progressbar" aria-label={stage === 'wax' ? '裹蜡进度' : '冷却进度'} aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}><span style={{ width: `${Math.round(progress * 100)}%` }} /></div><output>{Math.round(progress * 100)}%</output></div>}
+      <div className="sw-instructions" aria-live="polite"><p id="sw-hint">{stage === 'prepare' ? '拖动，转一转' : stage === 'wax' ? progress >= 1 ? '提起，滴去多余的蜡' : '把 Cheez 拖进蜡液' : stage === 'cool' ? '静候脆皮定型' : progress >= 0.9 ? '脆皮碎完啦 · Cheez 自由了' : '按压、拖动，捏碎 Cheez 的脆皮'}</p>
+        {(stage === 'wax' || stage === 'cool' || stage === 'squeeze') && <div className="sw-progress-row"><div className="sw-progress" role="progressbar" aria-label={stage === 'wax' ? '裹蜡进度' : stage === 'cool' ? '冷却进度' : '脆皮碎裂进度'} aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}><span style={{ width: `${Math.round(progress * 100)}%` }} /></div><output>{Math.round(progress * 100)}%</output></div>}
       </div>
       <footer className="sw-controls">
         <button type="button" className="sw-text-button" onClick={previous} disabled={stage === 'prepare' || closing}>上一步</button>
@@ -116,9 +116,9 @@ function WorkshopSession({ close }: { close: () => void }) {
           {stage === 'prepare' && <button type="button" className="sw-primary" onClick={start}>开始制作</button>}
           {stage === 'wax' && <button type="button" className="sw-primary" disabled={progress >= 1 || closing} onClick={() => { audio.unlock(); motion.current.autoDip = true; motion.current.dragY = -0.23 }}>浸入蜡液</button>}
           {stage === 'cool' && <button type="button" className="sw-primary" disabled>冷却中…</button>}
-          {stage === 'squeeze' && <button type="button" className="sw-primary" aria-label="按住捏一下" onPointerDown={centerDown} onPointerUp={() => endPress(motion.current, audio)} onPointerCancel={() => endPress(motion.current, audio)} onKeyDown={(event) => { if ((event.key === ' ' || event.key === 'Enter') && !event.repeat) { event.preventDefault(); beginPress(motion.current, audio) } }} onKeyUp={(event) => { if (event.key === ' ' || event.key === 'Enter') { event.preventDefault(); endPress(motion.current, audio) } }}>捏一下</button>}
+          {stage === 'squeeze' && <button type="button" className="sw-primary" aria-label="按住捏碎脆皮" onPointerDown={centerDown} onPointerUp={() => endPress(motion.current, audio)} onPointerCancel={() => endPress(motion.current, audio)} onKeyDown={(event) => { if ((event.key === ' ' || event.key === 'Enter') && !event.repeat) { event.preventDefault(); beginPress(motion.current, audio) } }} onKeyUp={(event) => { if (event.key === ' ' || event.key === 'Enter') { event.preventDefault(); endPress(motion.current, audio) } }}>捏碎脆皮</button>}
         </div>
-        <button type="button" className="sw-text-button" onClick={restart} disabled={stage !== 'squeeze' || closing}>重新制作</button>
+        <button type="button" className="sw-text-button" onClick={restart} disabled={stage !== 'squeeze' || closing}>重新裹蜡</button>
       </footer>
     </section>
   </div>, document.body)

@@ -2,7 +2,8 @@ import { Environment, Lightformer, Sparkles, useTexture } from '@react-three/dre
 import { useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
 import { memo, useLayoutEffect, useRef, type RefObject } from 'react'
 import { AdditiveBlending, BufferGeometry, Group, MathUtils, Mesh, MeshPhysicalMaterial, Vector2, type Material, type MeshStandardMaterial } from 'three'
-import { CatPlushHeadModel } from '../../scene/CatPlushCharm'
+import { CatPlushHeadModel as CheezHeadModel } from '../../scene/CatPlushCharm'
+import { CheezWaxShell } from './cheezWaxShell'
 import { beginPress, endPress } from './workshopActions'
 import type { WorkshopAudio } from './workshopAudio'
 import type { WorkshopMotion, WorkshopStage } from './workshopState'
@@ -22,13 +23,11 @@ uniform float uWorkshopCoat;
 uniform float uWorkshopFill;
 uniform float uWorkshopShell;
 varying vec3 vWorkshopPosition;
-vec3 workshopSquash(vec3 p) {
+vec3 workshopYield(vec3 p) {
   vec2 delta = p.xy - uWorkshopPoint;
   float influence = exp(-dot(delta, delta) / 0.018);
   float front = smoothstep(-0.14, 0.07, p.z);
   p.z -= uWorkshopDepth * influence * front;
-  p.x *= 1.0 + uWorkshopDepth * 0.20;
-  p.y = 0.36 + (p.y - 0.36) * (1.0 - uWorkshopDepth * 0.52);
   return p;
 }
 `
@@ -54,8 +53,8 @@ function interactionGeometry(source: BufferGeometry, reverse: boolean) {
 
 /** Every mesh and material here belongs to this independent Canvas instance.
  * The cabinet's head, textures and geometry are never mutated. Deformation is
- * GPU-only, bounded, reversible, and identical on the body and its wax shell. */
-function InteractiveCat({ stage, motion: motionRef, audio, onProgress, onStage }: Props) {
+ * bounded and confined to the soft core. The final wax shell uses rigid shards. */
+function InteractiveCheez({ stage, motion: motionRef, audio, onProgress, onStage }: Props) {
   useTexture(`${import.meta.env.BASE_URL}images/cheez-plush-face.png`)
   const pose = useRef<Group>(null)
   const drips = useRef<Group>(null)
@@ -67,6 +66,8 @@ function InteractiveCat({ stage, motion: motionRef, audio, onProgress, onStage }
   const uniformsRef = useRef({
     point: { value: new Vector2(0, CENTER_Y) }, depth: { value: 0 }, coat: { value: 0 }, fill: { value: 0.1 },
   })
+  const fractured = useRef<CheezWaxShell | null>(null)
+  const generation = useRef(0)
   const reportAt = useRef(0)
   const phase = useRef(stage)
   useLayoutEffect(() => { phase.current = stage }, [stage])
@@ -90,27 +91,21 @@ function InteractiveCat({ stage, motion: motionRef, audio, onProgress, onStage }
         Object.assign(shader.uniforms, { uWorkshopPoint: uniforms.point, uWorkshopDepth: uniforms.depth, uWorkshopCoat: uniforms.coat, uWorkshopFill: uniforms.fill, uWorkshopShell: { value: shell ? 1 : 0 } })
         shader.vertexShader = shader.vertexShader
           .replace('#include <common>', `#include <common>\n${VERTEX_UNIFORMS}`)
-          .replace('#include <begin_vertex>', '#include <begin_vertex>\nvWorkshopPosition = position;\ntransformed += normal * uWorkshopShell * uWorkshopCoat * 0.003;\ntransformed = workshopSquash(transformed);')
+          .replace('#include <begin_vertex>', '#include <begin_vertex>\nvWorkshopPosition = position;\ntransformed += normal * uWorkshopShell * uWorkshopCoat * 0.003;\nif (uWorkshopShell < 0.5) transformed = workshopYield(transformed);')
           .replace('#include <beginnormal_vertex>', `#include <beginnormal_vertex>
             vec2 workshopDelta = position.xy - uWorkshopPoint;
             float workshopFalloff = exp(-dot(workshopDelta, workshopDelta) / 0.018);
-            objectNormal.xy -= 2.0 * uWorkshopDepth * workshopFalloff * smoothstep(-0.14, 0.07, position.z) * workshopDelta / 0.018;
+            objectNormal.xy -= (1.0 - uWorkshopShell) * 2.0 * uWorkshopDepth * workshopFalloff * smoothstep(-0.14, 0.07, position.z) * workshopDelta / 0.018;
             objectNormal = normalize(objectNormal);`)
         if (shell) shader.fragmentShader = shader.fragmentShader
           .replace('#include <common>', '#include <common>\nuniform float uWorkshopFill;\nuniform vec2 uWorkshopPoint;\nuniform float uWorkshopDepth;\nvarying vec3 vWorkshopPosition;')
           .replace('#include <color_fragment>', `#include <color_fragment>
             diffuseColor.rgb = vec3(0.0);
             float coverage = smoothstep(vWorkshopPosition.y - 0.025, vWorkshopPosition.y + 0.025, uWorkshopFill);
-            diffuseColor.a *= coverage;
-            vec2 crackDelta = vWorkshopPosition.xy - uWorkshopPoint;
-            float crackRadius = length(crackDelta);
-            float crackAngle = atan(crackDelta.y, crackDelta.x);
-            float crack = pow(max(0.0, cos(crackAngle * 7.0 + sin(crackRadius * 90.0) * 0.35)), 55.0);
-            crack *= smoothstep(0.015, 0.035, crackRadius) * (1.0 - smoothstep(0.09, 0.16, crackRadius));
-            diffuseColor.a = min(0.6, diffuseColor.a + crack * coverage * uWorkshopDepth * 4.0);`)
+            diffuseColor.a *= coverage;`)
       }
       const baseKey = key.call(material)
-      material.customProgramCacheKey = () => `${baseKey}-workshop-squash-${shell ? 'shell' : 'body'}-v1`
+      material.customProgramCacheKey = () => `${baseKey}-workshop-yield-${shell ? 'shell' : 'body'}-v1`
       material.needsUpdate = true
       restore.push(() => { material.onBeforeCompile = compile; material.customProgramCacheKey = key })
     }
@@ -128,6 +123,7 @@ function InteractiveCat({ stage, motion: motionRef, audio, onProgress, onStage }
     }
     meshes.current = { front, shells, materials }
     return () => {
+      fractured.current?.dispose(); fractured.current = null
       meshes.current = null
       restore.forEach((fn) => fn()); shells.forEach((shell) => shell.removeFromParent()); materials.forEach((material) => material.dispose())
     }
@@ -162,18 +158,27 @@ function InteractiveCat({ stage, motion: motionRef, audio, onProgress, onStage }
       reportAt.current = state.clock.elapsedTime
       if (stage === 'wax') onProgress(motion.coating)
       if (stage === 'cool') onProgress(motion.cooling)
+      if (stage === 'squeeze') onProgress(motion.broken)
     }
     const held = motion.pressed && stage === 'squeeze'
-    const age = (performance.now() - motion.pressStart) / 1000
-    const strength = held ? Math.min(1, motion.pressure * 0.65 + Math.min(0.6, age * 0.8)) : 0
-    const targetDepth = held ? 0.025 + strength * 0.06 : 0
-    motion.depth = MathUtils.damp(motion.depth, targetDepth, held ? 18 : 5.2, elapsed)
-    if (motion.depth < 0.00005) motion.depth = 0
+    // Only a tiny, fast yielding of the soft core. Rigid wax shards never squash.
+    const targetDepth = held ? 0.004 : 0
+    motion.depth = MathUtils.damp(motion.depth, targetDepth, 30, elapsed)
+    if (stage === 'squeeze' && meshes.current && !fractured.current) {
+      const back = root.getObjectByName('CatPlush_RoundedBack') as Mesh
+      fractured.current = new CheezWaxShell(meshes.current.front, back)
+      generation.current = motion.waxGeneration
+    }
+    if (fractured.current) {
+      if (generation.current !== motion.waxGeneration) { fractured.current.reset(); generation.current = motion.waxGeneration }
+      fractured.current.group.visible = stage === 'squeeze' || (stage === 'cool' && motion.fractured)
+      if (stage === 'squeeze') fractured.current.update(motion, audio, elapsed)
+    }
     uniforms.point.value.lerp(motion.pressPoint, 1 - Math.exp(-dt * 25))
     uniforms.depth.value = motion.depth
     uniforms.coat.value = motion.coating
     uniforms.fill.value = 0.13 + motion.coating * 0.5
-    meshes.current?.shells.forEach((shell) => { shell.visible = motion.coating > 0.005 })
+    meshes.current?.shells.forEach((shell) => { shell.visible = stage !== 'squeeze' && !(stage === 'cool' && motion.fractured) && motion.coating > 0.005 })
     meshes.current?.materials.forEach((material) => {
       material.roughness = 0.43 - motion.cooling * 0.31
       material.clearcoatRoughness = 0.23 - motion.cooling * 0.18
@@ -221,9 +226,7 @@ function InteractiveCat({ stage, motion: motionRef, audio, onProgress, onStage }
       motion.dragY = MathUtils.clamp(gestureNow.dragY - (event.clientY - gestureNow.y) / size.height * viewport.height / sceneScale, -0.23, 0.4)
     } else if (phase.current === 'squeeze' && meshes.current) {
       const local = meshes.current.front.worldToLocal(event.point.clone())
-      const distance = motion.pressPoint.distanceTo(new Vector2(local.x, local.y))
       motion.pressPoint.set(local.x, local.y)
-      if (distance > 0.025 && performance.now() - motion.lastCrack > 90) { audio.play('light', 0.4); motion.lastCrack = performance.now() }
     }
   }
   const up = (event: ThreeEvent<PointerEvent>) => {
@@ -236,10 +239,10 @@ function InteractiveCat({ stage, motion: motionRef, audio, onProgress, onStage }
     target.releasePointerCapture?.(event.pointerId)
   }
   return <>
-    <group ref={pose} name="Workshop_Cat" position={[0, 0.18, 0]} scale={3.1}
+    <group ref={pose} name="Workshop_Cheez" position={[0, 0.18, 0]} scale={3.1}
       onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up}
       onLostPointerCapture={up} onPointerOver={(e) => { e.stopPropagation(); motionRef.current.hovered = true }} onPointerOut={() => { motionRef.current.hovered = false }}>
-      <group position={[0, 0.345, 0]}><CatPlushHeadModel /></group>
+      <group position={[0, 0.345, 0]}><CheezHeadModel /></group>
     </group>
     <group ref={drips} visible={false}>{[0, 1, 2].map((i) => <mesh key={i} scale={[0.7, 1.6, 0.7]}><sphereGeometry args={[0.035, 12, 10]} /><meshPhysicalMaterial color="#ffe9ae" transparent opacity={0.72} roughness={0.2} /></mesh>)}</group>
     <group ref={strings} visible={false}>{[-0.25, 0.25].map((x) => <mesh key={x} position={[x, 0, 0.12]}><cylinderGeometry args={[0.007, 0.014, 1, 10]} /><meshPhysicalMaterial color="#ffe9ae" transparent opacity={0.52} roughness={0.2} /></mesh>)}</group>
@@ -265,7 +268,7 @@ function WorkshopScene(props: Props) {
   return <>
     <StudioLighting />
     <group scale={scale}>
-      <InteractiveCat {...props} />
+      <InteractiveCheez {...props} />
       {props.stage === 'wax' && <WaxBowl />}
       {props.stage === 'cool' && <Sparkles count={14} position={[0, 0.25, 0.25]} scale={[2.2, 1.5, 0.8]} size={2.5} speed={0.35} opacity={0.7} color="#a9d8ee" />}
       <mesh position={[0, -1.1, 0]}><cylinderGeometry args={[1.3, 1.32, 0.045, 80]} /><meshStandardMaterial color="#f8f7ed" roughness={0.8} /></mesh>
