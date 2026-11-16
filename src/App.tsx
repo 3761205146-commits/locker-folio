@@ -21,6 +21,7 @@ import { useStore } from './store'
  * chunk 的下载解析和 Loader 的资源加载并行跑，长停顿被摊掉。
  */
 const heroChunk = () => import('./scene/HeroSceneCanvas')
+const PhotoboothModal = lazy(() => import('./components/photobooth/PhotoboothModal'))
 const HeroSceneCanvas = lazy(heroChunk)
 void heroChunk()
 
@@ -87,6 +88,7 @@ export default function App() {
       <PianoModal />
       <BookModal />
       <BirthdayCakeModal />
+      <Suspense fallback={null}><PhotoboothModal /></Suspense>
       <MiniRecordPlayer />
       {/* 四个浮层的统一宿主：dialog 语义、背景 inert、focus trap、
           退出动画播完才卸载、焦点归还，全部在 OverlayHost 内部完成 */}

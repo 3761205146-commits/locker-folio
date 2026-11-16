@@ -6,6 +6,7 @@ import MessagesForLiz from '../components/messages/MessagesForLiz'
 import AlbumBooks from '../components/books/AlbumBooks'
 import { useSceneCapabilities } from '../store'
 import { usePianoStore } from '../components/piano/pianoStore'
+import { usePhotoboothStore } from '../components/photobooth/photoboothStore'
 import { useBirthdayCakeStore } from '../components/birthday/birthdayCakeStore'
 import { ID_CARD_AT, ID_CARD_SIZE } from './decalSpecs'
 import {
@@ -278,6 +279,7 @@ function PhysicalItem({
 export function CavityProps() {
   const caps = useSceneCapabilities()
   const enabled = caps.drag
+  const openPhotobooth = usePhotoboothStore((state) => state.openBooth)
   const openBirthdayCake = useBirthdayCakeStore((state) => state.openCake)
 
   return (
@@ -375,6 +377,7 @@ export function CavityProps() {
         scale={1.23}
         hoverLift={0.012}
         hoverScale={1.012}
+        onTap={openPhotobooth}
       >
         <CcdCameraModel />
       </PhysicalItem>
