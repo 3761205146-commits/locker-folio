@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useStore } from '../store'
 import {
   isDisplayFontReady,
@@ -7,6 +7,7 @@ import {
 } from '../experience/assetManifest'
 import { prefersReducedMotion } from '../hooks/useReducedMotion'
 import './loader.css'
+import { useScenePreparation } from '../scene/scenePreparation'
 
 /** 显示值追赶真实值的最快速度：满格至少要走这么久，避免命中缓存时 0→100 一闪而过 */
 const RAMP_MS = 900
@@ -16,6 +17,14 @@ const HOLD_MS = 600
 const FADE_MS = 620
 /** 有资源失败时，错误面板最多停留这么久就以降级模式继续，绝不永久卡住 */
 const AUTO_CONTINUE_MS = 5_000
+
+function isReady(
+  assets: { settled: boolean; retrying: boolean },
+  preparation: { resourcesAcquired: boolean; texturesPrepared: boolean; sceneRenderable: boolean; fatal: boolean },
+) {
+  return assets.settled && !assets.retrying && preparation.resourcesAcquired
+    && preparation.texturesPrepared && preparation.sceneRenderable && !preparation.fatal
+}
 
 type Tuning = { ramp: number; hold: number; frozen: number | null }
 
@@ -36,11 +45,11 @@ function readTuning(): Tuning {
  * 全部点亮并停顿后柔和淡出到原有柜子开场。
  *
  * 要点：
- * - 百分比由 assetManifest 的真实事件驱动：每张首屏阻塞图的请求完成占 55%，
- *   decode() 完成占剩下的 45%，按预期体积加权。**没有任何固定计时的假进度。**
+ * - 资源取得/解码占 70%，最终纹理准备占 20%，场景可渲染占 10%；
+ *   三部分均由真实完成事件驱动，仍由原有爱心界面显示。
  * - 显示值只会追赶真实值、永不超过它，因此单调递增且不会倒退；
  *   命中缓存时靠 RAMP_MS 限速，保证 0→100 不是一闪而过。
- * - 100% 表示阻塞资源真的 decode 完可以拿去渲染，随后保留 HOLD_MS 的停顿。
+ * - 100% 表示资源、最终纹理及冻结初始帧均已准备，随后保留 HOLD_MS 的停顿。
  * - 资源失败会走重试 / fallback / 降级三级处置，并在界面上给出重试入口，
  *   同时有自动继续倒计时，不会永远卡在百分比上。
  * - onReady 传了就调回调（供场景状态机接线），没传就退回 setPhase('reveal')。
@@ -49,40 +58,67 @@ export default function Loader({ onReady }: { onReady?: () => void }) {
   const setProgress = useStore((s) => s.setProgress)
   const setPhase = useStore((s) => s.setPhase)
   const assets = useBlockingAssets()
+  const preparation = useScenePreparation()
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      if (!useScenePreparation.getState().sceneRenderable) {
+        useScenePreparation.setState({ fatal: true, failures: ['场景准备超时，请重试'] })
+      }
+    }, 45_000)
+    return () => window.clearTimeout(timer)
+  }, [preparation.generation])
 
   const [tuning] = useState(readTuning)
   const [shown, setShown] = useState(() => tuning.frozen ?? 0)
   const [countdown, setCountdown] = useState(Math.ceil(AUTO_CONTINUE_MS / 1000))
   const [leaving, setLeaving] = useState(false)
+  const [visible, setVisible] = useState(() => !document.hidden)
 
   const assetsRef = useRef(assets)
+  const preparationRef = useRef(preparation)
   const onReadyRef = useRef(onReady)
   const setPhaseRef = useRef(setPhase)
   const leftRef = useRef(false)
   const leaveTimerRef = useRef<number | null>(null)
   const fullAtRef = useRef(0)
+  const mountedRef = useRef(false)
+  const leavingRef = useRef(false)
+  const fadeDeadlineRef = useRef(0)
+  const realReady = isReady(assets, preparation)
   /** 显示值同时存一份 ref：rAF 里必须同步读到当前值，不能依赖 setState 更新器 */
   const shownRef = useRef(tuning.frozen ?? 0)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     assetsRef.current = assets
+    preparationRef.current = preparation
     onReadyRef.current = onReady
     setPhaseRef.current = setPhase
-  })
+    // A retry invalidates an in-flight fade before the browser can paint it.
+    if (!realReady) {
+      fullAtRef.current = 0
+      if (leaveTimerRef.current !== null) window.clearTimeout(leaveTimerRef.current)
+      if (leavingRef.current) { leavingRef.current = false; setLeaving(false) }
+    }
+  }, [assets, preparation, onReady, setPhase, realReady])
+  const readyNow = useCallback(() => isReady(assetsRef.current, useScenePreparation.getState()), [])
 
   // 重试期间 settled 会回到 false，但错误面板必须继续留在屏幕上
-  const hasError = (assets.settled && assets.failed.length > 0) || assets.retrying
+  const hasError = (assets.settled && assets.failed.length > 0) || assets.retrying || preparation.failures.length > 0
   // Ultra 就位前不画 WELCOME：回退的细衬线和 Ultra 的超粗板衬差太远，
   // 跳字比晚一点出现刺眼得多（参考第一帧就是粗字）。上限由字体阶段的 2.5s 兜底。
   const fontReady = isDisplayFontReady(assets)
   const pct = Math.round(shown)
   const litHearts = Math.min(22, Math.ceil((shown / 100) * 22))
   /** 显示值追平真实值、资源全部结算、且没有重试在飞 */
-  const canLeave = shown >= 100 && assets.settled && !assets.retrying
+  const canLeave = shown >= 100 && realReady
 
   const finishLeave = useCallback(() => {
-    if (leftRef.current) return
+    if (!mountedRef.current || leftRef.current || !leavingRef.current || document.hidden || !readyNow()) return
     leftRef.current = true
+    if (leaveTimerRef.current !== null) {
+      window.clearTimeout(leaveTimerRef.current)
+      leaveTimerRef.current = null
+    }
     if (import.meta.env.DEV) {
       const a = assetsRef.current
       console.info(
@@ -94,32 +130,54 @@ export default function Loader({ onReady }: { onReady?: () => void }) {
     }
     if (onReadyRef.current) onReadyRef.current()
     else setPhaseRef.current('reveal')
-  }, [])
+  }, [readyNow])
 
   const leave = useCallback(() => {
-    if (leftRef.current || leaving) return
+    if (!mountedRef.current || leftRef.current || leavingRef.current || document.hidden || !readyNow()) return
+    leavingRef.current = true
     setLeaving(true)
     // 标签页被隐藏时 transitionend 可能延后，兜底保证不会停在加载页。
+    fadeDeadlineRef.current = performance.now() + FADE_MS + 180
     leaveTimerRef.current = window.setTimeout(finishLeave, FADE_MS + 180)
-  }, [finishLeave, leaving])
+  }, [finishLeave, readyNow])
 
-  useEffect(
-    () => () => {
+  useEffect(() => {
+    mountedRef.current = true
+    const visibility = () => {
+      setVisible(!document.hidden)
+      if (!document.hidden && leavingRef.current && readyNow()) {
+        if (leaveTimerRef.current !== null) window.clearTimeout(leaveTimerRef.current)
+        leaveTimerRef.current = window.setTimeout(finishLeave, Math.max(0, fadeDeadlineRef.current - performance.now()))
+      }
+    }
+    document.addEventListener('visibilitychange', visibility)
+    return () => {
+      mountedRef.current = false
+      document.removeEventListener('visibilitychange', visibility)
       if (leaveTimerRef.current !== null) window.clearTimeout(leaveTimerRef.current)
-    },
-    [],
-  )
+    }
+  }, [finishLeave, readyNow])
 
   /* 显示值追赶真实进度：只往上走，且永不超过真实值 */
   useEffect(() => {
     // 冻结模式（?loader=hold）只看视觉，不跑帧循环
-    if (tuning.frozen !== null) return
+    if (tuning.frozen !== null || !visible) return
     let raf = 0
+    let timer: number | undefined
+    let active = true
     let last = performance.now()
-    const tick = (now: number) => {
+    const advance = () => {
+      if (!active || document.hidden) return
+      // rAF timestamps may precede a timer callback in the same frame. Both
+      // schedulers must consume one shared, monotonic wall clock exactly once.
+      const now = performance.now()
       const dt = now - last
       last = now
-      const target = assetsRef.current.progress
+      const prepared = preparationRef.current
+      const weighted = assetsRef.current.progress * 0.7
+        + (prepared.texturesPrepared ? 20 : 0)
+        + (prepared.sceneRenderable ? 10 : 0)
+      const target = readyNow() ? 100 : Math.min(99, weighted)
       const prev = shownRef.current
       const next =
         prev >= target
@@ -131,12 +189,21 @@ export default function Loader({ onReady }: { onReady?: () => void }) {
         shownRef.current = next
         setShown(next)
       }
-      // 追平 100 就停帧循环，不留无意义的常驻 rAF
-      if (next < 100) raf = requestAnimationFrame(tick)
+    }
+    const tick = () => {
+      advance()
+      if (active && shownRef.current < 100) raf = requestAnimationFrame(tick)
+    }
+    const fallback = () => {
+      // This is only a display-progress fallback, never a readiness override.
+      if (!active || !readyNow()) return
+      advance()
+      if (shownRef.current < 100) timer = window.setTimeout(fallback, 50)
     }
     raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [tuning])
+    if (realReady) timer = window.setTimeout(fallback, 50)
+    return () => { active = false; cancelAnimationFrame(raf); window.clearTimeout(timer) }
+  }, [tuning, realReady, visible, readyNow])
 
   /* 兼容旧接口：继续把百分比写进 store */
   useEffect(() => {
@@ -145,27 +212,30 @@ export default function Loader({ onReady }: { onReady?: () => void }) {
 
   /* 100% 停顿 → 离场；有失败则先展示错误态并倒计时降级继续 */
   useEffect(() => {
-    if (!canLeave || tuning.frozen !== null) return
+    if (!canLeave || leaving || !visible || tuning.frozen !== null) return
     if (fullAtRef.current === 0) fullAtRef.current = performance.now()
     if (!hasError) {
-      const t = window.setTimeout(leave, tuning.hold)
+      const t = window.setTimeout(leave, Math.max(0, fullAtRef.current + tuning.hold - performance.now()))
       return () => window.clearTimeout(t)
     }
-    const deadline = performance.now() + AUTO_CONTINUE_MS
+    const deadline = fullAtRef.current + AUTO_CONTINUE_MS
     const tick = window.setInterval(
       () => setCountdown(Math.max(0, Math.ceil((deadline - performance.now()) / 1000))),
       250,
     )
-    const t = window.setTimeout(leave, AUTO_CONTINUE_MS)
+    const t = window.setTimeout(leave, Math.max(0, deadline - performance.now()))
     return () => {
       window.clearInterval(tick)
       window.clearTimeout(t)
     }
-  }, [canLeave, hasError, tuning, leave])
+  }, [canLeave, hasError, tuning, leave, leaving, visible])
 
   return (
     <div
       className="loader"
+      data-resources-acquired={preparation.resourcesAcquired}
+      data-textures-prepared={preparation.texturesPrepared}
+      data-scene-renderable={preparation.sceneRenderable}
       aria-busy={!canLeave}
       data-leaving={leaving}
       onTransitionEnd={(event) => {
@@ -200,7 +270,7 @@ export default function Loader({ onReady }: { onReady?: () => void }) {
           <p className="loader__errTitle">
             {assets.retrying
               ? '正在重试…'
-              : `${assets.failed.length} 项首屏资源加载失败`}
+              : preparation.fatal ? '场景准备失败，请重试' : `${assets.failed.length + preparation.failures.length} 项首屏资源加载失败`}
           </p>
           {import.meta.env.DEV && (
             <ul className="loader__errList">
@@ -212,10 +282,10 @@ export default function Loader({ onReady }: { onReady?: () => void }) {
             </ul>
           )}
           <div className="loader__errActions">
-            <button type="button" onClick={retryFailedAssets} disabled={assets.retrying}>
+            <button type="button" onClick={() => { retryFailedAssets(); preparation.retry(); window.dispatchEvent(new Event('scene-preparation-retry')) }} disabled={assets.retrying}>
               重试
             </button>
-            <button type="button" onClick={leave}>
+            <button type="button" onClick={leave} disabled={!realReady || leaving}>
               以降级模式继续{assets.retrying ? '' : `（${countdown}s）`}
             </button>
           </div>

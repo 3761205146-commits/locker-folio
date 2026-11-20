@@ -49,6 +49,15 @@ export function advanceIntro(dt: number) {
   clock.ms += dt
 }
 
+/** Timeline-only catch-up: retain elapsed visible time without passing a large
+ * integration step to any physical animation. Normal frame cadence is unchanged. */
+export function revealTimelineStep(delta: number, backlog: number) {
+  const regular = Math.min(delta, 64)
+  const pending = backlog + Math.max(0, delta - 64)
+  const catchUp = Math.min(pending, regular)
+  return { elapsed: regular + catchUp, backlog: pending - catchUp }
+}
+
 /** 跳到某个时刻（Reduced Motion 直接跳到终点、被打断时对齐状态） */
 export function seekIntro(ms: number) {
   if (frozen !== null) return

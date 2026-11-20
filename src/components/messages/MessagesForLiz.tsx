@@ -1,4 +1,4 @@
-import { Html } from '@react-three/drei'
+import Html from '../../scene/SceneHtml'
 import { useFrame } from '@react-three/fiber'
 import { useRef, useState } from 'react'
 import { introTime } from '../../experience/experienceClock'

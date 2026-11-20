@@ -3,10 +3,12 @@ import { findRecord, type RecordId } from './recordCatalog'
 
 type RecordPlayerState = {
   activeId: RecordId | null
+  preparedId: RecordId | null
   isPlaying: boolean
   progressById: Partial<Record<RecordId, number>>
   durationById: Partial<Record<RecordId, number>>
   toggle: (id: RecordId) => Promise<void>
+  prepare: (id: RecordId) => void
   seek: (id: RecordId, progress: number) => void
 }
 
@@ -21,9 +23,10 @@ function audio() {
   player.addEventListener('pause', () => useRecordPlayerStore.setState({ isPlaying: false }))
   player.addEventListener('ended', () => useRecordPlayerStore.setState({ isPlaying: false }))
   player.addEventListener('loadedmetadata', () => {
-    const { activeId } = useRecordPlayerStore.getState()
-    if (!activeId || !Number.isFinite(player?.duration)) return
-    useRecordPlayerStore.setState((state) => ({ durationById: { ...state.durationById, [activeId]: player!.duration } }))
+    const { activeId, preparedId } = useRecordPlayerStore.getState()
+    const id = activeId ?? preparedId
+    if (!id || !Number.isFinite(player?.duration)) return
+    useRecordPlayerStore.setState((state) => ({ durationById: { ...state.durationById, [id]: player!.duration } }))
   })
   player.addEventListener('timeupdate', () => {
     const { activeId } = useRecordPlayerStore.getState()
@@ -35,9 +38,21 @@ function audio() {
 
 export const useRecordPlayerStore = create<RecordPlayerState>((set, get) => ({
   activeId: null,
+  preparedId: null,
   isPlaying: false,
   progressById: {},
   durationById: {},
+  prepare: (id) => {
+    // A hovered/focused/pressed song is explicit intent. Never replace an
+    // active song, including a paused one whose progress must be preserved.
+    if (get().activeId !== null || get().preparedId === id) return
+    const record = findRecord(id)
+    if (!record?.audioSrc) return
+    const element = audio()
+    if (!element.paused) return
+    set({ preparedId: id })
+    element.src = record.audioSrc
+  },
   toggle: async (id) => {
     const record = findRecord(id)
     if (!record?.audioSrc) return
@@ -50,9 +65,14 @@ export const useRecordPlayerStore = create<RecordPlayerState>((set, get) => ({
     }
     // One singleton element guarantees switching songs never layers their audio.
     element.pause()
-    element.src = record.audioSrc
+    // Reuse the exact singleton/source prepared by intent, without restarting
+    // its metadata request. Song selection still starts at the original zero.
+    if (get().preparedId !== id || !element.src) element.src = record.audioSrc
     element.currentTime = 0
-    set((state) => ({ activeId: id, isPlaying: false, progressById: { ...state.progressById, [id]: 0 } }))
+    set((state) => ({ activeId: id, preparedId: id, isPlaying: false,
+      progressById: { ...state.progressById, [id]: 0 },
+      durationById: Number.isFinite(element.duration) ? { ...state.durationById, [id]: element.duration } : state.durationById,
+    }))
     try { await element.play() } catch { set({ isPlaying: false }) }
   },
   seek: (id, progress) => {

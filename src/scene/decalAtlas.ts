@@ -26,9 +26,9 @@ import {
   LinearFilter,
   LinearMipmapLinearFilter,
   SRGBColorSpace,
-  TextureLoader,
   type Texture,
 } from 'three'
+import { loadTextureWithRetry, SceneAssetError } from './reliableTexture'
 import atlasData from '../../scripts/assets/decal-atlas.json'
 
 export type AtlasEntry = {
@@ -62,28 +62,22 @@ function readEntries(): Map<string, AtlasEntry> {
   return out
 }
 
-function loadAtlas(): Promise<DecalAtlas> {
-  return new Promise((resolve, reject) => {
-    new TextureLoader().load(
-      atlasData.url,
-      (texture) => {
-        texture.colorSpace = SRGBColorSpace
-        texture.generateMipmaps = true
-        texture.minFilter = LinearMipmapLinearFilter
-        texture.magFilter = LinearFilter
-        texture.needsUpdate = true
-        resolve({ texture, entries: readEntries() })
-      },
-      undefined,
-      () => reject(new Error(`贴花图集加载失败：${atlasData.url}`)),
-    )
-  })
+async function loadAtlas(): Promise<DecalAtlas> {
+  const texture = await loadTextureWithRetry(atlasData.url)
+  texture.colorSpace = SRGBColorSpace
+  texture.generateMipmaps = true
+  texture.minFilter = LinearMipmapLinearFilter
+  texture.magFilter = LinearFilter
+  texture.needsUpdate = true
+  return { texture, entries: readEntries() }
 }
 
 /* ── Suspense 资源 ────────────────────────────────────────── */
 
-let atlasPromise: Promise<DecalAtlas> | null = null
+let atlasPromise: Promise<void> | null = null
 let atlasValue: DecalAtlas | null = null
+let atlasError: SceneAssetError | null = null
+function resetAtlas() { if (atlasError) { atlasError = null; atlasPromise = null } }
 
 /**
  * 图集是异步加载的，做成 Suspense 资源交给上层边界兜住。
@@ -102,12 +96,23 @@ export function useDecalAtlas(maxAnisotropy = 1): DecalAtlas {
     }
     return atlasValue
   }
+  if (atlasError) throw atlasError
+  startAtlas(want)
+  throw atlasPromise
+}
+
+function startAtlas(want: number) {
   if (!atlasPromise) {
     atlasPromise = loadAtlas().then((a) => {
       a.texture.anisotropy = want
       atlasValue = a
-      return a
-    })
+    }, () => { atlasError = new SceneAssetError(atlasData.url, resetAtlas) })
   }
-  throw atlasPromise
 }
+
+export async function preloadDecalAtlas(maxAnisotropy: number): Promise<boolean> {
+  startAtlas(Math.min(8, Math.max(1, maxAnisotropy)))
+  await atlasPromise
+  return !!atlasValue
+}
+export const retryDecalAtlas = resetAtlas

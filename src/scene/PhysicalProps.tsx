@@ -1,4 +1,4 @@
-import { RoundedBox, useTexture } from '@react-three/drei'
+import { RoundedBox } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { useEffect, useMemo, useRef } from 'react'
 import {
@@ -13,6 +13,7 @@ import {
   Vector2,
   type Texture,
 } from 'three'
+import { preloadReliableTextures, useReliableTexture } from './reliableTexture'
 import { ID_CARD_SIZE } from './decalSpecs'
 import { useBirthdayCakeStore } from '../components/birthday/birthdayCakeStore'
 import {
@@ -128,6 +129,7 @@ function RodBetween({
 }
 
 function configurePaperTexture(texture: Texture) {
+  if (texture.colorSpace === SRGBColorSpace && texture.anisotropy === 4) return
   texture.colorSpace = SRGBColorSpace
   texture.anisotropy = 4
   texture.needsUpdate = true
@@ -253,8 +255,7 @@ export function BooksModel() {
 
 /** Thin printed paper mounted to a rigid, shadow-casting board. Bottom-centred. */
 export function FindAWordBoardModel() {
-  const texture = useTexture('/assets/obj/findaword2.webp')
-  useEffect(() => configurePaperTexture(texture), [texture])
+  const texture = useReliableTexture('/assets/obj/findaword2.webp', configurePaperTexture)
 
   return (
     <group name="FindAWordBoardModel">
@@ -1083,8 +1084,7 @@ export function PosterCardModel({
 }: {
   url: string
 }) {
-  const texture = useTexture(url)
-  useEffect(() => configurePaperTexture(texture), [texture])
+  const texture = useReliableTexture(url, configurePaperTexture)
   const image = texture.image as { width?: number; height?: number }
   const sourceAspect = image.width && image.height ? image.width / image.height : 0.575 / 0.805
   const maxPrintWidth = 0.575
@@ -1153,7 +1153,7 @@ function useCroppedTexture(
   source: readonly [width: number, height: number],
   crop: PixelCrop,
 ) {
-  const full = useTexture(url)
+  const full = useReliableTexture(url, configurePaperTexture)
   const [sourceWidth, sourceHeight] = source
   const { x, y, width, height } = crop
   const cropped = useMemo(() => {
@@ -1186,8 +1186,7 @@ export function PolaroidCardModel({
   photoUrl: string
   size: readonly [width: number, height: number]
 }) {
-  const texture = useTexture(photoUrl)
-  useEffect(() => configurePaperTexture(texture), [texture])
+  const texture = useReliableTexture(photoUrl, configurePaperTexture)
   const [cardWidth, cardHeight] = size
   const image = texture.image as { width?: number; height?: number }
   const sourceAspect = image.width && image.height ? image.width / image.height : 1
@@ -1437,6 +1436,8 @@ function makeRoundedRectShape(width: number, height: number, radius: number): Sh
  * 也因此 Props.tsx 给它 hoverLift=0 —— 牌子是**穿在**钩子上的，抬不起来。
  */
 export function IdCardModel() {
+  // Both requests start before the first crop hook can suspend.
+  void preloadReliableTextures([LIZ_ID_CARD_SOURCE_URL, ID_CARD_RING_SOURCE_URL])
   const printMap = useCroppedTexture(
     LIZ_ID_CARD_SOURCE_URL,
     ID_CARD_SOURCE_SIZE,

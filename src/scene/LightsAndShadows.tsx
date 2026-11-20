@@ -1,3 +1,6 @@
+import { useFrame, useThree } from '@react-three/fiber'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { CONTACT_SHADOW_INTERVAL } from './renderQuality'
 import { ContactShadows } from '@react-three/drei'
 import { LOCKER_D, LOCKER_W } from './sceneConfig'
 
@@ -13,7 +16,26 @@ import { LOCKER_D, LOCKER_W } from './sceneConfig'
  * 落地阴影交给 drei 的 ContactShadows（渲染到透明平面，画布保持透明，
  * 页面底色仍由 CSS 提供，不用在 3D 里再铺一层白地板）。
  */
-export default function LightsAndShadows({ dynamic = false }: { dynamic?: boolean }) {
+/** Drei's finite frames counter resets on a React render. Refreshing this
+ * wrapper at 8 Hz therefore renders one contact pass per sample, without
+ * destroying its render targets. The settled transition renders one final pass.
+ * Keep scale stable: it is a dependency of Drei's render-target allocation. */
+function MobileContactShadows({ dynamic }: { dynamic: boolean }) {
+  const [, refresh] = useState(0)
+  const last = useRef(-Infinity)
+  const invalidate = useThree((state) => state.invalidate)
+  const scale = useMemo<[number, number]>(() => [LOCKER_W * 1.45, LOCKER_D * 4.2], [])
+  useEffect(() => { last.current = -Infinity; invalidate() }, [dynamic, invalidate])
+  useFrame((state) => {
+    if (!dynamic || state.clock.elapsedTime - last.current < CONTACT_SHADOW_INTERVAL) return
+    last.current = state.clock.elapsedTime
+    refresh((value) => value + 1)
+  })
+  return <ContactShadows position={[0.18, 0.004, 0.06]} scale={scale} resolution={384} blur={4}
+    far={1.5} opacity={0.2} color="#aec3ce" frames={1} />
+}
+
+export default function LightsAndShadows({ dynamic = false, mobile = false }: { dynamic?: boolean; mobile?: boolean }) {
   return (
     <>
       {/* 冷白天空与浅蓝地面共同抬起暗部，接近参考图的高亮自然光。 */}
@@ -24,7 +46,7 @@ export default function LightsAndShadows({ dynamic = false }: { dynamic?: boolea
         castShadow
         position={[-3.1, 8.0, 7.0]}
         intensity={1.95}
-        shadow-mapSize={[2048, 2048]}
+        shadow-mapSize={mobile ? [1024, 1024] : [2048, 2048]}
         shadow-bias={-0.0012}
         shadow-normalBias={0.008}
         shadow-radius={4}
@@ -38,7 +60,7 @@ export default function LightsAndShadows({ dynamic = false }: { dynamic?: boolea
       <directionalLight position={[0, 1.6, 9]} intensity={0.35} />
 
       {/* 落地接触阴影：跟着柜体一起变化，不是一张固定的渐变图 */}
-      <ContactShadows
+      {mobile ? <MobileContactShadows dynamic={dynamic} /> : <ContactShadows
         position={[0.18, 0.004, 0.06]}
         scale={[LOCKER_W * 1.45, LOCKER_D * 4.2]}
         resolution={768}
@@ -48,7 +70,7 @@ export default function LightsAndShadows({ dynamic = false }: { dynamic?: boolea
         color="#aec3ce"
         // 动画期间每帧重算，静止后停下来，不留无意义的常驻渲染
         frames={dynamic ? Infinity : 1}
-      />
+      />}
     </>
   )
 }

@@ -8,6 +8,7 @@ import {
   isIntroFrozen,
   seekIntro,
   setIntroPlaying,
+  revealTimelineStep,
 } from './experienceClock'
 import { isIntroRunning } from './experienceMachine'
 import { INTRO_END, INTRO_EVENTS, introTimeScale } from './experienceTimeline'
@@ -53,6 +54,7 @@ export default function ExperienceOrchestrator() {
      * 拨快同一个时钟则三者同步收尾，状态机沿事件表自己走到 idle，不需要额外事件。
      */
     let skipRate = 1
+    let backlog = 0
 
     const stop = () => {
       if (raf) cancelAnimationFrame(raf)
@@ -75,10 +77,12 @@ export default function ExperienceOrchestrator() {
         stop()
         return
       }
-      // 卡帧时不要一次跳过整段；?slow=N 在这里除一次，
-      // 相机/柜门/物件/状态推进都读同一个时钟，所以整条开场是**同步**拉长的。
-      // （之前只缩放了事件时刻，视觉照常速播，等于把时间线拆成了两套）
-      advanceIntro((Math.min(now - last, 64) * skipRate) / scale)
+      // Reveal time retains stalled time, with bounded catch-up. Physics keeps
+      // its own dt clamps in useFrame and never receives this timeline step.
+      const delta = now - last
+      const step = revealTimelineStep(delta, backlog)
+      backlog = step.backlog
+      advanceIntro((step.elapsed * skipRate) / scale)
       last = now
       flush()
       raf = requestAnimationFrame(tick)

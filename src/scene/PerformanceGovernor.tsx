@@ -1,8 +1,9 @@
 import { useThree } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
+import { DESKTOP_DPR, MOBILE_DPR } from './renderQuality'
 
 /** 桌面端 DPR 上限：再高只是烧 GPU，1320×724 下肉眼无差别 */
-export const MAX_DPR = 1.75
+export const MAX_DPR = DESKTOP_DPR
 /** 掉帧后允许降到的最低 DPR */
 export const MIN_DPR = 0.75
 
@@ -15,7 +16,7 @@ export const MIN_DPR = 0.75
  * 2. 帧时间持续偏高时下调渲染分辨率，恢复后再慢慢调回去。
  * 3. 页面不可见时停渲染。
  */
-export default function PerformanceGovernor({ animating }: { animating: boolean }) {
+export default function PerformanceGovernor({ animating, mobile = false, preparing = false }: { animating: boolean; mobile?: boolean; preparing?: boolean }) {
   const setFrameloop = useThree((s) => s.setFrameloop)
   const invalidate = useThree((s) => s.invalidate)
   const setDpr = useThree((s) => s.setDpr)
@@ -45,9 +46,10 @@ export default function PerformanceGovernor({ animating }: { animating: boolean 
   /* 自适应分辨率：只在连续渲染期间统计，静止时不采样 */
   const state = useRef({ acc: 0, n: 0, dpr: 0 })
   useEffect(() => {
-    if (!animating) return
-    const base = Math.min(MAX_DPR, window.devicePixelRatio || 1)
-    if (state.current.dpr === 0) state.current.dpr = base
+    if (!animating || preparing) return
+    const base = Math.min(mobile ? MOBILE_DPR : MAX_DPR, window.devicePixelRatio || 1)
+    state.current.dpr = Math.min(state.current.dpr || base, base)
+    setDpr(state.current.dpr)
     let last = performance.now()
     let raf = 0
     const tick = (now: number) => {
@@ -73,7 +75,7 @@ export default function PerformanceGovernor({ animating }: { animating: boolean 
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [animating, setDpr])
+  }, [animating, mobile, preparing, setDpr])
 
   /* 开发期把 draw call 与三角面打出来，随时对照 draw call 预算 */
   useEffect(() => {

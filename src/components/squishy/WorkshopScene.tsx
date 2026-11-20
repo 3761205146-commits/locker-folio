@@ -1,8 +1,9 @@
-import { Environment, Lightformer, Sparkles, useTexture } from '@react-three/drei'
+import { Environment, Lightformer, Sparkles } from '@react-three/drei'
 import { useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
-import { memo, useLayoutEffect, useRef, type RefObject } from 'react'
+import { memo, useEffect, useLayoutEffect, useRef, type RefObject } from 'react'
 import { AdditiveBlending, BufferGeometry, Group, MathUtils, Mesh, MeshPhysicalMaterial, Vector2, type Material, type MeshStandardMaterial } from 'three'
 import { CatPlushHeadModel as CheezHeadModel } from '../../scene/CatPlushCharm'
+import { useReliableTexture } from '../../scene/reliableTexture'
 import { CheezWaxShell } from './cheezWaxShell'
 import { beginPress, endPress } from './workshopActions'
 import type { WorkshopAudio } from './workshopAudio'
@@ -14,6 +15,7 @@ type Props = {
   audio: WorkshopAudio
   onProgress: (value: number) => void
   onStage: (stage: WorkshopStage) => void
+  onReady: (ready: boolean) => void
 }
 const CENTER_Y = 0.36
 const VERTEX_UNIFORMS = `
@@ -54,14 +56,14 @@ function interactionGeometry(source: BufferGeometry, reverse: boolean) {
 /** Every mesh and material here belongs to this independent Canvas instance.
  * The cabinet's head, textures and geometry are never mutated. Deformation is
  * bounded and confined to the soft core. The final wax shell uses rigid shards. */
-function InteractiveCheez({ stage, motion: motionRef, audio, onProgress, onStage }: Props) {
-  useTexture(`${import.meta.env.BASE_URL}images/cheez-plush-face.png`)
+function InteractiveCheez({ stage, motion: motionRef, audio, onProgress, onStage, onReady }: Props) {
+  useReliableTexture(`${import.meta.env.BASE_URL}images/cheez-plush-face.png`)
   const pose = useRef<Group>(null)
   const drips = useRef<Group>(null)
   const strings = useRef<Group>(null)
   const meshes = useRef<{ front: Mesh; shells: Mesh[]; materials: MeshPhysicalMaterial[] } | null>(null)
   const gesture = useRef<{ id: number; x: number; y: number; yaw: number; tilt: number; dragY: number } | null>(null)
-  const { size, viewport } = useThree()
+  const { size, viewport, gl, scene, camera, invalidate } = useThree()
   const sceneScale = Math.min(1, viewport.width / 2.2)
   const uniformsRef = useRef({
     point: { value: new Vector2(0, CENTER_Y) }, depth: { value: 0 }, coat: { value: 0 }, fill: { value: 0.1 },
@@ -129,6 +131,50 @@ function InteractiveCheez({ stage, motion: motionRef, audio, onProgress, onStage
     }
   }, [uniformsRef])
 
+  useEffect(() => {
+    const front = meshes.current?.front, root = pose.current
+    if (!front || !root) return
+    const shell = new CheezWaxShell(front, root.getObjectByName('CatPlush_RoundedBack') as Mesh)
+    const sessionMotion = motionRef.current
+    fractured.current = shell
+    generation.current = motionRef.current.waxGeneration
+    let cancelled = false
+    let timer: number | undefined
+    let resume: (() => void) | undefined
+    const valid = () => !cancelled && motionRef.current.sessionActive && meshes.current !== null && fractured.current === shell
+    const yieldWork = async () => {
+      if (!valid()) return
+      do {
+        await new Promise<void>((resolve) => {
+          resume = resolve
+          timer = window.setTimeout(() => { timer = undefined; resume = undefined; resolve() }, 16)
+        })
+      } while (valid() && document.hidden)
+    }
+    void (async () => {
+      await yieldWork()
+      while (valid() && !shell.prepared) {
+        shell.prepareBatch(4)
+        await yieldWork()
+      }
+      if (!valid()) return
+      const ready = await shell.prepareMaterials(gl, scene, camera, valid, yieldWork)
+      if (!ready || !valid()) return
+      motionRef.current.interactiveReady = true
+      onReady(true)
+      invalidate()
+    })().catch(() => {
+      if (valid()) { motionRef.current.interactiveReady = false; onReady(false) }
+    })
+    return () => {
+      cancelled = true
+      window.clearTimeout(timer); resume?.()
+      shell.dispose()
+      if (fractured.current === shell) fractured.current = null
+      sessionMotion.interactiveReady = false
+    }
+  }, [gl, scene, camera, invalidate, motionRef, onReady])
+
   useFrame((state, delta) => {
     const motion = motionRef.current, uniforms = uniformsRef.current
     const dt = Math.min(delta, 0.08), elapsed = Math.min(delta, 0.25), root = pose.current
@@ -138,7 +184,7 @@ function InteractiveCheez({ stage, motion: motionRef, audio, onProgress, onStage
     if (stage === 'wax' && motion.coating >= 1) {
       motion.autoDip = false; motion.dragging = false; motion.liftTime += elapsed
       targetY = 0.38
-      if (motion.liftTime > 1.25) onStage('cool')
+      if (motion.liftTime > 1.25 && motion.sessionActive) onStage('cool')
     }
     root.position.y = MathUtils.damp(root.position.y, targetY, 7, dt)
     root.rotation.y = MathUtils.damp(root.rotation.y, motion.yaw, 8, dt)
@@ -152,7 +198,7 @@ function InteractiveCheez({ stage, motion: motionRef, audio, onProgress, onStage
     }
     if (stage === 'cool') {
       motion.cooling = Math.min(1, motion.cooling + elapsed / 4.2)
-      if (motion.cooling >= 1) onStage('squeeze')
+      if (motion.cooling >= 1 && motion.interactiveReady && motion.sessionActive) onStage('squeeze')
     }
     if (state.clock.elapsedTime - reportAt.current > 0.08) {
       reportAt.current = state.clock.elapsedTime
@@ -164,15 +210,10 @@ function InteractiveCheez({ stage, motion: motionRef, audio, onProgress, onStage
     // Only a tiny, fast yielding of the soft core. Rigid wax shards never squash.
     const targetDepth = held ? 0.004 : 0
     motion.depth = MathUtils.damp(motion.depth, targetDepth, 30, elapsed)
-    if (stage === 'squeeze' && meshes.current && !fractured.current) {
-      const back = root.getObjectByName('CatPlush_RoundedBack') as Mesh
-      fractured.current = new CheezWaxShell(meshes.current.front, back)
-      generation.current = motion.waxGeneration
-    }
     if (fractured.current) {
       if (generation.current !== motion.waxGeneration) { fractured.current.reset(); generation.current = motion.waxGeneration }
       fractured.current.group.visible = stage === 'squeeze' || (stage === 'cool' && motion.fractured)
-      if (stage === 'squeeze') fractured.current.update(motion, audio, elapsed)
+      if (stage === 'squeeze' && motion.interactiveReady && motion.sessionActive) fractured.current.update(motion, audio, elapsed)
     }
     uniforms.point.value.lerp(motion.pressPoint, 1 - Math.exp(-dt * 25))
     uniforms.depth.value = motion.depth
@@ -205,6 +246,7 @@ function InteractiveCheez({ stage, motion: motionRef, audio, onProgress, onStage
     const motion = motionRef.current
     event.stopPropagation()
     if (gesture.current) return
+    if (phase.current === 'squeeze' && !motion.interactiveReady) return
     gesture.current = { id: event.pointerId, x: event.clientX, y: event.clientY, yaw: motion.yaw, tilt: motion.tilt, dragY: motion.dragY }
     const capture = event.target as unknown as { setPointerCapture: (id: number) => void }
     capture.setPointerCapture(event.pointerId)

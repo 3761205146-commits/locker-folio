@@ -1,0 +1,3494 @@
+{
+  "/images/albums/1.jpg": {
+    "width": 1280,
+    "height": 1300,
+    "bytes": 98314,
+    "sha256": "7eea91a179803a27dab3015ae5a095fe911b17f4166bf87f1109118ea8b57784",
+    "variants": [
+      {
+        "url": "/images/responsive/albums/1-480.webp",
+        "width": 480,
+        "height": 488,
+        "bytes": 25570
+      },
+      {
+        "url": "/images/responsive/albums/1-960.webp",
+        "width": 960,
+        "height": 975,
+        "bytes": 59882
+      },
+      {
+        "url": "/images/responsive/albums/1-1280.webp",
+        "width": 1280,
+        "height": 1300,
+        "bytes": 82270
+      }
+    ]
+  },
+  "/images/albums/10.jpg": {
+    "width": 1076,
+    "height": 1073,
+    "bytes": 175617,
+    "sha256": "d87880ce528f5a232565ebe0141ed0ce5d069182c7a6047ebd3fb649046d5d72",
+    "variants": [
+      {
+        "url": "/images/responsive/albums/10-480.webp",
+        "width": 480,
+        "height": 479,
+        "bytes": 26636
+      },
+      {
+        "url": "/images/responsive/albums/10-960.webp",
+        "width": 960,
+        "height": 957,
+        "bytes": 59798
+      },
+      {
+        "url": "/images/responsive/albums/10-1076.webp",
+        "width": 1076,
+        "height": 1073,
+        "bytes": 70830
+      }
+    ]
+  },
+  "/images/albums/11.jpg": {
+    "width": 1179,
+    "height": 1032,
+    "bytes": 191488,
+    "sha256": "dd499242374de2cc9047fc0c0e8f9e84bb0b0bdd71a1baa921f37bd89bd845fd",
+    "variants": [
+      {
+        "url": "/images/responsive/albums/11-480.webp",
+        "width": 480,
+        "height": 420,
+        "bytes": 27300
+      },
+      {
+        "url": "/images/responsive/albums/11-960.webp",
+        "width": 960,
+        "height": 840,
+        "bytes": 59420
+      },
+      {
+        "url": "/images/responsive/albums/11-1179.webp",
+        "width": 1179,
+        "height": 1032,
+        "bytes": 80592
+      }
+    ]
+  },
+  "/images/albums/12.jpg": {
+    "width": 1102,
+    "height": 1098,
+    "bytes": 203315,
+    "sha256": "81f90e81bef0288f0c05ea27db1d2dee70118db1767718f30457ff5564ef2d1e",
+    "variants": [
+      {
+        "url": "/images/responsive/albums/12-480.webp",
+        "width": 480,
+        "height": 478,
+        "bytes": 30576
+      },
+      {
+        "url": "/images/responsive/albums/12-960.webp",
+        "width": 960,
+        "height": 957,
+        "bytes": 65428
+      },
+      {
+        "url": "/images/responsive/albums/12-1102.webp",
+        "width": 1102,
+        "height": 1098,
+        "bytes": 79708
+      }
+    ]
+  },
+  "/images/albums/13.jpg": {
+    "width": 1179,
+    "height": 1044,
+    "bytes": 268307,
+    "sha256": "a64cdaaad707b32c579527c8c9038d7b0d22f781fc580c517990aac7f1bb6e90",
+    "variants": [
+      {
+        "url": "/images/responsive/albums/13-480.webp",
+        "width": 480,
+        "height": 425,
+        "bytes": 42930
+      },
+      {
+        "url": "/images/responsive/albums/13-960.webp",
+        "width": 960,
+        "height": 850,
+        "bytes": 94984
+      },
+      {
+        "url": "/images/responsive/albums/13-1179.webp",
+        "width": 1179,
+        "height": 1044,
+        "bytes": 123142
+      }
+    ]
+  },
+  "/images/albums/2.jpg": {
+    "width": 1289,
+    "height": 1280,
+    "bytes": 122854,
+    "sha256": "286ef94dd303b674e0cda0543612496ec1e005171247129f2043975fa2929b7d",
+    "variants": [
+      {
+        "url": "/images/responsive/albums/2-480.webp",
+        "width": 480,
+        "height": 477,
+        "bytes": 36600
+      },
+      {
+        "url": "/images/responsive/albums/2-960.webp",
+        "width": 960,
+        "height": 953,
+        "bytes": 83614
+      },
+      {
+        "url": "/images/responsive/albums/2-1289.webp",
+        "width": 1289,
+        "height": 1280,
+        "bytes": 112744
+      }
+    ]
+  },
+  "/images/albums/3.jpg": {
+    "width": 1280,
+    "height": 1315,
+    "bytes": 102650,
+    "sha256": "9739c926c3d7e039cfcc1f9ae662d4ffb789b1af5e2b796192c64048dae6eff7",
+    "variants": [
+      {
+        "url": "/images/responsive/albums/3-480.webp",
+        "width": 480,
+        "height": 493,
+        "bytes": 24424
+      },
+      {
+        "url": "/images/responsive/albums/3-960.webp",
+        "width": 960,
+        "height": 986,
+        "bytes": 64530
+      },
+      {
+        "url": "/images/responsive/albums/3-1280.webp",
+        "width": 1280,
+        "height": 1315,
+        "bytes": 88862
+      }
+    ]
+  },
+  "/images/albums/4.jpg": {
+    "width": 1179,
+    "height": 1194,
+    "bytes": 536928,
+    "sha256": "eeade3da8108490a9498c1d7acf1c39599757b141e789770efffac455b347bbf",
+    "variants": [
+      {
+        "url": "/images/responsive/albums/4-480.webp",
+        "width": 480,
+        "height": 486,
+        "bytes": 23552
+      },
+      {
+        "url": "/images/responsive/albums/4-960.webp",
+        "width": 960,
+        "height": 972,
+        "bytes": 53198
+      },
+      {
+        "url": "/images/responsive/albums/4-1179.webp",
+        "width": 1179,
+        "height": 1194,
+        "bytes": 67148
+      }
+    ]
+  },
+  "/images/albums/5.jpg": {
+    "width": 1431,
+    "height": 1280,
+    "bytes": 113644,
+    "sha256": "c43d85b704a1f4477337f24d35e52a582f35e6ed4e8c8ee69943a9bc095d4e39",
+    "variants": [
+      {
+        "url": "/images/responsive/albums/5-480.webp",
+        "width": 480,
+        "height": 429,
+        "bytes": 26120
+      },
+      {
+        "url": "/images/responsive/albums/5-960.webp",
+        "width": 960,
+        "height": 859,
+        "bytes": 60636
+      },
+      {
+        "url": "/images/responsive/albums/5-1431.webp",
+        "width": 1431,
+        "height": 1280,
+        "bytes": 98548
+      }
+    ]
+  },
+  "/images/albums/6.jpg": {
+    "width": 1286,
+    "height": 1280,
+    "bytes": 85507,
+    "sha256": "b6de8bccf9cf9f5e286295c67d10f0f84ba888d625edace0f2c2fde145bcac55",
+    "variants": [
+      {
+        "url": "/images/responsive/albums/6-480.webp",
+        "width": 480,
+        "height": 478,
+        "bytes": 18152
+      },
+      {
+        "url": "/images/responsive/albums/6-960.webp",
+        "width": 960,
+        "height": 956,
+        "bytes": 49714
+      },
+      {
+        "url": "/images/responsive/albums/6-1286.webp",
+        "width": 1286,
+        "height": 1280,
+        "bytes": 72178
+      }
+    ]
+  },
+  "/images/albums/7.jpg": {
+    "width": 1016,
+    "height": 892,
+    "bytes": 84751,
+    "sha256": "887a1c7543031237ba669546bf7ecc59cd81e15f76e50c1059daa1d654d13062",
+    "variants": [
+      {
+        "url": "/images/responsive/albums/7-480.webp",
+        "width": 480,
+        "height": 421,
+        "bytes": 31450
+      },
+      {
+        "url": "/images/responsive/albums/7-960.webp",
+        "width": 960,
+        "height": 843,
+        "bytes": 75526
+      },
+      {
+        "url": "/images/responsive/albums/7-1016.webp",
+        "width": 1016,
+        "height": 892,
+        "bytes": 75736
+      }
+    ]
+  },
+  "/images/albums/8.jpg": {
+    "width": 683,
+    "height": 685,
+    "bytes": 95115,
+    "sha256": "61dbc3d017ad57ee5de4f63145cb74fe2448be96ee184e60ffbbe81c89dfb4de",
+    "variants": [
+      {
+        "url": "/images/responsive/albums/8-480.webp",
+        "width": 480,
+        "height": 481,
+        "bytes": 25258
+      },
+      {
+        "url": "/images/responsive/albums/8-683.webp",
+        "width": 683,
+        "height": 685,
+        "bytes": 40892
+      }
+    ]
+  },
+  "/images/albums/9.jpg": {
+    "width": 1410,
+    "height": 1280,
+    "bytes": 154739,
+    "sha256": "dac9adc01efa85d8b4f348eda7658aaf072715e2f03cb164aee5556107e0996b",
+    "variants": [
+      {
+        "url": "/images/responsive/albums/9-480.webp",
+        "width": 480,
+        "height": 436,
+        "bytes": 40732
+      },
+      {
+        "url": "/images/responsive/albums/9-960.webp",
+        "width": 960,
+        "height": 871,
+        "bytes": 97610
+      },
+      {
+        "url": "/images/responsive/albums/9-1410.webp",
+        "width": 1410,
+        "height": 1280,
+        "bytes": 148656
+      }
+    ]
+  },
+  "/images/book-pages/book-01/001.jpg": {
+    "width": 453,
+    "height": 680,
+    "bytes": 46597,
+    "sha256": "3d95a61f2564551924d0b449f203cf445881a0458c312de02ff4273265bd89eb",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-01/001-453.webp",
+        "width": 453,
+        "height": 680,
+        "bytes": 42410
+      }
+    ]
+  },
+  "/images/book-pages/book-01/002.jpg": {
+    "width": 453,
+    "height": 680,
+    "bytes": 51786,
+    "sha256": "d784f8cb91e2cd6a10ece8957caad814979c5fe9cdd95112d4543cb5169dd97f",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-01/002-453.webp",
+        "width": 453,
+        "height": 680,
+        "bytes": 48788
+      }
+    ]
+  },
+  "/images/book-pages/book-01/003.jpg": {
+    "width": 453,
+    "height": 680,
+    "bytes": 80054,
+    "sha256": "0035bba941fcde9899ae9dd86c6002dd2dba323a92737586633d0133d452da07",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-01/003-453.webp",
+        "width": 453,
+        "height": 680,
+        "bytes": 85102
+      }
+    ]
+  },
+  "/images/book-pages/book-01/004.jpg": {
+    "width": 453,
+    "height": 680,
+    "bytes": 71268,
+    "sha256": "a915d25b75360d2ada8b6a2daf062557c0841bf654aeb40ad5841b405dc0f43a",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-01/004-453.webp",
+        "width": 453,
+        "height": 680,
+        "bytes": 76528
+      }
+    ]
+  },
+  "/images/book-pages/book-01/005.jpg": {
+    "width": 544,
+    "height": 680,
+    "bytes": 72491,
+    "sha256": "ddde9b5256af48d8587d355c208437d93bb528f162c944d4993f0c386034b28c",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-01/005-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 60730
+      },
+      {
+        "url": "/images/responsive/book-pages/book-01/005-544.webp",
+        "width": 544,
+        "height": 680,
+        "bytes": 73324
+      }
+    ]
+  },
+  "/images/book-pages/book-01/006.jpg": {
+    "width": 544,
+    "height": 680,
+    "bytes": 103821,
+    "sha256": "6588b09294523137537900d34f0b3511beb95f44f27a39f7ff9af802dac60711",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-01/006-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 96432
+      },
+      {
+        "url": "/images/responsive/book-pages/book-01/006-544.webp",
+        "width": 544,
+        "height": 680,
+        "bytes": 116050
+      }
+    ]
+  },
+  "/images/book-pages/book-02/001.jpg": {
+    "width": 680,
+    "height": 453,
+    "bytes": 42956,
+    "sha256": "306841509cdc4d83c5e0d6a7eb6dd83629a5c16654a969e8cbddb58405158e5b",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-02/001-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 22252
+      },
+      {
+        "url": "/images/responsive/book-pages/book-02/001-680.webp",
+        "width": 680,
+        "height": 453,
+        "bytes": 38922
+      }
+    ]
+  },
+  "/images/book-pages/book-02/002.jpg": {
+    "width": 1365,
+    "height": 2048,
+    "bytes": 360290,
+    "sha256": "c32afa2603b3dd2e1b6befd96d5e2fb970739c8975a50e41bb552cca8e2edaa3",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-02/002-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 58256
+      },
+      {
+        "url": "/images/responsive/book-pages/book-02/002-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 188340
+      },
+      {
+        "url": "/images/responsive/book-pages/book-02/002-1365.webp",
+        "width": 1365,
+        "height": 2048,
+        "bytes": 328624
+      }
+    ]
+  },
+  "/images/book-pages/book-02/003.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 330094,
+    "sha256": "9a81da8f4e5867b0369fa6bba806dd6c39fa3e68a8dea4b012fb6721de8d89fe",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-02/003-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 42526
+      },
+      {
+        "url": "/images/responsive/book-pages/book-02/003-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 149150
+      },
+      {
+        "url": "/images/responsive/book-pages/book-02/003-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 295220
+      }
+    ]
+  },
+  "/images/book-pages/book-02/004.jpg": {
+    "width": 453,
+    "height": 680,
+    "bytes": 44617,
+    "sha256": "96e2231d642819810a5a738c1e9a4333322dcf0eabe43f13b7b261152459ba30",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-02/004-453.webp",
+        "width": 453,
+        "height": 680,
+        "bytes": 42378
+      }
+    ]
+  },
+  "/images/book-pages/book-02/005.jpg": {
+    "width": 680,
+    "height": 454,
+    "bytes": 59201,
+    "sha256": "5948f84c75febc6d4b1e26c4b75b7e2fab24e553134f31f029b94201d3c83f51",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-02/005-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 34184
+      },
+      {
+        "url": "/images/responsive/book-pages/book-02/005-680.webp",
+        "width": 680,
+        "height": 454,
+        "bytes": 54732
+      }
+    ]
+  },
+  "/images/book-pages/book-02/006.jpg": {
+    "width": 3277,
+    "height": 4096,
+    "bytes": 2522524,
+    "sha256": "87c6df84f283efb1785e991e16cf9bd74ccc2362aa03078749f5080c254d5b58",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-02/006-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 37438
+      },
+      {
+        "url": "/images/responsive/book-pages/book-02/006-960.webp",
+        "width": 960,
+        "height": 1200,
+        "bytes": 178680
+      },
+      {
+        "url": "/images/responsive/book-pages/book-02/006-1440.webp",
+        "width": 1440,
+        "height": 1800,
+        "bytes": 489468
+      }
+    ]
+  },
+  "/images/book-pages/book-02/007.jpg": {
+    "width": 3277,
+    "height": 4096,
+    "bytes": 3340107,
+    "sha256": "abb29510e41b483f8db2004d8f1a5c72cd757d7879b20a4ff5cb9c599fd4c2ef",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-02/007-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 35424
+      },
+      {
+        "url": "/images/responsive/book-pages/book-02/007-960.webp",
+        "width": 960,
+        "height": 1200,
+        "bytes": 111492
+      },
+      {
+        "url": "/images/responsive/book-pages/book-02/007-1440.webp",
+        "width": 1440,
+        "height": 1800,
+        "bytes": 256008
+      }
+    ]
+  },
+  "/images/book-pages/book-02/008.jpg": {
+    "width": 3277,
+    "height": 4096,
+    "bytes": 6188765,
+    "sha256": "18102b413b4cc5fff01b6175c1581e18f87d0c228b4517255778351b0bb35875",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-02/008-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 67576
+      },
+      {
+        "url": "/images/responsive/book-pages/book-02/008-960.webp",
+        "width": 960,
+        "height": 1200,
+        "bytes": 267160
+      },
+      {
+        "url": "/images/responsive/book-pages/book-02/008-1440.webp",
+        "width": 1440,
+        "height": 1800,
+        "bytes": 644234
+      }
+    ]
+  },
+  "/images/book-pages/book-02/009.jpg": {
+    "width": 3277,
+    "height": 4096,
+    "bytes": 6507133,
+    "sha256": "6464d7fdfa523dcb1e130df138a07e2f23c6c3874fa4295c9f53af9a11887651",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-02/009-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 123158
+      },
+      {
+        "url": "/images/responsive/book-pages/book-02/009-960.webp",
+        "width": 960,
+        "height": 1200,
+        "bytes": 448024
+      },
+      {
+        "url": "/images/responsive/book-pages/book-02/009-1440.webp",
+        "width": 1440,
+        "height": 1800,
+        "bytes": 947064
+      }
+    ]
+  },
+  "/images/book-pages/book-03/001.jpg": {
+    "width": 1000,
+    "height": 1500,
+    "bytes": 456726,
+    "sha256": "134df4d3be4c12ca1ace8582d8df4df93ce9e41a367ad39264731009f5080319",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-03/001-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 37616
+      },
+      {
+        "url": "/images/responsive/book-pages/book-03/001-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 167622
+      },
+      {
+        "url": "/images/responsive/book-pages/book-03/001-1000.webp",
+        "width": 1000,
+        "height": 1500,
+        "bytes": 189970
+      }
+    ]
+  },
+  "/images/book-pages/book-03/002.jpg": {
+    "width": 1000,
+    "height": 1500,
+    "bytes": 553596,
+    "sha256": "c656a9ad89061b9c4ccbccdf10e6adf9fd1d7f0c0b1a6f77cc89e457d18c55d6",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-03/002-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 54950
+      },
+      {
+        "url": "/images/responsive/book-pages/book-03/002-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 219326
+      },
+      {
+        "url": "/images/responsive/book-pages/book-03/002-1000.webp",
+        "width": 1000,
+        "height": 1500,
+        "bytes": 246176
+      }
+    ]
+  },
+  "/images/book-pages/book-03/003.jpg": {
+    "width": 2000,
+    "height": 3000,
+    "bytes": 2681120,
+    "sha256": "6e7bf0da3b9b3a7a434a2612338169ba23036de0520e36f6dba379a716f4bf7e",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-03/003-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 53240
+      },
+      {
+        "url": "/images/responsive/book-pages/book-03/003-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 270510
+      },
+      {
+        "url": "/images/responsive/book-pages/book-03/003-1440.webp",
+        "width": 1440,
+        "height": 2160,
+        "bytes": 762486
+      }
+    ]
+  },
+  "/images/book-pages/book-03/004.jpg": {
+    "width": 1000,
+    "height": 1500,
+    "bytes": 412143,
+    "sha256": "f60823d617527186fe036dfdf523bf2bb3b350d4c67bb7ac3a8ea72bbec76746",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-03/004-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 45672
+      },
+      {
+        "url": "/images/responsive/book-pages/book-03/004-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 128780
+      },
+      {
+        "url": "/images/responsive/book-pages/book-03/004-1000.webp",
+        "width": 1000,
+        "height": 1500,
+        "bytes": 140372
+      }
+    ]
+  },
+  "/images/book-pages/book-04/001.jpg": {
+    "width": 478,
+    "height": 718,
+    "bytes": 62098,
+    "sha256": "c3d0461d7ad776153cd1324a73f17093a2b3fc1dfd5333e9e2754be46e9ea253",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-04/001-478.webp",
+        "width": 478,
+        "height": 718,
+        "bytes": 32856
+      }
+    ]
+  },
+  "/images/book-pages/book-04/002.jpg": {
+    "width": 478,
+    "height": 718,
+    "bytes": 62096,
+    "sha256": "70c5dae0b0f0e495a108c6d5c1b4cd0f90d083bca2671cf0bb2e773b9945c2b9",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-04/002-478.webp",
+        "width": 478,
+        "height": 718,
+        "bytes": 29528
+      }
+    ]
+  },
+  "/images/book-pages/book-05/001.jpg": {
+    "width": 453,
+    "height": 680,
+    "bytes": 49928,
+    "sha256": "7cc57736f040e6bdea4f48949afe4fd447d4b0b4463f3068ccb9330c041a35fa",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-05/001-453.webp",
+        "width": 453,
+        "height": 680,
+        "bytes": 47510
+      }
+    ]
+  },
+  "/images/book-pages/book-05/002.jpg": {
+    "width": 453,
+    "height": 680,
+    "bytes": 58323,
+    "sha256": "ed50f13d5f906c3dd2cf6388d8615e9a546c91669e2bc025eed8968e4f69dc0e",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-05/002-453.webp",
+        "width": 453,
+        "height": 680,
+        "bytes": 57592
+      }
+    ]
+  },
+  "/images/book-pages/book-05/003.jpg": {
+    "width": 453,
+    "height": 680,
+    "bytes": 52929,
+    "sha256": "5fb648d5f88aacbfdbff1d3d67515b4fc9153021aed8f93da7842f75f0937a85",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-05/003-453.webp",
+        "width": 453,
+        "height": 680,
+        "bytes": 50910
+      }
+    ]
+  },
+  "/images/book-pages/book-05/004.jpg": {
+    "width": 900,
+    "height": 600,
+    "bytes": 88137,
+    "sha256": "62901d6a22dcbaab482ac7a850eca81c0e63ce3c4935a71204d9deca7400b595",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-05/004-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 27896
+      },
+      {
+        "url": "/images/responsive/book-pages/book-05/004-900.webp",
+        "width": 900,
+        "height": 600,
+        "bytes": 90492
+      }
+    ]
+  },
+  "/images/book-pages/book-05/005.jpg": {
+    "width": 2048,
+    "height": 1365,
+    "bytes": 942808,
+    "sha256": "b4bcc2a53f75801937a47ef41a4382905f05e2e7efb5da7a8caeb601d7f24ad7",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-05/005-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 16114
+      },
+      {
+        "url": "/images/responsive/book-pages/book-05/005-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 67218
+      },
+      {
+        "url": "/images/responsive/book-pages/book-05/005-1440.webp",
+        "width": 1440,
+        "height": 960,
+        "bytes": 207212
+      }
+    ]
+  },
+  "/images/book-pages/book-05/006.jpg": {
+    "width": 1537,
+    "height": 2048,
+    "bytes": 954682,
+    "sha256": "c2e3dc42a3953a891b482c8f191c036451469b34f5d0877ee41bf06d919c90a9",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-05/006-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 47594
+      },
+      {
+        "url": "/images/responsive/book-pages/book-05/006-960.webp",
+        "width": 960,
+        "height": 1279,
+        "bytes": 177864
+      },
+      {
+        "url": "/images/responsive/book-pages/book-05/006-1440.webp",
+        "width": 1440,
+        "height": 1919,
+        "bytes": 335302
+      }
+    ]
+  },
+  "/images/book-pages/book-05/007.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 941396,
+    "sha256": "58138ac24455a8ece1c8a2658dd29e186cf91d3ff2e22c80438fb73ab22f0787",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-05/007-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 48312
+      },
+      {
+        "url": "/images/responsive/book-pages/book-05/007-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 225182
+      },
+      {
+        "url": "/images/responsive/book-pages/book-05/007-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 423106
+      }
+    ]
+  },
+  "/images/book-pages/book-05/008.jpg": {
+    "width": 1080,
+    "height": 1621,
+    "bytes": 712722,
+    "sha256": "9641a62262925c5904ec318e6c13b91c86fbc9689e3a2f51ddaaf6fd278370cd",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-05/008-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 52234
+      },
+      {
+        "url": "/images/responsive/book-pages/book-05/008-960.webp",
+        "width": 960,
+        "height": 1441,
+        "bytes": 260784
+      },
+      {
+        "url": "/images/responsive/book-pages/book-05/008-1080.webp",
+        "width": 1080,
+        "height": 1621,
+        "bytes": 355256
+      }
+    ]
+  },
+  "/images/book-pages/book-05/009.jpg": {
+    "width": 1080,
+    "height": 1620,
+    "bytes": 797043,
+    "sha256": "3851f02a6ec9787c543969cd942e834e847485fe0f6e823380173a5e363042f6",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-05/009-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 71184
+      },
+      {
+        "url": "/images/responsive/book-pages/book-05/009-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 333260
+      },
+      {
+        "url": "/images/responsive/book-pages/book-05/009-1080.webp",
+        "width": 1080,
+        "height": 1620,
+        "bytes": 445948
+      }
+    ]
+  },
+  "/images/book-pages/book-06/001.jpg": {
+    "width": 4096,
+    "height": 2731,
+    "bytes": 816332,
+    "sha256": "3de0a77b438ce5e905728bc2afee119ec2e52682143486406cf1fd5ae397e401",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-06/001-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 29278
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/001-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 75126
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/001-1440.webp",
+        "width": 1440,
+        "height": 960,
+        "bytes": 125336
+      }
+    ]
+  },
+  "/images/book-pages/book-06/002.jpg": {
+    "width": 2730,
+    "height": 4096,
+    "bytes": 819577,
+    "sha256": "26516712a76c43a5d5a97d291247d414071b22ae4bd6d7d380141e4036e9bd2e",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-06/002-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 52860
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/002-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 128706
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/002-1440.webp",
+        "width": 1440,
+        "height": 2161,
+        "bytes": 220774
+      }
+    ]
+  },
+  "/images/book-pages/book-06/003.jpg": {
+    "width": 2730,
+    "height": 4096,
+    "bytes": 1236348,
+    "sha256": "275c1f44b724c88d10d4be7590c90a4399e2cf784032fe4ef7abe014a3c68bbc",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-06/003-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 26636
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/003-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 87232
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/003-1440.webp",
+        "width": 1440,
+        "height": 2161,
+        "bytes": 246266
+      }
+    ]
+  },
+  "/images/book-pages/book-06/004.jpg": {
+    "width": 2730,
+    "height": 4096,
+    "bytes": 1447422,
+    "sha256": "fbf5719234f47e41294b1d5c2773ff18d145420edd53ea5c4da0117b6b068861",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-06/004-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 50030
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/004-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 185316
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/004-1440.webp",
+        "width": 1440,
+        "height": 2161,
+        "bytes": 398790
+      }
+    ]
+  },
+  "/images/book-pages/book-06/005.jpg": {
+    "width": 2730,
+    "height": 4096,
+    "bytes": 936002,
+    "sha256": "d5b193524b0e19b0d4d3d7ad38c047454cbffd5d793e50168ccaccb10ba44695",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-06/005-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 34628
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/005-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 92546
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/005-1440.webp",
+        "width": 1440,
+        "height": 2161,
+        "bytes": 186042
+      }
+    ]
+  },
+  "/images/book-pages/book-06/006.jpg": {
+    "width": 2730,
+    "height": 4096,
+    "bytes": 1191153,
+    "sha256": "8723673516dfc6842f36e77a3dd5926e84b05f109b60f1385fa21d8497d645cc",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-06/006-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 33558
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/006-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 112032
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/006-1440.webp",
+        "width": 1440,
+        "height": 2161,
+        "bytes": 276600
+      }
+    ]
+  },
+  "/images/book-pages/book-06/007.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 291069,
+    "sha256": "d741eaafbc2f7cd91df51b1c745f0a921b2f246bc09ef83bfadcfa9b5a3fc243",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-06/007-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 43010
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/007-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 160724
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/007-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 302258
+      }
+    ]
+  },
+  "/images/book-pages/book-06/008.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 296052,
+    "sha256": "6d1d12b86e68a7c1159c8e443e46cd63ec0f80da1304d54356aba88acddc1095",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-06/008-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 39996
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/008-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 164878
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/008-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 316182
+      }
+    ]
+  },
+  "/images/book-pages/book-06/009.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 259390,
+    "sha256": "964021af34a43d5899f2aa40adfb25a54255f2f30247849f396da89a2950f101",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-06/009-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 44972
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/009-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 142152
+      },
+      {
+        "url": "/images/responsive/book-pages/book-06/009-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 236400
+      }
+    ]
+  },
+  "/images/book-pages/book-07/001.jpg": {
+    "width": 968,
+    "height": 1452,
+    "bytes": 209219,
+    "sha256": "e311e75291c214126d895f97354eb5592ed5b0f0b876a54d840440d842cf53a0",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-07/001-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 38006
+      },
+      {
+        "url": "/images/responsive/book-pages/book-07/001-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 102422
+      },
+      {
+        "url": "/images/responsive/book-pages/book-07/001-968.webp",
+        "width": 968,
+        "height": 1452,
+        "bytes": 105192
+      }
+    ]
+  },
+  "/images/book-pages/book-07/002.jpg": {
+    "width": 968,
+    "height": 646,
+    "bytes": 154420,
+    "sha256": "14138984e07a5ad3f78d4b8e78d8c32e2df96a4d6f057fe27b8b855de4c3a4ea",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-07/002-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 33570
+      },
+      {
+        "url": "/images/responsive/book-pages/book-07/002-960.webp",
+        "width": 960,
+        "height": 641,
+        "bytes": 87002
+      },
+      {
+        "url": "/images/responsive/book-pages/book-07/002-968.webp",
+        "width": 968,
+        "height": 646,
+        "bytes": 89692
+      }
+    ]
+  },
+  "/images/book-pages/book-07/003.jpg": {
+    "width": 968,
+    "height": 1452,
+    "bytes": 222866,
+    "sha256": "bfbef64ce8b8005808da2d01abc7e9b146edd483a8d9d4407975ac080820c1ce",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-07/003-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 39692
+      },
+      {
+        "url": "/images/responsive/book-pages/book-07/003-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 112610
+      },
+      {
+        "url": "/images/responsive/book-pages/book-07/003-968.webp",
+        "width": 968,
+        "height": 1452,
+        "bytes": 113864
+      }
+    ]
+  },
+  "/images/book-pages/book-08/001.jpg": {
+    "width": 4096,
+    "height": 2731,
+    "bytes": 2676383,
+    "sha256": "1a772b522b0da1bc257651777778bf31c41af800114601df450b11701e4ec213",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-08/001-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 40328
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/001-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 168572
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/001-1440.webp",
+        "width": 1440,
+        "height": 960,
+        "bytes": 412344
+      }
+    ]
+  },
+  "/images/book-pages/book-08/002.jpg": {
+    "width": 2731,
+    "height": 4096,
+    "bytes": 1978399,
+    "sha256": "555047d24482596c11ca49842a0c61d0566cb92e9faade4a31463b5b627dd9f6",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-08/002-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 48464
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/002-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 251578
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/002-1440.webp",
+        "width": 1440,
+        "height": 2160,
+        "bytes": 641078
+      }
+    ]
+  },
+  "/images/book-pages/book-08/003.jpg": {
+    "width": 2731,
+    "height": 4096,
+    "bytes": 2298691,
+    "sha256": "19515e02105ad7123e7844f5a63b6c026cff5c3a384710d68a3ffef9414a0cd0",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-08/003-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 76298
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/003-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 394624
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/003-1440.webp",
+        "width": 1440,
+        "height": 2160,
+        "bytes": 909416
+      }
+    ]
+  },
+  "/images/book-pages/book-08/004.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 839313,
+    "sha256": "44a8b401a2ded3278400e03852230b7a2af5daa7b81eb465b2ab693b6ab5ff0d",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-08/004-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 162156
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/004-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 569846
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/004-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 1052102
+      }
+    ]
+  },
+  "/images/book-pages/book-08/005.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 577359,
+    "sha256": "3f517b92064f7ce90890a409c7e819b55a4bc339cae0547b21db8d2503653e42",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-08/005-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 97628
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/005-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 372966
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/005-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 723390
+      }
+    ]
+  },
+  "/images/book-pages/book-08/006.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 466188,
+    "sha256": "b930f3b58bb01b13595a5daf889cdda0420f27b1eb235b54eaeefdec538c02f5",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-08/006-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 73002
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/006-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 294908
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/006-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 556492
+      }
+    ]
+  },
+  "/images/book-pages/book-08/007.jpg": {
+    "width": 2731,
+    "height": 4096,
+    "bytes": 3278044,
+    "sha256": "9e097b7e5e3b022fe0dc0f3090e19061f1d25b80938fee8107374d49f37e3579",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-08/007-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 137602
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/007-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 654064
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/007-1440.webp",
+        "width": 1440,
+        "height": 2160,
+        "bytes": 1475882
+      }
+    ]
+  },
+  "/images/book-pages/book-08/008.jpg": {
+    "width": 2731,
+    "height": 4096,
+    "bytes": 3186976,
+    "sha256": "03c4b85ddc5ac4e0da0287a0208ca1207b1a849f15a346adcdb3596615dfc8e1",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-08/008-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 104980
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/008-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 487506
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/008-1440.webp",
+        "width": 1440,
+        "height": 2160,
+        "bytes": 1200472
+      }
+    ]
+  },
+  "/images/book-pages/book-08/009.jpg": {
+    "width": 2731,
+    "height": 4096,
+    "bytes": 2512751,
+    "sha256": "5104e77ccaa647f6153a55aa7aff9570fe52acaaa7bfa69cfbf2e1d4e37bbe10",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-08/009-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 73534
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/009-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 311342
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/009-1440.webp",
+        "width": 1440,
+        "height": 2160,
+        "bytes": 774992
+      }
+    ]
+  },
+  "/images/book-pages/book-08/010.jpg": {
+    "width": 2731,
+    "height": 4096,
+    "bytes": 903099,
+    "sha256": "e9eb78a864e3a98aae548f0d07675fb3d8522ba51396f362e41a22cad465ed1d",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-08/010-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 28540
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/010-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 88874
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/010-1440.webp",
+        "width": 1440,
+        "height": 2160,
+        "bytes": 188398
+      }
+    ]
+  },
+  "/images/book-pages/book-08/011.jpg": {
+    "width": 2731,
+    "height": 4096,
+    "bytes": 1083140,
+    "sha256": "8759d496b95d5ef4db956b5e2234e8648be2648727cb5a301416639c3635c661",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-08/011-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 42024
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/011-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 128922
+      },
+      {
+        "url": "/images/responsive/book-pages/book-08/011-1440.webp",
+        "width": 1440,
+        "height": 2160,
+        "bytes": 256410
+      }
+    ]
+  },
+  "/images/book-pages/book-09/001.jpg": {
+    "width": 968,
+    "height": 1452,
+    "bytes": 360301,
+    "sha256": "4fca697ddbbef50c4502e688505a89c74746262d38d7dff443e1044c47e41bb2",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-09/001-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 84950
+      },
+      {
+        "url": "/images/responsive/book-pages/book-09/001-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 233062
+      },
+      {
+        "url": "/images/responsive/book-pages/book-09/001-968.webp",
+        "width": 968,
+        "height": 1452,
+        "bytes": 245244
+      }
+    ]
+  },
+  "/images/book-pages/book-09/002.jpg": {
+    "width": 968,
+    "height": 1451,
+    "bytes": 431184,
+    "sha256": "13c98860f619ee806fbd06f675bd150407042a0ea6f9d2826d5fb801210f1f74",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-09/002-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 91168
+      },
+      {
+        "url": "/images/responsive/book-pages/book-09/002-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 292408
+      },
+      {
+        "url": "/images/responsive/book-pages/book-09/002-968.webp",
+        "width": 968,
+        "height": 1451,
+        "bytes": 306656
+      }
+    ]
+  },
+  "/images/book-pages/book-09/003.jpg": {
+    "width": 968,
+    "height": 1452,
+    "bytes": 176464,
+    "sha256": "a64c19a97df0ba0be1c7b4980d992a5fab74b2c2847695f2edf155bb2bfe6fb6",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-09/003-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 31260
+      },
+      {
+        "url": "/images/responsive/book-pages/book-09/003-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 76296
+      },
+      {
+        "url": "/images/responsive/book-pages/book-09/003-968.webp",
+        "width": 968,
+        "height": 1452,
+        "bytes": 81800
+      }
+    ]
+  },
+  "/images/book-pages/book-10/001.jpg": {
+    "width": 2048,
+    "height": 1546,
+    "bytes": 233732,
+    "sha256": "a0fcde43c010e3276b36963fe7b6805d02be25830d2a005c5ec5e7b15716e125",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/001-480.webp",
+        "width": 480,
+        "height": 362,
+        "bytes": 20276
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/001-960.webp",
+        "width": 960,
+        "height": 725,
+        "bytes": 61838
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/001-1440.webp",
+        "width": 1440,
+        "height": 1087,
+        "bytes": 113634
+      }
+    ]
+  },
+  "/images/book-pages/book-10/002.jpg": {
+    "width": 2048,
+    "height": 1546,
+    "bytes": 184888,
+    "sha256": "ac66bb5d2c25e592e81339cf00807c0c1e0aa55ef0da76097b83a6e166d868d1",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/002-480.webp",
+        "width": 480,
+        "height": 362,
+        "bytes": 18024
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/002-960.webp",
+        "width": 960,
+        "height": 725,
+        "bytes": 46888
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/002-1440.webp",
+        "width": 1440,
+        "height": 1087,
+        "bytes": 80414
+      }
+    ]
+  },
+  "/images/book-pages/book-10/003.jpg": {
+    "width": 2048,
+    "height": 1546,
+    "bytes": 327670,
+    "sha256": "b78f4d27191929c8afe13c3799222079a8f3d11cd484ecdffe8769fe02fc95d2",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/003-480.webp",
+        "width": 480,
+        "height": 362,
+        "bytes": 33288
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/003-960.webp",
+        "width": 960,
+        "height": 725,
+        "bytes": 106048
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/003-1440.webp",
+        "width": 1440,
+        "height": 1087,
+        "bytes": 196792
+      }
+    ]
+  },
+  "/images/book-pages/book-10/004.jpg": {
+    "width": 2048,
+    "height": 1546,
+    "bytes": 209383,
+    "sha256": "1fcf31f407076aa460985d79f842a6540047ebe045b030678e8c1f47956bada1",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/004-480.webp",
+        "width": 480,
+        "height": 362,
+        "bytes": 17154
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/004-960.webp",
+        "width": 960,
+        "height": 725,
+        "bytes": 52318
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/004-1440.webp",
+        "width": 1440,
+        "height": 1087,
+        "bytes": 98134
+      }
+    ]
+  },
+  "/images/book-pages/book-10/005.jpg": {
+    "width": 2048,
+    "height": 1366,
+    "bytes": 176417,
+    "sha256": "a56b61b940e52b3dd90d2cb678370c05e41b8513248d1fcb4bbf8b914e862eef",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/005-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 13214
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/005-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 37548
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/005-1440.webp",
+        "width": 1440,
+        "height": 960,
+        "bytes": 76876
+      }
+    ]
+  },
+  "/images/book-pages/book-10/006.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 215015,
+    "sha256": "12fa65acb770c9d7a6e42bc8e05fe848d4a05337053dd9d1feb6d1f55b59b072",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/006-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 35342
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/006-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 109042
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/006-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 193496
+      }
+    ]
+  },
+  "/images/book-pages/book-10/007.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 231447,
+    "sha256": "2ca8c7d27c8ae4517dd9d9a340a31a25a63526e9951d0b690f4b30830729634f",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/007-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 37724
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/007-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 111536
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/007-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 193732
+      }
+    ]
+  },
+  "/images/book-pages/book-10/008.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 445911,
+    "sha256": "5825202f9533375c2a16910c8fac56af79f7d8dec031ee72c27d8ea4a2734880",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/008-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 92374
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/008-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 303886
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/008-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 496250
+      }
+    ]
+  },
+  "/images/book-pages/book-10/009.jpg": {
+    "width": 2048,
+    "height": 1366,
+    "bytes": 202059,
+    "sha256": "29e705a1cda65c7421128fb318b47aa9afcdef2117ab341a8ac00250fcf6801e",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/009-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 20010
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/009-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 54542
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/009-1440.webp",
+        "width": 1440,
+        "height": 960,
+        "bytes": 95974
+      }
+    ]
+  },
+  "/images/book-pages/book-10/010.jpg": {
+    "width": 800,
+    "height": 1200,
+    "bytes": 165309,
+    "sha256": "42e987cb4de7b472e1dd938fae1eb6dbed6a4c21466b4c412b1f21136dca9beb",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/010-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 65114
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/010-800.webp",
+        "width": 800,
+        "height": 1200,
+        "bytes": 146204
+      }
+    ]
+  },
+  "/images/book-pages/book-10/011.jpg": {
+    "width": 800,
+    "height": 1200,
+    "bytes": 207187,
+    "sha256": "a5e0e1127a3b89fa959257dfc967a72fa5c0494631ebbbe737cc3f60692f02cd",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/011-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 89316
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/011-800.webp",
+        "width": 800,
+        "height": 1200,
+        "bytes": 192852
+      }
+    ]
+  },
+  "/images/book-pages/book-10/012.jpg": {
+    "width": 800,
+    "height": 1200,
+    "bytes": 183041,
+    "sha256": "e7fb97e9b025d65a9f1c99afea5fb7e50fbdbf7d7c0d0963b64e7dc6b6859dd8",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/012-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 71134
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/012-800.webp",
+        "width": 800,
+        "height": 1200,
+        "bytes": 154766
+      }
+    ]
+  },
+  "/images/book-pages/book-10/013.jpg": {
+    "width": 800,
+    "height": 1200,
+    "bytes": 230890,
+    "sha256": "6ba03ba2cb3a9e4d9dd27cfb6bfd46b20ed32fd5a49cd01179bba6da918dad06",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/013-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 105664
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/013-800.webp",
+        "width": 800,
+        "height": 1200,
+        "bytes": 221256
+      }
+    ]
+  },
+  "/images/book-pages/book-10/014.jpg": {
+    "width": 800,
+    "height": 1200,
+    "bytes": 167946,
+    "sha256": "1b07630e9edd41393d0f881ea1fc8aae9300d12b6b569f245207e52ea76a24d7",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/014-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 71168
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/014-800.webp",
+        "width": 800,
+        "height": 1200,
+        "bytes": 140210
+      }
+    ]
+  },
+  "/images/book-pages/book-10/015.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 290974,
+    "sha256": "899af21990e8c0236e16b8091a4b6d67f29a0f78b1421e2570b6409ddf04244d",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-10/015-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 44024
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/015-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 133142
+      },
+      {
+        "url": "/images/responsive/book-pages/book-10/015-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 262076
+      }
+    ]
+  },
+  "/images/book-pages/book-11/001.jpg": {
+    "width": 1536,
+    "height": 2048,
+    "bytes": 131783,
+    "sha256": "fe7152516fb1f70e1c4740bfe5f2873682d6a9584379fae7190c0ad654129ddb",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/001-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 18494
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/001-960.webp",
+        "width": 960,
+        "height": 1280,
+        "bytes": 53476
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/001-1440.webp",
+        "width": 1440,
+        "height": 1920,
+        "bytes": 97140
+      }
+    ]
+  },
+  "/images/book-pages/book-11/002.jpg": {
+    "width": 1536,
+    "height": 2048,
+    "bytes": 330272,
+    "sha256": "a702533384ea4564b7ad6d841544df17ec91aeed7fc68e4641b2c2219fb5b520",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/002-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 44512
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/002-960.webp",
+        "width": 960,
+        "height": 1280,
+        "bytes": 159060
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/002-1440.webp",
+        "width": 1440,
+        "height": 1920,
+        "bytes": 302826
+      }
+    ]
+  },
+  "/images/book-pages/book-11/003.jpg": {
+    "width": 1536,
+    "height": 2048,
+    "bytes": 133942,
+    "sha256": "b7dd15ff6e5fe2cc082f6750afcc8930c2e3c7806cd9d71e6d243d5c893788b9",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/003-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 17966
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/003-960.webp",
+        "width": 960,
+        "height": 1280,
+        "bytes": 52438
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/003-1440.webp",
+        "width": 1440,
+        "height": 1920,
+        "bytes": 97198
+      }
+    ]
+  },
+  "/images/book-pages/book-11/004.jpg": {
+    "width": 510,
+    "height": 680,
+    "bytes": 69917,
+    "sha256": "ee30ed988c14b2fd432f07e5afe13032d9b68da9ab9c87bda87bb6b1677f4e20",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/004-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 65270
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/004-510.webp",
+        "width": 510,
+        "height": 680,
+        "bytes": 72388
+      }
+    ]
+  },
+  "/images/book-pages/book-11/005.jpg": {
+    "width": 510,
+    "height": 680,
+    "bytes": 60471,
+    "sha256": "3badc9fc752081f76c3c41dc31a2939ad456eeeec9a4910c805eab944cc32726",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/005-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 51074
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/005-510.webp",
+        "width": 510,
+        "height": 680,
+        "bytes": 57040
+      }
+    ]
+  },
+  "/images/book-pages/book-11/006.jpg": {
+    "width": 1638,
+    "height": 2048,
+    "bytes": 97051,
+    "sha256": "3b9029fa6a9433ae0a7a537468f506359fe8592efc99cf13b02a7d4f22de2ca2",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/006-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 13948
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/006-960.webp",
+        "width": 960,
+        "height": 1200,
+        "bytes": 38192
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/006-1440.webp",
+        "width": 1440,
+        "height": 1800,
+        "bytes": 65726
+      }
+    ]
+  },
+  "/images/book-pages/book-11/007.jpg": {
+    "width": 544,
+    "height": 680,
+    "bytes": 83789,
+    "sha256": "84c75d53ee57a93b0d0c57194bb09807b37fae615ddfb7918ec4410cd50f1702",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/007-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 72454
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/007-544.webp",
+        "width": 544,
+        "height": 680,
+        "bytes": 89998
+      }
+    ]
+  },
+  "/images/book-pages/book-11/008.jpg": {
+    "width": 544,
+    "height": 680,
+    "bytes": 66190,
+    "sha256": "dd28720ab1a4dc473d83e2a0988bc48f278b8988bcd19c7532e186f849c6a421",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/008-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 54978
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/008-544.webp",
+        "width": 544,
+        "height": 680,
+        "bytes": 71058
+      }
+    ]
+  },
+  "/images/book-pages/book-11/009.jpg": {
+    "width": 510,
+    "height": 680,
+    "bytes": 50658,
+    "sha256": "6e87f36f97c4be77120d884936933ac957e84d09cae4a7c1e9388b31fbcd3a38",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/009-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 43420
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/009-510.webp",
+        "width": 510,
+        "height": 680,
+        "bytes": 47274
+      }
+    ]
+  },
+  "/images/book-pages/book-11/010.jpg": {
+    "width": 1588,
+    "height": 2048,
+    "bytes": 139944,
+    "sha256": "2e4bbb204adf903bbe6e8dd21460a535ce57cbcf278da3765b879025b21c4aee",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/010-480.webp",
+        "width": 480,
+        "height": 619,
+        "bytes": 20842
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/010-960.webp",
+        "width": 960,
+        "height": 1238,
+        "bytes": 56034
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/010-1440.webp",
+        "width": 1440,
+        "height": 1857,
+        "bytes": 99920
+      }
+    ]
+  },
+  "/images/book-pages/book-11/011.jpg": {
+    "width": 1536,
+    "height": 2048,
+    "bytes": 374309,
+    "sha256": "696d83abbe8316c21d629bdff46e64135b51e1635b763d26cb3f11527e454237",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/011-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 63808
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/011-960.webp",
+        "width": 960,
+        "height": 1280,
+        "bytes": 192360
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/011-1440.webp",
+        "width": 1440,
+        "height": 1920,
+        "bytes": 352710
+      }
+    ]
+  },
+  "/images/book-pages/book-11/012.jpg": {
+    "width": 544,
+    "height": 680,
+    "bytes": 75337,
+    "sha256": "73b5144d39fe90dc59895d1fe187352d34872b384c456265429fc0229fe644e9",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/012-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 64438
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/012-544.webp",
+        "width": 544,
+        "height": 680,
+        "bytes": 78626
+      }
+    ]
+  },
+  "/images/book-pages/book-11/013.jpg": {
+    "width": 544,
+    "height": 680,
+    "bytes": 54952,
+    "sha256": "48155aa0155b7c5c99258f1fab6e482658a73256fe1bd0cfe58b2a9fb824d044",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/013-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 44218
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/013-544.webp",
+        "width": 544,
+        "height": 680,
+        "bytes": 52720
+      }
+    ]
+  },
+  "/images/book-pages/book-11/014.jpg": {
+    "width": 544,
+    "height": 680,
+    "bytes": 66493,
+    "sha256": "422d5fb0463be2b567d080c1ab6ecb24e1d881fde6bf04fbd656e26fd7a8f8e1",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/014-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 56668
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/014-544.webp",
+        "width": 544,
+        "height": 680,
+        "bytes": 68924
+      }
+    ]
+  },
+  "/images/book-pages/book-11/015.jpg": {
+    "width": 513,
+    "height": 680,
+    "bytes": 35943,
+    "sha256": "143835615be07ef0dbc210a6c90b49e33021fd77b0f2eb80dfdcbb2ed3c8a68c",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/015-480.webp",
+        "width": 480,
+        "height": 636,
+        "bytes": 29388
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/015-513.webp",
+        "width": 513,
+        "height": 680,
+        "bytes": 33138
+      }
+    ]
+  },
+  "/images/book-pages/book-11/016.jpg": {
+    "width": 1544,
+    "height": 2048,
+    "bytes": 63787,
+    "sha256": "874ce346791474b8fa5430997ec87c9e151e74f1fbb1066e66254e991f8a76cb",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/016-480.webp",
+        "width": 480,
+        "height": 637,
+        "bytes": 10526
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/016-960.webp",
+        "width": 960,
+        "height": 1273,
+        "bytes": 22096
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/016-1440.webp",
+        "width": 1440,
+        "height": 1910,
+        "bytes": 35062
+      }
+    ]
+  },
+  "/images/book-pages/book-11/017.jpg": {
+    "width": 1544,
+    "height": 2048,
+    "bytes": 138354,
+    "sha256": "a266ac87b0f82bee16dd005063830962036688950947453345829bd1980bca16",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/017-480.webp",
+        "width": 480,
+        "height": 637,
+        "bytes": 18038
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/017-960.webp",
+        "width": 960,
+        "height": 1273,
+        "bytes": 50958
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/017-1440.webp",
+        "width": 1440,
+        "height": 1910,
+        "bytes": 96442
+      }
+    ]
+  },
+  "/images/book-pages/book-11/018.jpg": {
+    "width": 1544,
+    "height": 2048,
+    "bytes": 191275,
+    "sha256": "ade7924ccc5224d631ec490c9d03e67b147f4e4d5ec36ecbd5ccc76764d0d832",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/018-480.webp",
+        "width": 480,
+        "height": 637,
+        "bytes": 31526
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/018-960.webp",
+        "width": 960,
+        "height": 1273,
+        "bytes": 75304
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/018-1440.webp",
+        "width": 1440,
+        "height": 1910,
+        "bytes": 126958
+      }
+    ]
+  },
+  "/images/book-pages/book-11/019.jpg": {
+    "width": 513,
+    "height": 680,
+    "bytes": 30486,
+    "sha256": "4c1eca2e562ad47715e60b7ff729102bf326c96e48fd002d1d97f6f9a2880684",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/019-480.webp",
+        "width": 480,
+        "height": 636,
+        "bytes": 23920
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/019-513.webp",
+        "width": 513,
+        "height": 680,
+        "bytes": 26876
+      }
+    ]
+  },
+  "/images/book-pages/book-11/020.jpg": {
+    "width": 513,
+    "height": 680,
+    "bytes": 64255,
+    "sha256": "9619cd953cf0722fdfeb62a0ddf2a5d26bf57d79e046b12f69df7e4435df41b8",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/020-480.webp",
+        "width": 480,
+        "height": 636,
+        "bytes": 58222
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/020-513.webp",
+        "width": 513,
+        "height": 680,
+        "bytes": 64248
+      }
+    ]
+  },
+  "/images/book-pages/book-11/021.jpg": {
+    "width": 1544,
+    "height": 2048,
+    "bytes": 200917,
+    "sha256": "1148be5f9e70585bfe1339ad4eb1d491c907455ddb28f6084d7ca7938fce0320",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/021-480.webp",
+        "width": 480,
+        "height": 637,
+        "bytes": 29780
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/021-960.webp",
+        "width": 960,
+        "height": 1273,
+        "bytes": 79344
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/021-1440.webp",
+        "width": 1440,
+        "height": 1910,
+        "bytes": 139988
+      }
+    ]
+  },
+  "/images/book-pages/book-11/022.jpg": {
+    "width": 513,
+    "height": 680,
+    "bytes": 74554,
+    "sha256": "80495c416040e127e8a08cca2c5d716e57e4f2ee8c12165478385c002c5ceb7c",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/022-480.webp",
+        "width": 480,
+        "height": 636,
+        "bytes": 65148
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/022-513.webp",
+        "width": 513,
+        "height": 680,
+        "bytes": 73208
+      }
+    ]
+  },
+  "/images/book-pages/book-11/023.jpg": {
+    "width": 513,
+    "height": 680,
+    "bytes": 53360,
+    "sha256": "75e14aaf203d9fdca115ddf12d93b69d4c53f7095046a413c44a105b0f263e2d",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/023-480.webp",
+        "width": 480,
+        "height": 636,
+        "bytes": 35452
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/023-513.webp",
+        "width": 513,
+        "height": 680,
+        "bytes": 37744
+      }
+    ]
+  },
+  "/images/book-pages/book-11/024.jpg": {
+    "width": 1544,
+    "height": 2048,
+    "bytes": 166427,
+    "sha256": "6c6c99f304a3035357f30d71e95a70dc5d7639838dba4de9e46bebb1529a7dd4",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/024-480.webp",
+        "width": 480,
+        "height": 637,
+        "bytes": 22834
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/024-960.webp",
+        "width": 960,
+        "height": 1273,
+        "bytes": 68772
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/024-1440.webp",
+        "width": 1440,
+        "height": 1910,
+        "bytes": 131382
+      }
+    ]
+  },
+  "/images/book-pages/book-11/025.jpg": {
+    "width": 513,
+    "height": 680,
+    "bytes": 27665,
+    "sha256": "3045badb66ea0e874da35c8c2367db006fd1045553e0abbc7fb084ac5dd079fe",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/025-480.webp",
+        "width": 480,
+        "height": 636,
+        "bytes": 16700
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/025-513.webp",
+        "width": 513,
+        "height": 680,
+        "bytes": 17898
+      }
+    ]
+  },
+  "/images/book-pages/book-11/026.jpg": {
+    "width": 544,
+    "height": 680,
+    "bytes": 50326,
+    "sha256": "82b919e39b3dad78b9e058e5634cf4d4286f85faf1d5202bbd59bcacef1d8d68",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/026-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 37852
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/026-544.webp",
+        "width": 544,
+        "height": 680,
+        "bytes": 46094
+      }
+    ]
+  },
+  "/images/book-pages/book-11/027.jpg": {
+    "width": 544,
+    "height": 680,
+    "bytes": 130679,
+    "sha256": "8dedca8506259ad843b61c82fd4bfc0abce5b208361569143a85df152ed31f17",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/027-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 129764
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/027-544.webp",
+        "width": 544,
+        "height": 680,
+        "bytes": 162248
+      }
+    ]
+  },
+  "/images/book-pages/book-11/028.jpg": {
+    "width": 544,
+    "height": 680,
+    "bytes": 51085,
+    "sha256": "f998f516fbfc6a64d51823c22d82c6fbfab1ee24224b84d4484a5ad7efbad81f",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/028-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 39238
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/028-544.webp",
+        "width": 544,
+        "height": 680,
+        "bytes": 47670
+      }
+    ]
+  },
+  "/images/book-pages/book-11/029.jpg": {
+    "width": 513,
+    "height": 680,
+    "bytes": 45495,
+    "sha256": "c70ef871ed1bc13668d4a5d12e173e9d8c4085eb59fdd7efc7c3cf11a77dcee1",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/029-480.webp",
+        "width": 480,
+        "height": 636,
+        "bytes": 32378
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/029-513.webp",
+        "width": 513,
+        "height": 680,
+        "bytes": 37338
+      }
+    ]
+  },
+  "/images/book-pages/book-11/030.jpg": {
+    "width": 513,
+    "height": 680,
+    "bytes": 62015,
+    "sha256": "b95daa72b809f9447b28ab6440e7bf26038aaccc398982a475e4e3710f06b686",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/030-480.webp",
+        "width": 480,
+        "height": 636,
+        "bytes": 52922
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/030-513.webp",
+        "width": 513,
+        "height": 680,
+        "bytes": 58104
+      }
+    ]
+  },
+  "/images/book-pages/book-11/031.jpg": {
+    "width": 1544,
+    "height": 2048,
+    "bytes": 122625,
+    "sha256": "aeb3611cf465cb8cb420810c1f07c0b689197c4f5669aad621310fd83440dcb5",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/031-480.webp",
+        "width": 480,
+        "height": 637,
+        "bytes": 20278
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/031-960.webp",
+        "width": 960,
+        "height": 1273,
+        "bytes": 39346
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/031-1440.webp",
+        "width": 1440,
+        "height": 1910,
+        "bytes": 62552
+      }
+    ]
+  },
+  "/images/book-pages/book-11/032.jpg": {
+    "width": 679,
+    "height": 900,
+    "bytes": 81134,
+    "sha256": "516ef390a34bc7d4f2b5b845f23a39a2b27868252b77362a64b691d825062a77",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-11/032-480.webp",
+        "width": 480,
+        "height": 636,
+        "bytes": 43336
+      },
+      {
+        "url": "/images/responsive/book-pages/book-11/032-679.webp",
+        "width": 679,
+        "height": 900,
+        "bytes": 72076
+      }
+    ]
+  },
+  "/images/book-pages/book-12/001.jpg": {
+    "width": 1536,
+    "height": 2048,
+    "bytes": 541499,
+    "sha256": "e56c4617ab3d3dc1bfcd7f26ac4bfce85c4b09ee9fc002331b49ea0978e20f74",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-12/001-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 64948
+      },
+      {
+        "url": "/images/responsive/book-pages/book-12/001-960.webp",
+        "width": 960,
+        "height": 1280,
+        "bytes": 247882
+      },
+      {
+        "url": "/images/responsive/book-pages/book-12/001-1440.webp",
+        "width": 1440,
+        "height": 1920,
+        "bytes": 498606
+      }
+    ]
+  },
+  "/images/book-pages/book-12/002.jpg": {
+    "width": 1536,
+    "height": 2048,
+    "bytes": 319666,
+    "sha256": "e5fc9ebd6976f8b3a32954fa8073c169a9c484c72976492aba2dd8eb2e114c13",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-12/002-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 50746
+      },
+      {
+        "url": "/images/responsive/book-pages/book-12/002-960.webp",
+        "width": 960,
+        "height": 1280,
+        "bytes": 165108
+      },
+      {
+        "url": "/images/responsive/book-pages/book-12/002-1440.webp",
+        "width": 1440,
+        "height": 1920,
+        "bytes": 287304
+      }
+    ]
+  },
+  "/images/book-pages/book-12/003.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 383817,
+    "sha256": "e7302cab34a0a7f7b2ded470fc6630a61c9697d35768d6a5990626c9b70aa838",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-12/003-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 34996
+      },
+      {
+        "url": "/images/responsive/book-pages/book-12/003-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 219910
+      },
+      {
+        "url": "/images/responsive/book-pages/book-12/003-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 478034
+      }
+    ]
+  },
+  "/images/book-pages/book-13/001.jpg": {
+    "width": 800,
+    "height": 1199,
+    "bytes": 158144,
+    "sha256": "8d32243351f596c31c9c4e7be18c7dff310dd7518de7c44cb6431ffad6be551c",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/001-480.webp",
+        "width": 480,
+        "height": 719,
+        "bytes": 26928
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/001-800.webp",
+        "width": 800,
+        "height": 1199,
+        "bytes": 59086
+      }
+    ]
+  },
+  "/images/book-pages/book-13/002.jpg": {
+    "width": 800,
+    "height": 1199,
+    "bytes": 141005,
+    "sha256": "ddab0fbf4acc9907f395cb659235f2ec8ba508e7c858df842d135b2caef0d492",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/002-480.webp",
+        "width": 480,
+        "height": 719,
+        "bytes": 25294
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/002-800.webp",
+        "width": 800,
+        "height": 1199,
+        "bytes": 49262
+      }
+    ]
+  },
+  "/images/book-pages/book-13/003.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 474034,
+    "sha256": "b6626479c670af7b8b51cda42d92f580884a85a282ffc3b6d47604732fec51d1",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/003-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 81350
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/003-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 265600
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/003-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 471066
+      }
+    ]
+  },
+  "/images/book-pages/book-13/004.jpg": {
+    "width": 2048,
+    "height": 1366,
+    "bytes": 323707,
+    "sha256": "4307e4fcd96477fd24034abc0a705cd52ed6ecd12eeab1081c4c0f5a29dded16",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/004-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 24874
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/004-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 79838
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/004-1440.webp",
+        "width": 1440,
+        "height": 960,
+        "bytes": 161664
+      }
+    ]
+  },
+  "/images/book-pages/book-13/005.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 154130,
+    "sha256": "f45242f0eb784ddbef2840ee3ab59cb5f7962cc074ae71392d64f48d7b9cdebd",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/005-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 20504
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/005-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 57786
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/005-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 104918
+      }
+    ]
+  },
+  "/images/book-pages/book-13/006.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 196268,
+    "sha256": "1c61af4b6549ee7acee8f6b4d23b751aaa14f4cb47aeb0ef85ab563b179a27b0",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/006-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 28490
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/006-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 89630
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/006-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 162988
+      }
+    ]
+  },
+  "/images/book-pages/book-13/007.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 328720,
+    "sha256": "04a243354b4143e257f0df67a94a8049c933572823950061c797d669134ba278",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/007-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 59386
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/007-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 178806
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/007-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 309512
+      }
+    ]
+  },
+  "/images/book-pages/book-13/008.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 140327,
+    "sha256": "7db944af1e8b22b9de33ba494d78f7b022632b13979091478c6bc081c6734346",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/008-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 22672
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/008-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 61542
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/008-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 105564
+      }
+    ]
+  },
+  "/images/book-pages/book-13/009.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 131548,
+    "sha256": "d21509d0cbe832f04ace2e857100585338f544fe5a267ef844d7f808f91ef6d4",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/009-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 21876
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/009-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 59834
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/009-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 101172
+      }
+    ]
+  },
+  "/images/book-pages/book-13/010.jpg": {
+    "width": 1366,
+    "height": 2048,
+    "bytes": 115409,
+    "sha256": "38f8a3d716762e690c0b28362d78941df1212087fcd08c8b3ba6db20920cc37e",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/010-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 18538
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/010-960.webp",
+        "width": 960,
+        "height": 1439,
+        "bytes": 48932
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/010-1366.webp",
+        "width": 1366,
+        "height": 2048,
+        "bytes": 82338
+      }
+    ]
+  },
+  "/images/book-pages/book-13/011.jpg": {
+    "width": 1920,
+    "height": 1280,
+    "bytes": 199141,
+    "sha256": "2fc1358a7032376b5669430f85dcfc063cc6a8c358dfe96d6aa4bd8defc3d3cc",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/011-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 36222
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/011-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 90848
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/011-1440.webp",
+        "width": 1440,
+        "height": 960,
+        "bytes": 154692
+      }
+    ]
+  },
+  "/images/book-pages/book-13/012.jpg": {
+    "width": 1920,
+    "height": 1280,
+    "bytes": 174255,
+    "sha256": "0fcdb2000022079775c624a372ba08201bbbbc7742b9ea00186729a37db34a3c",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/012-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 26028
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/012-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 73140
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/012-1440.webp",
+        "width": 1440,
+        "height": 960,
+        "bytes": 130674
+      }
+    ]
+  },
+  "/images/book-pages/book-13/013.jpg": {
+    "width": 1280,
+    "height": 1920,
+    "bytes": 216607,
+    "sha256": "4730191063e9c7790b4c2bbce6fe909f63e4815a5fd22f6bc59af676336d5cf0",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/013-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 64640
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/013-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 172294
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/013-1280.webp",
+        "width": 1280,
+        "height": 1920,
+        "bytes": 243184
+      }
+    ]
+  },
+  "/images/book-pages/book-13/014.jpg": {
+    "width": 1440,
+    "height": 960,
+    "bytes": 113257,
+    "sha256": "0c2686a48a6b30e8b11bed2a85c73b7b5d9103fbd90dd42437abeb34ff77bb43",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/014-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 31626
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/014-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 74736
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/014-1440.webp",
+        "width": 1440,
+        "height": 960,
+        "bytes": 122450
+      }
+    ]
+  },
+  "/images/book-pages/book-13/015.jpg": {
+    "width": 1280,
+    "height": 1920,
+    "bytes": 147077,
+    "sha256": "d6af35075a5f69897bee7c1a4576fa4594bbfb5f89dece9f15e075bfe5234597",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/015-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 42286
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/015-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 100392
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/015-1280.webp",
+        "width": 1280,
+        "height": 1920,
+        "bytes": 135002
+      }
+    ]
+  },
+  "/images/book-pages/book-13/016.jpg": {
+    "width": 1280,
+    "height": 1600,
+    "bytes": 290644,
+    "sha256": "4e0ce8bb6c8db267bd511d190ef0dc1f48a8b15f986f2aaaefb73670be33c204",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/016-480.webp",
+        "width": 480,
+        "height": 600,
+        "bytes": 84958
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/016-960.webp",
+        "width": 960,
+        "height": 1200,
+        "bytes": 226978
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/016-1280.webp",
+        "width": 1280,
+        "height": 1600,
+        "bytes": 331860
+      }
+    ]
+  },
+  "/images/book-pages/book-13/017.jpg": {
+    "width": 1276,
+    "height": 1702,
+    "bytes": 223072,
+    "sha256": "885ad04462efdd67669a685cd9e4395b31d954c72f9724bc3da2e44c2ece8807",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/017-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 49262
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/017-960.webp",
+        "width": 960,
+        "height": 1281,
+        "bytes": 173646
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/017-1276.webp",
+        "width": 1276,
+        "height": 1702,
+        "bytes": 277510
+      }
+    ]
+  },
+  "/images/book-pages/book-13/018.jpg": {
+    "width": 1284,
+    "height": 1712,
+    "bytes": 227573,
+    "sha256": "4e80b5e6cd93171c9989ac4c483a3887853263141b6656ef4b61f6c40d2b18e2",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/018-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 53334
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/018-960.webp",
+        "width": 960,
+        "height": 1280,
+        "bytes": 172934
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/018-1284.webp",
+        "width": 1284,
+        "height": 1712,
+        "bytes": 272684
+      }
+    ]
+  },
+  "/images/book-pages/book-13/019.jpg": {
+    "width": 1284,
+    "height": 1712,
+    "bytes": 248059,
+    "sha256": "1f73d48b398115153e505bfa2b4820daa6fae8642282d73bce70461fe6784288",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/019-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 72958
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/019-960.webp",
+        "width": 960,
+        "height": 1280,
+        "bytes": 184816
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/019-1284.webp",
+        "width": 1284,
+        "height": 1712,
+        "bytes": 259420
+      }
+    ]
+  },
+  "/images/book-pages/book-13/020.jpg": {
+    "width": 1284,
+    "height": 1712,
+    "bytes": 302753,
+    "sha256": "522ef8d3bc230beb291525f6b9dddb80a370afa5b7c9135d05952a82bfdc2e63",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/020-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 71764
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/020-960.webp",
+        "width": 960,
+        "height": 1280,
+        "bytes": 239008
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/020-1284.webp",
+        "width": 1284,
+        "height": 1712,
+        "bytes": 382398
+      }
+    ]
+  },
+  "/images/book-pages/book-13/021.jpg": {
+    "width": 1284,
+    "height": 1712,
+    "bytes": 298528,
+    "sha256": "3bd8e0b5fcd6f3612aecaeaecd47ad5dc6c7301272a4072305f065aaf849539e",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/021-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 81278
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/021-960.webp",
+        "width": 960,
+        "height": 1280,
+        "bytes": 238824
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/021-1284.webp",
+        "width": 1284,
+        "height": 1712,
+        "bytes": 365556
+      }
+    ]
+  },
+  "/images/book-pages/book-13/022.jpg": {
+    "width": 1712,
+    "height": 1284,
+    "bytes": 278622,
+    "sha256": "bcbf2f067a3bbf9528f87b774f134fe9611a026f97b2f6bf8c71ab68fa060e0b",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/022-480.webp",
+        "width": 480,
+        "height": 360,
+        "bytes": 50362
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/022-960.webp",
+        "width": 960,
+        "height": 720,
+        "bytes": 154294
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/022-1440.webp",
+        "width": 1440,
+        "height": 1080,
+        "bytes": 285074
+      }
+    ]
+  },
+  "/images/book-pages/book-13/023.jpg": {
+    "width": 1200,
+    "height": 820,
+    "bytes": 159292,
+    "sha256": "030ddca9dc7b91d5c6ac877a2c3ae3875a6a5fb85443d2750b8578e17cf351ee",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/023-480.webp",
+        "width": 480,
+        "height": 328,
+        "bytes": 54962
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/023-960.webp",
+        "width": 960,
+        "height": 656,
+        "bytes": 160316
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/023-1200.webp",
+        "width": 1200,
+        "height": 820,
+        "bytes": 209852
+      }
+    ]
+  },
+  "/images/book-pages/book-13/024.jpg": {
+    "width": 778,
+    "height": 1199,
+    "bytes": 152260,
+    "sha256": "96a312e31a960c9d29d95f3327a4673045f7ad18f3eec5cc3657191c4d07753c",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/024-480.webp",
+        "width": 480,
+        "height": 740,
+        "bytes": 100626
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/024-778.webp",
+        "width": 778,
+        "height": 1199,
+        "bytes": 198566
+      }
+    ]
+  },
+  "/images/book-pages/book-13/025.jpg": {
+    "width": 800,
+    "height": 1200,
+    "bytes": 261370,
+    "sha256": "45c96779f8c89905bdda259d0aa3ff1dea1d2c1699c1143a16d0f9eb57bd3610",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/025-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 152084
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/025-800.webp",
+        "width": 800,
+        "height": 1200,
+        "bytes": 372818
+      }
+    ]
+  },
+  "/images/book-pages/book-13/026.jpg": {
+    "width": 1200,
+    "height": 800,
+    "bytes": 139045,
+    "sha256": "0cedc33ce9a997c85eacaf13a7e85cabe57a90b01e769fa283644f21cd266e8a",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/026-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 44052
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/026-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 128494
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/026-1200.webp",
+        "width": 1200,
+        "height": 800,
+        "bytes": 176350
+      }
+    ]
+  },
+  "/images/book-pages/book-13/027.jpg": {
+    "width": 800,
+    "height": 1200,
+    "bytes": 163151,
+    "sha256": "37a96ee568b5d900c7d0be1d02df6c12b70e4f58ac5070eef8119e684d8f885e",
+    "variants": [
+      {
+        "url": "/images/responsive/book-pages/book-13/027-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 94966
+      },
+      {
+        "url": "/images/responsive/book-pages/book-13/027-800.webp",
+        "width": 800,
+        "height": 1200,
+        "bytes": 229218
+      }
+    ]
+  },
+  "/images/liz-ive-profile-detail.jpg": {
+    "width": 2000,
+    "height": 1266,
+    "bytes": 1826236,
+    "sha256": "c03514221d24db2eee8aba9d5f33ef20a293b90072e728be3655c2dc8953b035",
+    "variants": [
+      {
+        "url": "/images/responsive/liz-ive-profile-detail-480.webp",
+        "width": 480,
+        "height": 304,
+        "bytes": 25670
+      },
+      {
+        "url": "/images/responsive/liz-ive-profile-detail-960.webp",
+        "width": 960,
+        "height": 608,
+        "bytes": 78510
+      },
+      {
+        "url": "/images/responsive/liz-ive-profile-detail-1440.webp",
+        "width": 1440,
+        "height": 912,
+        "bytes": 159572
+      },
+      {
+        "url": "/images/responsive/liz-ive-profile-detail-2000.webp",
+        "width": 2000,
+        "height": 1266,
+        "bytes": 295000
+      }
+    ]
+  }
+}

@@ -3,8 +3,9 @@ import { Component, Suspense, useCallback, useEffect, useRef, useState, type Rea
 import { createPortal } from 'react-dom'
 import { NoToneMapping } from 'three'
 import WorkshopScene from './WorkshopScene'
+import { MOBILE_DPR, useMobileRendering } from '../../scene/renderQuality'
 import { WorkshopAudio } from './workshopAudio'
-import { beginPress, endPress } from './workshopActions'
+import { beginPress, cancelPresses, endPress } from './workshopActions'
 import { createWorkshopMotion, STAGES, STAGE_LABELS, type WorkshopStage } from './workshopState'
 import { useWorkshopStore } from './workshopStore'
 import './squishy-workshop.css'
@@ -18,27 +19,34 @@ class SceneBoundary extends Component<{ children: ReactNode }, { failed: boolean
 }
 
 function WorkshopSession({ close }: { close: () => void }) {
+  const mobile = useMobileRendering()
   const [stage, setStage] = useState<WorkshopStage>('prepare')
   const [progress, setProgress] = useState(0)
   const [muted, setMuted] = useState(false)
   const [closing, setClosing] = useState(false)
   const [visible, setVisible] = useState(!document.hidden)
+  const [interactiveReady, setInteractiveReady] = useState(false)
+  const [preparationFailed, setPreparationFailed] = useState(false)
   const motion = useRef(createWorkshopMotion())
   const [audio] = useState(() => new WorkshopAudio())
   const dialog = useRef<HTMLElement>(null)
   const phase = useRef<WorkshopStage>('prepare')
   const timer = useRef<number | null>(null)
   const stageIndex = STAGES.indexOf(stage)
+  const reportReady = useCallback((ready: boolean) => {
+    setInteractiveReady(ready); setPreparationFailed(!ready)
+  }, [])
 
   const requestClose = useCallback(() => {
     if (timer.current !== null) return
-    motion.current.pressed = false; motion.current.autoDip = false; audio.dispose(); setClosing(true)
+    cancelPresses(motion.current); motion.current.sessionActive = false
+    motion.current.autoDip = false; audio.dispose(); setClosing(true)
     timer.current = window.setTimeout(close, 230)
   }, [audio, close, motion])
   const advance = useCallback((next: WorkshopStage) => {
     if (phase.current === next) return
     phase.current = next
-    motion.current.pressed = false
+    cancelPresses(motion.current)
     if (next === 'cool') motion.current.cooling = 0
     setProgress(0); setStage(next)
   }, [motion])
@@ -53,9 +61,10 @@ function WorkshopSession({ close }: { close: () => void }) {
     if (stage === 'cool') { motion.current.coating = 0; motion.current.cooling = 0; advance('wax') }
     if (stage === 'squeeze') { motion.current.coating = 1; motion.current.cooling = 0; advance('cool') }
   }
-  const restart = () => { const generation = motion.current.waxGeneration + 1; Object.assign(motion.current, createWorkshopMotion(), { waxGeneration: generation }); advance('wax') }
+  const restart = () => { const generation = motion.current.waxGeneration + 1; Object.assign(motion.current, createWorkshopMotion(), { waxGeneration: generation, interactiveReady }); advance('wax') }
   useEffect(() => {
     const sessionMotion = motion.current
+    sessionMotion.sessionActive = true
     audio.activate()
     const lastFocus = document.activeElement as HTMLElement | null
     const root = document.getElementById('root'), wasInert = root?.inert ?? false
@@ -75,14 +84,14 @@ function WorkshopSession({ close }: { close: () => void }) {
       endPress(motion.current, audio); motion.current.dragging = false
       if (phase.current === 'wax' && motion.current.coating < 1 && !motion.current.autoDip) motion.current.dragY = 0.3
     }
-    const pause = () => { motion.current.pressed = false; motion.current.dragging = false; audio.pause() }
+    const pause = () => { cancelPresses(motion.current); motion.current.dragging = false; audio.pause() }
     const visibility = () => { setVisible(!document.hidden); if (document.hidden) pause() }
     document.addEventListener('keydown', keydown)
     document.addEventListener('visibilitychange', visibility)
     window.addEventListener('pointerup', release); window.addEventListener('pointercancel', release); window.addEventListener('blur', pause)
     return () => {
       if (timer.current !== null) window.clearTimeout(timer.current)
-      sessionMotion.pressed = false; audio.dispose()
+      cancelPresses(sessionMotion); sessionMotion.sessionActive = false; audio.dispose()
       document.removeEventListener('keydown', keydown); document.removeEventListener('visibilitychange', visibility)
       window.removeEventListener('pointerup', release); window.removeEventListener('pointercancel', release); window.removeEventListener('blur', pause)
       if (root) root.inert = wasInert
@@ -92,22 +101,21 @@ function WorkshopSession({ close }: { close: () => void }) {
   }, [audio, motion, requestClose])
 
   const centerDown = (event: React.PointerEvent<HTMLButtonElement>) => {
-    event.currentTarget.setPointerCapture(event.pointerId)
-    beginPress(motion.current, audio, 0, 0.36, event.pressure)
+    if (beginPress(motion.current, audio, 0, 0.36, event.pressure)) event.currentTarget.setPointerCapture(event.pointerId)
   }
   return createPortal(<div className={`sw-overlay${closing ? ' is-closing' : ''}`}>
-    <section ref={dialog} className="sw-workshop" role="dialog" aria-modal="true" aria-labelledby="sw-title" tabIndex={-1} data-stage={stage}>
+    <section ref={dialog} className="sw-workshop" role="dialog" aria-modal="true" aria-labelledby="sw-title" tabIndex={-1} data-stage={stage} data-interactive-ready={interactiveReady}>
       <header className="sw-header"><h1 id="sw-title"><span>Liz</span> Cheez 脆皮捏捏工坊</h1><div className="sw-header-actions">
         <button type="button" className="sw-sound" aria-label={muted ? '开启声音' : '静音'} aria-pressed={!muted} onClick={() => { audio.setMuted(!muted); setMuted(!muted) }}><span aria-hidden="true">{muted ? '♪̸' : '♫'}</span>{muted ? '声音关' : '声音开'}</button>
         <button type="button" className="sw-close" aria-label="关闭脆皮捏捏工坊" onClick={requestClose}>×</button>
       </div></header>
       <ol className="sw-steps" aria-label="制作进度">{STAGES.map((item, i) => <li key={item} className={item === stage ? 'is-active' : i < stageIndex ? 'is-complete' : ''} aria-current={item === stage ? 'step' : undefined}><span>{i < stageIndex ? '✓' : i + 1}</span>{STAGE_LABELS[i]}</li>)}</ol>
       <div className="sw-viewport" aria-describedby="sw-hint">
-        <SceneBoundary><Canvas frameloop={visible ? 'always' : 'never'} dpr={[1, 1.5]} camera={{ position: [0, 0.65, 3.9], fov: 36, near: 0.1, far: 30 }} gl={{ antialias: true, alpha: true, toneMapping: NoToneMapping, powerPreference: 'high-performance' }} onCreated={({ gl }) => { gl.domElement.dataset.workshopCanvas = 'true' }} fallback={<p className="sw-scene-fallback">此设备暂不支持 3D，请关闭后在支持 WebGL 的浏览器打开。</p>}>
-          <Suspense fallback={null}><WorkshopScene stage={stage} motion={motion} audio={audio} onStage={advance} onProgress={reportProgress} /></Suspense>
+        <SceneBoundary><Canvas frameloop={visible ? 'always' : 'never'} dpr={[1, mobile ? MOBILE_DPR : 1.5]} camera={{ position: [0, 0.65, 3.9], fov: 36, near: 0.1, far: 30 }} gl={{ antialias: true, alpha: true, toneMapping: NoToneMapping, powerPreference: 'high-performance' }} onCreated={({ gl }) => { gl.domElement.dataset.workshopCanvas = 'true' }} fallback={<p className="sw-scene-fallback">此设备暂不支持 3D，请关闭后在支持 WebGL 的浏览器打开。</p>}>
+          <Suspense fallback={null}><WorkshopScene stage={stage} motion={motion} audio={audio} onStage={advance} onProgress={reportProgress} onReady={reportReady} /></Suspense>
         </Canvas></SceneBoundary>
       </div>
-      <div className="sw-instructions" aria-live="polite"><p id="sw-hint">{stage === 'prepare' ? '拖动，转一转' : stage === 'wax' ? progress >= 1 ? '提起，滴去多余的蜡' : '把 Cheez 拖进蜡液' : stage === 'cool' ? '静候脆皮定型' : progress >= 0.9 ? '脆皮碎完啦 · Cheez 自由了' : '按压、拖动，捏碎 Cheez 的脆皮'}</p>
+      <div className="sw-instructions" aria-live="polite"><p id="sw-hint">{preparationFailed ? '脆皮准备失败，请关闭后重试' : stage === 'prepare' ? '拖动，转一转' : stage === 'wax' ? progress >= 1 ? '提起，滴去多余的蜡' : '把 Cheez 拖进蜡液' : stage === 'cool' ? progress >= 1 && !interactiveReady ? '准备脆皮…' : '静候脆皮定型' : progress >= 0.9 ? '脆皮碎完啦 · Cheez 自由了' : '按压、拖动，捏碎 Cheez 的脆皮'}</p>
         {(stage === 'wax' || stage === 'cool' || stage === 'squeeze') && <div className="sw-progress-row"><div className="sw-progress" role="progressbar" aria-label={stage === 'wax' ? '裹蜡进度' : stage === 'cool' ? '冷却进度' : '脆皮碎裂进度'} aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}><span style={{ width: `${Math.round(progress * 100)}%` }} /></div><output>{Math.round(progress * 100)}%</output></div>}
       </div>
       <footer className="sw-controls">
@@ -115,8 +123,8 @@ function WorkshopSession({ close }: { close: () => void }) {
         <div className="sw-main-action">
           {stage === 'prepare' && <button type="button" className="sw-primary" onClick={start}>开始制作</button>}
           {stage === 'wax' && <button type="button" className="sw-primary" disabled={progress >= 1 || closing} onClick={() => { audio.unlock(); motion.current.autoDip = true; motion.current.dragY = -0.23 }}>浸入蜡液</button>}
-          {stage === 'cool' && <button type="button" className="sw-primary" disabled>冷却中…</button>}
-          {stage === 'squeeze' && <button type="button" className="sw-primary" aria-label="按住捏碎脆皮" onPointerDown={centerDown} onPointerUp={() => endPress(motion.current, audio)} onPointerCancel={() => endPress(motion.current, audio)} onKeyDown={(event) => { if ((event.key === ' ' || event.key === 'Enter') && !event.repeat) { event.preventDefault(); beginPress(motion.current, audio) } }} onKeyUp={(event) => { if (event.key === ' ' || event.key === 'Enter') { event.preventDefault(); endPress(motion.current, audio) } }}>捏碎脆皮</button>}
+          {stage === 'cool' && <button type="button" className="sw-primary" disabled>{progress >= 1 && !interactiveReady ? '准备中…' : '冷却中…'}</button>}
+          {stage === 'squeeze' && <button type="button" className="sw-primary" aria-label="按住捏碎脆皮" disabled={!interactiveReady || closing} onPointerDown={centerDown} onPointerUp={() => endPress(motion.current, audio)} onPointerCancel={() => endPress(motion.current, audio)} onKeyDown={(event) => { if ((event.key === ' ' || event.key === 'Enter') && !event.repeat) { event.preventDefault(); beginPress(motion.current, audio) } }} onKeyUp={(event) => { if (event.key === ' ' || event.key === 'Enter') { event.preventDefault(); endPress(motion.current, audio) } }}>捏碎脆皮</button>}
         </div>
         <button type="button" className="sw-text-button" onClick={restart} disabled={stage !== 'squeeze' || closing}>重新裹蜡</button>
       </footer>

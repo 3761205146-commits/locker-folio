@@ -2,6 +2,7 @@ import { useFrame } from '@react-three/fiber'
 import { Suspense, useEffect, useRef, type ReactNode } from 'react'
 import { Vector3, type Group } from 'three'
 import { introTime } from '../experience/experienceClock'
+import SceneAssetBoundary from './SceneAssetBoundary'
 import MessagesForLiz from '../components/messages/MessagesForLiz'
 import AlbumBooks from '../components/books/AlbumBooks'
 import { useSceneCapabilities } from '../store'
@@ -262,11 +263,13 @@ function PhysicalItem({
       onTap={onTap ?? (hotspot ? () => activateHotspot(hotspot) : undefined)}
       onHoverChange={hotspot ? (on) => setHotspotActive(hotspot, on) : undefined}
     >
-      <IntroPhysical spec={spec}>
-        <group rotation={[rotation[0], rotation[1], rotation[2]]} scale={scale}>
-          {children}
-        </group>
-      </IntroPhysical>
+      <SceneAssetBoundary>
+        <IntroPhysical spec={spec}>
+          <group rotation={[rotation[0], rotation[1], rotation[2]]} scale={scale}>
+            {children}
+          </group>
+        </IntroPhysical>
+      </SceneAssetBoundary>
     </SurfaceDraggable>
   )
 }

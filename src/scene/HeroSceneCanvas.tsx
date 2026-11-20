@@ -26,6 +26,10 @@ import {
 } from './Props'
 import { CAMERA_FAR, CAMERA_FOV, CAMERA_NEAR } from './sceneConfig'
 import ZoomControls, { ZoomInput } from './ZoomControls'
+import SceneAssetBoundary from './SceneAssetBoundary'
+import ScenePreparation from './ScenePreparation'
+import { useScenePreparation } from './scenePreparation'
+import { DESKTOP_DPR, MOBILE_DPR, useMobileRendering } from './renderQuality'
 import './hero.css'
 
 /**
@@ -43,7 +47,7 @@ function DoorTwoInnerContent({ interactive }: { interactive: boolean }) {
       <group name="Door_02_IdCardHook" position={[...ID_CARD_HOOK_AT]}>
         <IdCardHookModel />
       </group>
-      <Suspense fallback={null}>
+      <SceneAssetBoundary>
         <DecalField
           name="Decals_Door02_Inner"
           specs={DOOR2_INNER_DECALS}
@@ -51,7 +55,7 @@ function DoorTwoInnerContent({ interactive }: { interactive: boolean }) {
           height={DOOR_H}
           interactive={interactive}
         />
-      </Suspense>
+      </SceneAssetBoundary>
       <DoorTwoMountedProps />
       <DoorHotspots />
     </group>
@@ -64,7 +68,10 @@ function DoorTwoInnerContent({ interactive }: { interactive: boolean }) {
  * 结构：Canvas + 相机 + 灯光 + 性能总管 + 柜体 + 柜内外物件 + 门上贴花 + 热点。
  */
 export default function HeroSceneCanvas() {
+  const mobile = useMobileRendering()
   const caps = useSceneCapabilities()
+  const preparing = !useScenePreparation((s) => s.sceneRenderable)
+  const generation = useScenePreparation((s) => s.generation)
   const query = new URLSearchParams(location.search)
 
   const debugGrid = import.meta.env.DEV && query.get('grid') === '1'
@@ -72,6 +79,7 @@ export default function HeroSceneCanvas() {
   return (
     <div className="hero">
       <Canvas
+        key={generation}
         className="hero__canvas"
         /*
          * 静止时按需渲染，有动画时连续渲染。
@@ -83,9 +91,9 @@ export default function HeroSceneCanvas() {
          * effect 依赖没变、不会重跑，frameloop 被永久按回 demand，
          * 画面直接停住（实测开场 4.6s 只出了 90 帧，返回镜头一帧都不走）。
          */
-        frameloop={caps.animating ? 'always' : 'demand'}
+        frameloop={preparing || caps.animating ? 'always' : 'demand'}
         shadows
-        dpr={[1, 1.75]}
+        dpr={[1, mobile ? MOBILE_DPR : DESKTOP_DPR]}
         gl={{
           antialias: true,
           alpha: true,
@@ -103,10 +111,10 @@ export default function HeroSceneCanvas() {
           position: [...APPROACH_KEYS[0].pos],
         }}
       >
-        <PerformanceGovernor animating={caps.animating} />
+        <PerformanceGovernor animating={preparing || caps.animating} mobile={mobile} preparing={preparing} />
         <CameraRig />
         <ZoomInput />
-        <LightsAndShadows dynamic={caps.animating} />
+        <LightsAndShadows dynamic={caps.animating} mobile={mobile} />
         {/* 贴片要等纹理解码完才能算尺寸，各自用 Suspense 兜住。
             柜体不依赖纹理，放在 Suspense 外面，纹理慢也不会整柜消失 */}
         <LockerModel
@@ -121,7 +129,7 @@ export default function HeroSceneCanvas() {
           doorFaceContent={{
             0: (
               <>
-                <Suspense fallback={null}>
+                <SceneAssetBoundary>
                   <DecalField
                     name="Decals_Door01_Face"
                     specs={DOOR1_DECALS}
@@ -129,7 +137,7 @@ export default function HeroSceneCanvas() {
                     height={DOOR_H}
                     interactive={caps.drag}
                   />
-                </Suspense>
+                </SceneAssetBoundary>
                 <Suspense fallback={null}>
                   <DoorOneMountedProps />
                 </Suspense>
@@ -137,7 +145,7 @@ export default function HeroSceneCanvas() {
             ),
             3: (
               <>
-                <Suspense fallback={null}>
+                <SceneAssetBoundary>
                   <DecalField
                     name="Decals_Door04_Face"
                     specs={DOOR4_DECALS}
@@ -145,7 +153,7 @@ export default function HeroSceneCanvas() {
                     height={DOOR_H}
                     interactive={caps.drag}
                   />
-                </Suspense>
+                </SceneAssetBoundary>
                 <Suspense fallback={null}>
                   <DoorFourMountedProps />
                 </Suspense>
@@ -158,6 +166,7 @@ export default function HeroSceneCanvas() {
         </Suspense>
         <WorldHotspots />
         <CameraReturn />
+        <ScenePreparation />
       </Canvas>
       <ZoomControls />
       {debugGrid && <div className="hero__calib" aria-hidden />}

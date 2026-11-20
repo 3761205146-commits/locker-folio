@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 1,
+  "scope": "19 assets reviewed in the second read-only audit",
+  "policy": "Labels only; no automatic deletion. Candidates are not deletion approval. Recheck on hash changes.",
+  "entries": [
+    {
+      "url": "/assets/obj/liz/liz-id-photo.jpg",
+      "diskBytes": 46991,
+      "sha256": "44caae35427d832e8fabdf5105246f05a78a70fc1e6c8179d7fe0a733f4f5626",
+      "disposition": "pending-review",
+      "content": "深色头发人物证件照，画面与当前工牌PNG中的头像视觉一致。",
+      "evidence": [
+        "7e1f32b同时新增该JPG与liz-about-card.png，但代码只读取PNG。",
+        "当前PhysicalProps.tsx:1338使用liz-about-card.png，AboutCard.tsx:15使用/images/liz-ive-profile-detail.jpg。",
+        "对当前卡面PNG进行了视觉检查，头像画面一致；没有找到生成脚本或依赖记录证明这份JPG就是其制作输入。"
+      ],
+      "caution": "不能确认其原始制作/存档用途。无运行时引用已证实，但不归入可确认完全无用途的文件。"
+    },
+    {
+      "url": "/assets/obj/liz/liz-ive-id-photo.jpg",
+      "diskBytes": 139088,
+      "sha256": "d6c69c1a359bd6b41536beb1a44d9db7092c3005d03fc47a9913107063aa234f",
+      "disposition": "cleanup-candidate",
+      "content": "金发人物竖版头像，旧IVE详情卡使用。",
+      "evidence": [
+        "5b08f1f:src/components/overlays/AboutCard.tsx新增直接img引用。",
+        "230dbb8明确删除该引用，改为完整/images/liz-ive-profile-detail.jpg。",
+        "当前AboutCard.tsx:15及响应式清单仅使用完整详情图。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    },
+    {
+      "url": "/assets/obj/posterwall.webp",
+      "diskBytes": 83900,
+      "sha256": "2e4607b353fc1b78cb49cbc7327579e367ca4ca34a2790a2b7d9480560df0fbb",
+      "disposition": "cleanup-candidate",
+      "content": "粉紫底、五个人物的旧拼贴海报。",
+      "evidence": [
+        "8b614c2替换Props.tsx及PosterCardModel的旧posterwall.webp路径，改为liz-left-poster.jpg。",
+        "01a1053从pack-decals.mjs图集成员中删除旧图。",
+        "当前Props.tsx:97使用新JPG；PhysicalProps.tsx:1082按传入url加载。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    },
+    {
+      "url": "/assets/obj/tapes.webp",
+      "diskBytes": 49192,
+      "sha256": "2c77172023c87e918160c1cd69cc17c06f953414fd36268af106b0762a24a0f1",
+      "disposition": "cleanup-candidate",
+      "content": "三条浅黄色纸胶带。",
+      "evidence": [
+        "636b961的pack-decals.mjs包含该图；01a1053明确删除对应MEMBERS条目。",
+        "当前pack-decals.mjs:79附近与decal-atlas.json只有10张Liz新贴花源图，已无该图。",
+        "01a1053同时移除decalSpecs.ts中tapes贴花及blend配置。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    },
+    {
+      "url": "/assets/obj/trayA.webp",
+      "diskBytes": 4472,
+      "sha256": "f4c5567650933a19de63c79a06c038fe937913fe69f8e97945f5f4e82dd5db82",
+      "disposition": "cleanup-candidate",
+      "content": "纸张与白色托盘的平面合成图。",
+      "evidence": [
+        "636b961的pack-decals.mjs包含该图；01a1053明确删除对应MEMBERS条目。",
+        "当前pack-decals.mjs:79附近与decal-atlas.json只有10张Liz新贴花源图，已无该图。",
+        "当前decalSpecs.ts:33说明门1改为实体；PhysicalProps.tsx:1240的DoorTrayModel完全由网格和颜色组成，不加载该WebP。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    },
+    {
+      "url": "/assets/obj/trayB.webp",
+      "diskBytes": 8494,
+      "sha256": "93aa04d3f40e0dfd8f644e39e11f6f0e2346d6f66e431c6c9e5db8bcb15112eb",
+      "disposition": "cleanup-candidate",
+      "content": "彩色书本、粉色球与托盘的平面合成图。",
+      "evidence": [
+        "636b961的pack-decals.mjs包含该图；01a1053明确删除对应MEMBERS条目。",
+        "当前pack-decals.mjs:79附近与decal-atlas.json只有10张Liz新贴花源图，已无该图。",
+        "当前decalSpecs.ts:33说明门1改为实体；PhysicalProps.tsx:1240的DoorTrayModel完全由网格和颜色组成，不加载该WebP。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    },
+    {
+      "url": "/assets/obj2/guitar.webp",
+      "diskBytes": 28722,
+      "sha256": "5ee80a4622bdabb58179b678ef5273285461003b18cec25c4c313958abd04587",
+      "disposition": "cleanup-candidate",
+      "content": "蓝白色电吉他透明贴图。",
+      "evidence": [
+        "ad2181c在propSpecs.ts中删除guitar.webp URL并把GuitarModel入口换成KeyboardModel。",
+        "当前FrontProps加载KeyboardModel；旧GuitarModel函数仍可存在，但不是该图片的读取路径。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    },
+    {
+      "url": "/assets/obj2/polaroids.webp",
+      "diskBytes": 65492,
+      "sha256": "df8d6564769ec26b09d63beceaf7de27de49840311db0706a9ee9af81dd55917",
+      "disposition": "cleanup-candidate",
+      "content": "三张卡通人物拍立得的复合透明图。",
+      "evidence": [
+        "2c9537c替换旧复合图采样和预加载，改为三张polaroid-liz/photo-*.jpg。",
+        "01a1053也从图集构建成员中移除；当前decalSpecs.ts:38只在历史说明注释中提到旧文件。",
+        "PhysicalProps.tsx:1180的PolaroidCardModel使用photoUrl参数，当前Props传入三张真实JPG。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    },
+    {
+      "url": "/assets/obj2/stk1.webp",
+      "diskBytes": 16026,
+      "sha256": "90dde5840ca913eec8b31992c4f0c2c932018145237f3749fc9a2a13fd834b3a",
+      "disposition": "offline-build-input",
+      "content": "戴红帽的金发卡通女孩。",
+      "evidence": [
+        "01a1053删除其门贴/图集运行时用途。",
+        "scripts/assets/build-badge.mjs:39的AVATAR明确读取该WebP；第81行起裁头像，输出/assets/obj/idcard2.webp。",
+        "当前PhysicalProps.tsx:1339、1440附近读取idcard2.webp，但只裁顶部吊环；不是把旧女孩头像贴到当前Liz正面。"
+      ],
+      "caution": "不能标为完全未引用。手工工牌生成脚本仍依赖它；本轮没有执行该脚本，也没有验证重新生成的结果。"
+    },
+    {
+      "url": "/assets/obj2/stk10.webp",
+      "diskBytes": 5736,
+      "sha256": "df431df2835edc2be36b5bcefd416d9dcf38b20f785ca042a28e3477776006eb",
+      "disposition": "cleanup-candidate",
+      "content": "JUST ANOTHER DAY黄底文字贴纸。",
+      "evidence": [
+        "01a1053同时从decalSpecs.ts与pack-decals.mjs删除旧文字贴纸，替换为happy-birthday.png和liz-heart.png。",
+        "scripts/assets/build-textstickers.mjs:47仍将此路径作为输出目标，并非应用读取输入。"
+      ],
+      "caution": "历史构建产物，仍可由保留脚本生成；当前应用无用途。没有运行该生成脚本。"
+    },
+    {
+      "url": "/assets/obj2/stk11.webp",
+      "diskBytes": 8238,
+      "sha256": "9afb05e4a28319b2f25c35cae31ad8b409149a7ac5d73f3bf24b41f74ca2b628",
+      "disposition": "cleanup-candidate",
+      "content": "RIGHT NOWADAYS 2026文字贴纸。",
+      "evidence": [
+        "01a1053同时从decalSpecs.ts与pack-decals.mjs删除旧文字贴纸，替换为happy-birthday.png和liz-heart.png。",
+        "scripts/assets/build-textstickers.mjs:72仍将此路径作为输出目标，并非应用读取输入。"
+      ],
+      "caution": "历史构建产物，仍可由保留脚本生成；当前应用无用途。没有运行该生成脚本。"
+    },
+    {
+      "url": "/assets/obj2/stk2.webp",
+      "diskBytes": 19804,
+      "sha256": "4f6be9da08c2d494dc90cf1558b426abebe1bd7facb4db85a3d07e70f856407a",
+      "disposition": "cleanup-candidate",
+      "content": "粉色/紫色上衣的双人贴纸。",
+      "evidence": [
+        "636b961的decalSpecs.ts和pack-decals.mjs曾将其作为旧贴纸使用。",
+        "01a1053明确删除对应decal条目和图集MEMBERS，改用当前10张Liz素材。",
+        "当前源码、图集JSON、运行时清单及dist文本均无该图片读取路径。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    },
+    {
+      "url": "/assets/obj2/stk3.webp",
+      "diskBytes": 12908,
+      "sha256": "e681f5f3b957762c909759437419a1a04deb517d8e516b1386062a55d4c87df8",
+      "disposition": "cleanup-candidate",
+      "content": "灰色小猫贴纸。",
+      "evidence": [
+        "636b961的decalSpecs.ts和pack-decals.mjs曾将其作为旧贴纸使用。",
+        "01a1053明确删除对应decal条目和图集MEMBERS，改用当前10张Liz素材。",
+        "当前源码、图集JSON、运行时清单及dist文本均无该图片读取路径。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    },
+    {
+      "url": "/assets/obj2/stk4.webp",
+      "diskBytes": 15502,
+      "sha256": "171d5db80c98e9c85a8622b0c02a21b680ce53e79277dd2ed85e03cfb350724f",
+      "disposition": "cleanup-candidate",
+      "content": "黑白三格人物相纸条。",
+      "evidence": [
+        "636b961的decalSpecs.ts和pack-decals.mjs曾将其作为旧贴纸使用。",
+        "01a1053明确删除对应decal条目和图集MEMBERS，改用当前10张Liz素材。",
+        "当前源码、图集JSON、运行时清单及dist文本均无该图片读取路径。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    },
+    {
+      "url": "/assets/obj2/stk5.webp",
+      "diskBytes": 11786,
+      "sha256": "6cb224d6a90afb9379fac11cfa194b660d2fb748920dc3124a47f4a24083d85f",
+      "disposition": "cleanup-candidate",
+      "content": "蓝色星月巫师帽。",
+      "evidence": [
+        "636b961的decalSpecs.ts和pack-decals.mjs曾将其作为旧贴纸使用。",
+        "01a1053明确删除对应decal条目和图集MEMBERS，改用当前10张Liz素材。",
+        "当前源码、图集JSON、运行时清单及dist文本均无该图片读取路径。",
+        "bleed-alpha.mjs:31提到stk5只是历史像素统计注释；维护脚本遍历素材不等于应用需要该图。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    },
+    {
+      "url": "/assets/obj2/stk6.webp",
+      "diskBytes": 11032,
+      "sha256": "4802e6db1142fe93884d5aebb1afc5db429627990a7c4592014f82dc62653137",
+      "disposition": "cleanup-candidate",
+      "content": "LOVE红色爱心。",
+      "evidence": [
+        "636b961的decalSpecs.ts和pack-decals.mjs曾将其作为旧贴纸使用。",
+        "01a1053明确删除对应decal条目和图集MEMBERS，改用当前10张Liz素材。",
+        "当前源码、图集JSON、运行时清单及dist文本均无该图片读取路径。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    },
+    {
+      "url": "/assets/obj2/stk7.webp",
+      "diskBytes": 9864,
+      "sha256": "d7c4c99771776dda4fdca96aa87be4dd50d60c9afb29846997e81de8b484d95b",
+      "disposition": "cleanup-candidate",
+      "content": "红色人形贴纸。",
+      "evidence": [
+        "636b961的decalSpecs.ts和pack-decals.mjs曾将其作为旧贴纸使用。",
+        "01a1053明确删除对应decal条目和图集MEMBERS，改用当前10张Liz素材。",
+        "当前源码、图集JSON、运行时清单及dist文本均无该图片读取路径。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    },
+    {
+      "url": "/assets/obj2/stk8.webp",
+      "diskBytes": 14596,
+      "sha256": "bb27373a019e53b295f9eecb8a1be9421ef189c1d4be5b6e617fd886fedd3969",
+      "disposition": "cleanup-candidate",
+      "content": "黄色OMG爆炸形贴纸。",
+      "evidence": [
+        "636b961的decalSpecs.ts和pack-decals.mjs曾将其作为旧贴纸使用。",
+        "01a1053明确删除对应decal条目和图集MEMBERS，改用当前10张Liz素材。",
+        "当前源码、图集JSON、运行时清单及dist文本均无该图片读取路径。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    },
+    {
+      "url": "/assets/obj2/stk9.webp",
+      "diskBytes": 5482,
+      "sha256": "a2754a9d626f5620e51046caeef8c0e3246e883696e10f9315a9b3f0377b0595",
+      "disposition": "cleanup-candidate",
+      "content": "黄色花朵贴纸。",
+      "evidence": [
+        "636b961的decalSpecs.ts和pack-decals.mjs曾将其作为旧贴纸使用。",
+        "01a1053明确删除对应decal条目和图集MEMBERS，改用当前10张Liz素材。",
+        "当前源码、图集JSON、运行时清单及dist文本均无该图片读取路径。"
+      ],
+      "caution": "当前运行时路径不再引用；不代表可以删除或没有站外使用。"
+    }
+  ]
+}

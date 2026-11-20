@@ -1,4 +1,4 @@
-import { useTexture } from '@react-three/drei'
+import { useReliableTexture } from './reliableTexture'
 import { useThree } from '@react-three/fiber'
 import { useEffect, useMemo } from 'react'
 import { LinearFilter, LinearMipmapLinearFilter, SRGBColorSpace, type MeshBasicMaterial } from 'three'
@@ -6,7 +6,7 @@ import { createCatPlushSurface } from './catPlushSurface'
 
 /** The alpha silhouette and UVs come from the unchanged original artwork. */
 export function CatPlushHeadModel() {
-  const source = useTexture(`${import.meta.env.BASE_URL}images/cheez-plush-face.png`)
+  const source = useReliableTexture(`${import.meta.env.BASE_URL}images/cheez-plush-face.png`)
   const anisotropy = useThree((state) => state.gl.capabilities.getMaxAnisotropy())
   const { front, back, face, nap } = useMemo(
     () => createCatPlushSurface(source.image as HTMLImageElement, anisotropy),
@@ -21,7 +21,8 @@ export function CatPlushHeadModel() {
     texture.magFilter = LinearFilter
     texture.minFilter = LinearMipmapLinearFilter
     texture.anisotropy = Math.min(8, anisotropy)
-    texture.needsUpdate = true
+    // clone() already marks this private texture/source for its first upload.
+    // Final sampling parameters are set here, before any material can use it.
     return texture
   }, [source, anisotropy])
   const softenRim = useMemo(() => (shader: Parameters<MeshBasicMaterial['onBeforeCompile']>[0]) => {

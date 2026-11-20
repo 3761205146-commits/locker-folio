@@ -10,6 +10,9 @@ import OverlayHost from './components/overlays/OverlayHost'
 import { StaticFallback, useCapabilities } from './components/fallback'
 import ExperienceOrchestrator from './experience/ExperienceOrchestrator'
 import { useStore } from './store'
+import { usePhotoboothStore } from './components/photobooth/photoboothStore'
+import { useWorkshopStore } from './components/squishy/workshopStore'
+import { useScenePreparation } from './scene/scenePreparation'
 
 /**
  * three + R3F 有 240KB gzip，独立成 chunk，绝不进主包。
@@ -26,13 +29,24 @@ const PhotoboothModal = lazy(() => import('./components/photobooth/PhotoboothMod
 const HeroSceneCanvas = lazy(heroChunk)
 void heroChunk()
 
+// Keep feature-store updates local: opening a modal must not re-render the
+// cabinet or reset its adaptive DPR/shadow resources.
+function OnDemandFeatures() {
+  const boothOpen = usePhotoboothStore((state) => state.open)
+  const workshopOpen = useWorkshopStore((state) => state.open)
+  return <>
+    {boothOpen && <Suspense fallback={null}><PhotoboothModal /></Suspense>}
+    {workshopOpen && <Suspense fallback={null}><SquishyWorkshop /></Suspense>}
+  </>
+}
+
 export default function App() {
   const phase = useStore((s) => s.phase)
   const send = useStore((s) => s.send)
   const overlay = useStore((s) => s.overlay)
   const openOverlay = useStore((s) => s.openOverlay)
   const caps = useCapabilities()
-  const showScene = phase !== 'loading'
+  const sceneRenderable = useScenePreparation((s) => s.sceneRenderable)
 
   /*
    * 静态降级分支不跑 Loader / 揭幕 / 开场，但状态机不能停在 `loading` ——
@@ -80,17 +94,16 @@ export default function App() {
     <div className="stage">
       {/* 场景状态机的时钟与 Reduced Motion 同步：不渲染任何东西 */}
       <ExperienceOrchestrator />
-      {showScene && (
+      <div inert={phase === 'loading'} aria-hidden={phase === 'loading'} style={{ opacity: phase === 'loading' && !sceneRenderable ? 0 : 1, pointerEvents: phase === 'loading' ? 'none' : undefined }}>
         <Suspense fallback={null}>
           <HeroSceneCanvas />
         </Suspense>
-      )}
+      </div>
       <MessagesForLizModal />
       <PianoModal />
       <BookModal />
       <BirthdayCakeModal />
-      <Suspense fallback={null}><PhotoboothModal /></Suspense>
-      <Suspense fallback={null}><SquishyWorkshop /></Suspense>
+      <OnDemandFeatures />
       <MiniRecordPlayer />
       {/* 四个浮层的统一宿主：dialog 语义、背景 inert、focus trap、
           退出动画播完才卸载、焦点归还，全部在 OverlayHost 内部完成 */}

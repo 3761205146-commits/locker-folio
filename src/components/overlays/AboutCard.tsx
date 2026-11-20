@@ -1,3 +1,5 @@
+import ResponsivePhoto from '../images/ResponsivePhoto'
+import { PROFILE_SIZES } from '../images/responsivePhotoSources'
 import CloseButton from './CloseButton'
 import './overlay.css'
 import './about.css'
@@ -7,7 +9,8 @@ export default function AboutCard() {
   return (
     <div className="ov">
       <section className="ive-detail" aria-label="Liz IVE profile detail">
-        <img
+        <ResponsivePhoto
+          sizes={PROFILE_SIZES}
           className="ive-detail__image"
           src="/images/liz-ive-profile-detail.jpg"
           alt="Liz IVE identity card"

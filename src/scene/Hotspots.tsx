@@ -1,4 +1,4 @@
-import { Html } from '@react-three/drei'
+import Html from './SceneHtml'
 import { useFrame } from '@react-three/fiber'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { AdditiveBlending, Vector3, type Group, type Mesh } from 'three'

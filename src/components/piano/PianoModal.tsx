@@ -8,6 +8,24 @@ import './piano.css'
 const UNREAL_AUDIO = `${import.meta.env.BASE_URL}audio/unreal-piano.mp3`
 const UNREAL_MIDI = `${import.meta.env.BASE_URL}audio/unreal-piano.mid`
 
+// Cache both the in-flight request and parsed result across open/close cycles.
+// A failure clears only the request so the next opening can retry.
+let cachedMidi: MidiNote[] | undefined
+let midiRequest: Promise<MidiNote[]> | undefined
+function loadMidi() {
+  if (cachedMidi) return Promise.resolve(cachedMidi)
+  if (!midiRequest) {
+    midiRequest = fetch(UNREAL_MIDI)
+      .then((response) => {
+        if (!response.ok) throw new Error(`MIDI HTTP ${response.status}`)
+        return response.arrayBuffer()
+      })
+      .then((data) => { cachedMidi = parseUnrealMidi(data); return cachedMidi })
+      .catch((error: unknown) => { midiRequest = undefined; throw error })
+  }
+  return midiRequest
+}
+
 function isTypingTarget(target: EventTarget | null) {
   return target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target instanceof HTMLSelectElement || (target instanceof HTMLElement && target.isContentEditable)
 }
@@ -65,12 +83,17 @@ export default function PianoModal() {
   }
 
   useEffect(() => {
+    if (!open) return
     let cancelled = false
-    void fetch(UNREAL_MIDI).then((response) => response.arrayBuffer()).then((data) => {
-      if (!cancelled) midiNotes.current = parseUnrealMidi(data)
-    }).catch(() => { midiNotes.current = [] })
+    if (cachedMidi) midiNotes.current = cachedMidi
+    void loadMidi().then((notes) => {
+      if (!cancelled) midiNotes.current = notes
+    }).catch(() => { if (!cancelled) midiNotes.current = [] })
     return () => { cancelled = true }
-  }, [])
+  }, [open])
+  useEffect(() => {
+    if (open && audioRef.current) audioRef.current.volume = volume / 100
+  }, [open, volume])
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
@@ -85,7 +108,7 @@ export default function PianoModal() {
       audio.removeEventListener('timeupdate', syncTime)
       audio.removeEventListener('ended', finish)
     }
-  }, [setMelodyState])
+  }, [open, setMelodyState])
   useEffect(() => {
     if (open) return
     audioRef.current?.pause()
